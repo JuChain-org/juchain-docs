@@ -1,6 +1,7 @@
 {
   "title": "JuChain Documentation",
   "description": "JuChain Technical Documentation",
+  "documentId": "juchain-docs",
   "plugins": [
     "language-picker",
     "-sharing",
