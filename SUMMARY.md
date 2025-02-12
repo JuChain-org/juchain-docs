@@ -2,7 +2,7 @@
 
 ## Getting Started
 
-* [快速理解JuChain](README.md)
+* [Quick Understanding](README.md)
 * [Quick Start](getting-started/quickstart.md)
 * [JuChain Chain INFO](getting-started/chain-info.md)
 
