@@ -8,66 +8,54 @@ Welcome to JuChain documentation! Please select your preferred language:
 By default, you will be redirected to the English documentation.
 
 ---
-description: JuChain 的核心理念、愿景及设计目标，帮助用户理解其整体定位和价值
+description: Core concepts, vision, and design goals of JuChain, helping users understand its overall positioning and value
 ---
 
-# 快速了解 JuChain
+# Quick Understanding of JuChain
 
+## 1. What is JuChain
 
+JuChain is a decentralized ecosystem infrastructure developed and launched by JuCoin Exchange, built on OP-Stack, aiming to provide a secure, low-cost, and developer-friendly EVM-compatible network. JuChain adopts a Layer 3 (L3) architecture, built on top of the OP network, inheriting Ethereum's security while providing enhanced scalability, bringing a smoother on-chain experience for developers and users.
 
-## 1.什么是JuChain
+## 2. JuChain's Vision
 
-JuChain 是由 JuCoin 交易所 研发并推出的去中心化生态基础设施，基于 OP-Stack 构建，旨在提供一个 安全、低成本、开发者友好的 EVM 兼容网络。JuChain 采用 Layer 3（L3）架构，构建在 OP 网络之上，继承以太坊的安全性，同时提供更优的扩展能力，为开发者和用户带来更流畅的链上体验。
+JuChain's goal is:
 
+**To help more people easily enter the blockchain world and enjoy a secure and efficient on-chain experience**
 
+We hope to:
 
-## 2. JuChain 的愿景
+• Enhance blockchain transaction experience and reduce user costs through optimized L3 solutions;
 
-JuChain 诞生的目标是：
+• Provide comprehensive development tools and infrastructure for developers to build DApps more conveniently;
 
-**让更多的人轻松进入区块链世界，并享受安全高效的链上体验**
+• Leverage the JuCoin ecosystem to provide funding, traffic, and market support for projects, accelerating innovative application deployment.
 
+## 3. JuChain's Core Advantages
 
+* [x] Low Cost & High Efficiency
 
-我们希望：
+• Expand based on OP-Stack, optimizing transaction costs
 
-• 通过更优化的 L3 方案，提升区块链交易体验，降低用户成本；
+• Adopt L3 solution, further optimizing performance on top of Layer 2
 
-• 提供完善的开发工具和基础设施，让开发者能够更便捷地构建 DApp；
+• Average transaction fees far lower than Ethereum L1, suitable for large-scale applications
 
-• 借助 JuCoin 生态，为项目方提供资金、流量和市场支持，加速创新应用落地。
+* [x] Ecosystem Synergy & Strong Resource Support
 
+• Deep integration with JuCoin Exchange, providing financial support & direct exchange access
 
+• Extensive global community, sharing ecosystem benefits
 
-## 3. JuChain 的核心优势
+• Rich application support including DeFi, NFT, GameFi, helping developers grow rapidly
 
-* [x] 低成本 & 高效执行
+* [x] Compatibility & Developer Friendly
 
-• 基于 OP-Stack 进行扩展，优化交易成本
+• EVM compatible, supporting existing Ethereum DApp migration
 
-• 采用 L3 方案，在 Layer 2 之上进一步优化性能
+• Support smart contract deployment, providing complete developer tools (SDK & API)
 
-• 平均交易费用远低于以太坊 L1，适用于大规模应用
-
-
-
-* [x] 生态协同 & 强大资源支持
-
-• 与 JuCoin 交易所深度融合，提供资金支持 & 交易所直通
-
-• 拥有广泛的全球社区，共享生态红利
-
-• DeFi、NFT、GameFi 等丰富应用支持，助力开发者快速成长
-
-
-
-* [x] 兼容性 & 开发者友好
-
-• EVM 兼容，支持现有以太坊 DApp 迁移
-
-• 支持智能合约部署，提供全套开发者工具（SDK & API）
-
-• 跨链兼容，以太坊 / OP 网络资产可自由流动
+• Cross-chain compatible, allowing free flow of Ethereum / OP network assets
 
 
 

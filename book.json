@@ -3,14 +3,10 @@
   "description": "JuChain Technical Documentation",
   "documentId": "juchain-docs",
   "plugins": [
-    "language-picker",
     "-sharing",
     "sharing-plus"
   ],
   "pluginsConfig": {
-    "language-picker": {
-      "grid-columns": 2
-    },
     "sharing": {
       "facebook": true,
       "twitter": true,
@@ -23,17 +19,12 @@
       ]
     }
   },
-  "language": "en",
-  "languages": [
-    {
-      "lang": "en",
-      "name": "English",
-      "path": "en"
+  "variants": {
+    "default": {
+      "title": "English"
     },
-    {
-      "lang": "zh",
-      "name": "中文",
-      "path": "zh"
+    "zh": {
+      "title": "中文"
     }
-  ]
+  }
 } 
