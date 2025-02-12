@@ -1,23 +1,29 @@
-# JuChain Documentation
+---
+description: JuChain
+---
+
+# 快速理解JuChain
+
+## JuChain Documentation
 
 Welcome to JuChain documentation! Please select your preferred language:
 
-- [English Documentation](en/README.md)
-- [中文文档](zh/README.md)
+* [English Documentation](en/)
+* [中文文档](zh/)
 
 By default, you will be redirected to the English documentation.
 
----
-description: Core concepts, vision, and design goals of JuChain, helping users understand its overall positioning and value
----
+***
 
-# Quick Understanding of JuChain
+### description: Core concepts, vision, and design goals of JuChain, helping users understand its overall positioning and value
 
-## 1. What is JuChain
+## Quick Understanding of JuChain
+
+### 1. What is JuChain
 
 JuChain is a decentralized ecosystem infrastructure developed and launched by JuCoin Exchange, built on OP-Stack, aiming to provide a secure, low-cost, and developer-friendly EVM-compatible network. JuChain adopts a Layer 3 (L3) architecture, built on top of the OP network, inheriting Ethereum's security while providing enhanced scalability, bringing a smoother on-chain experience for developers and users.
 
-## 2. JuChain's Vision
+### 2. JuChain's Vision
 
 JuChain's goal is:
 
@@ -31,7 +37,7 @@ We hope to:
 
 • Leverage the JuCoin ecosystem to provide funding, traffic, and market support for projects, accelerating innovative application deployment.
 
-## 3. Core Advantages
+### 3. Core Advantages
 
 * [x] Low Cost & High Efficiency
 
@@ -56,8 +62,3 @@ We hope to:
 • Support smart contract deployment, providing complete developer tools (SDK & API)
 
 • Cross-chain compatible, allowing free flow of Ethereum / OP network assets
-
-
-
-
-
