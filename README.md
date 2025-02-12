@@ -31,7 +31,7 @@ We hope to:
 
 • Leverage the JuCoin ecosystem to provide funding, traffic, and market support for projects, accelerating innovative application deployment.
 
-## 3. JuChain's Core Advantages
+## 3. Core Advantages
 
 * [x] Low Cost & High Efficiency
 
