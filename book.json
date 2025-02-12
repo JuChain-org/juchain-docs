@@ -1,0 +1,38 @@
+{
+  "title": "JuChain Documentation",
+  "description": "JuChain Technical Documentation",
+  "plugins": [
+    "language-picker",
+    "-sharing",
+    "sharing-plus"
+  ],
+  "pluginsConfig": {
+    "language-picker": {
+      "grid-columns": 2
+    },
+    "sharing": {
+      "facebook": true,
+      "twitter": true,
+      "google": false,
+      "weibo": true,
+      "instapaper": false,
+      "vk": false,
+      "all": [
+        "facebook", "twitter", "weibo"
+      ]
+    }
+  },
+  "language": "en",
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "en"
+    },
+    {
+      "lang": "zh",
+      "name": "中文",
+      "path": "zh"
+    }
+  ]
+} 

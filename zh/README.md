@@ -1,12 +1,3 @@
-# JuChain Documentation
-
-Welcome to JuChain documentation! Please select your preferred language:
-
-- [English Documentation](en/README.md)
-- [中文文档](zh/README.md)
-
-By default, you will be redirected to the English documentation.
-
 ---
 description: JuChain 的核心理念、愿景及设计目标，帮助用户理解其整体定位和价值
 ---
