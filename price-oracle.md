@@ -425,7 +425,7 @@ contract JUPriceConsumer {
 ### Important Notes
 
 1. **Price Precision**: The price returned by the contract needs to be divided by the value returned by the `pricePrecision()` method to get the actual price.
-2. **Update Delay**: Price data is updated every 5 minutes. Check `lastUpdatedAt` to ensure you're using the latest data before making critical decisions.
+2. **Update Delay**: Price data is updated every 1 minutes. Check `lastUpdatedAt` to ensure you're using the latest data before making critical decisions.
 3. **Testnet Usage**: The current contract is deployed on JuChain Testnet and is intended for development and testing purposes only.
 4. **Price Volatility**: Cryptocurrency prices can experience significant volatility. Implement appropriate risk management mechanisms.
 5. **Contract Upgrades**: The oracle contract may be updated. Follow official announcements for the latest contract addresses and feature updates.
