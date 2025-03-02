@@ -1,7 +1,3 @@
----
-description: Price
----
-
 # Price Oracle
 
 ## JU-USDT Price Oracle Documentation
@@ -14,7 +10,7 @@ JuChain Oracle Service provides reliable on-chain price data for decentralized a
 
 * **Contract Address**: `0xC00E9C9a2ec48e6032255DF4975EfC63c6995881`
 * **Network**: JuChain Testnet
-* **Update Frequency**: Every 5 minutes
+* **Update Frequency**: Every minutes
 * **Price Source**: Aggregated data from multiple centralized and decentralized exchanges for the JU-USDT trading pair
 
 ### Main Methods
@@ -72,39 +68,323 @@ Gets the trading pair symbol tracked by the oracle.
 #### Web3.js Example
 
 ```javascript
-const Web3 = require('web3');
-const web3 = new Web3('https://testnet.juchain.org');
+// 适用于Web3.js v4.x的导入方式
+const { Web3 } = require('web3');
 
-const oracleAddress = '0xC00E9C9a2ec48e6032255DF4975EfC63c6995881';
-const oracleABI = [...]; // Use the complete ABI provided above
+// 初始化 web3 实例，连接到以太坊节点
+const web3 = new Web3('https://testnet-rpc.juchain.org');
 
-async function getJUPrice() {
-  const oracleContract = new web3.eth.Contract(oracleABI, oracleAddress);
-  
+// 合约地址和 ABI
+const contractAddress = '0xC00E9C9a2ec48e6032255DF4975EfC63c6995881';
+const contractABI = [
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "initialOwner",
+				"type": "address"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "owner",
+				"type": "address"
+			}
+		],
+		"name": "OwnableInvalidOwner",
+		"type": "error"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "account",
+				"type": "address"
+			}
+		],
+		"name": "OwnableUnauthorizedAccount",
+		"type": "error"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "previousOwner",
+				"type": "address"
+			},
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "newOwner",
+				"type": "address"
+			}
+		],
+		"name": "OwnershipTransferred",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "price",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "timestamp",
+				"type": "uint256"
+			}
+		],
+		"name": "PriceUpdated",
+		"type": "event"
+	},
+	{
+		"inputs": [],
+		"name": "renounceOwnership",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "newOwner",
+				"type": "address"
+			}
+		],
+		"name": "transferOwnership",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_price",
+				"type": "uint256"
+			}
+		],
+		"name": "updatePrice",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getLatestPrice",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "lastUpdatedAt",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "latestPrice",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "owner",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "pricePrecision",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "symbol",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	}
+];
+
+// 创建合约实例
+const contract = new web3.eth.Contract(contractABI, contractAddress);
+
+// 获取完整的价格信息
+async function getCompletePrice() {
   try {
-    const result = await oracleContract.methods.getLatestPrice().call();
-    const symbol = result[0];
-    const rawPrice = result[1];
-    const timestamp = result[2];
-    
-    // Get precision
-    const precision = await oracleContract.methods.pricePrecision().call();
-    
-    // Calculate actual price
-    const actualPrice = rawPrice / precision;
-    
-    // Format time
-    const updateTime = new Date(timestamp * 1000).toLocaleString();
-    
-    console.log(`${symbol} Price: $${actualPrice}`);
-    console.log(`Last Updated: ${updateTime}`);
-    
-    return actualPrice;
+    const result = await contract.methods.getLatestPrice().call();
+    console.log('完整价格信息:');
+    console.log(`代币符号: ${result[0]}`);
+    console.log(`价格: ${result[1]}`);
+    console.log(`时间戳: ${result[2]}`);
+    console.log(`时间: ${new Date(Number(result[2]) * 1000).toLocaleString()}`);
+    return result;
   } catch (error) {
-    console.error('Failed to get price:', error);
-    return null;
+    console.error('获取完整价格信息时出错:', error);
   }
 }
+
+// 获取最新价格
+async function getLatestPrice() {
+  try {
+    const price = await contract.methods.latestPrice().call();
+    console.log(`最新价格: ${price}`);
+    return price;
+  } catch (error) {
+    console.error('获取最新价格时出错:', error);
+  }
+}
+
+// 获取最后更新时间
+async function getLastUpdatedAt() {
+  try {
+    const timestamp = await contract.methods.lastUpdatedAt().call();
+    const date = new Date(Number(timestamp) * 1000);
+    console.log(`最后更新时间: ${timestamp} (${date.toLocaleString()})`);
+    return timestamp;
+  } catch (error) {
+    console.error('获取最后更新时间时出错:', error);
+  }
+}
+
+// 获取代币符号
+async function getSymbol() {
+  try {
+    const symbol = await contract.methods.symbol().call();
+    console.log(`代币符号: ${symbol}`);
+    return symbol;
+  } catch (error) {
+    console.error('获取代币符号时出错:', error);
+  }
+}
+
+// 获取价格精度
+async function getPricePrecision() {
+  try {
+    const precision = await contract.methods.pricePrecision().call();
+    console.log(`价格精度: ${precision}`);
+    return precision;
+  } catch (error) {
+    console.error('获取价格精度时出错:', error);
+  }
+}
+
+// 获取合约拥有者
+async function getOwner() {
+  try {
+    const owner = await contract.methods.owner().call();
+    console.log(`合约拥有者: ${owner}`);
+    return owner;
+  } catch (error) {
+    console.error('获取合约拥有者时出错:', error);
+  }
+}
+
+// 更新价格（需要拥有者权限）
+async function updatePrice(newPrice, privateKey) {
+  try {
+    // 获取账户
+    const account = web3.eth.accounts.privateKeyToAccount(privateKey);
+    web3.eth.accounts.wallet.add(account);
+    
+    // 创建交易
+    const tx = contract.methods.updatePrice(newPrice);
+    const gas = await tx.estimateGas({ from: account.address });
+    const gasPrice = await web3.eth.getGasPrice();
+    
+    // 发送交易
+    const receipt = await tx.send({
+      from: account.address,
+      gas,
+      gasPrice
+    });
+    
+    console.log(`价格更新成功，交易哈希: ${receipt.transactionHash}`);
+    return receipt;
+  } catch (error) {
+    console.error('更新价格时出错:', error);
+  }
+}
+
+// 获取所有信息
+async function getAllInfo() {
+  console.log('===== 获取合约所有信息 =====');
+  await getCompletePrice();
+  await getLatestPrice();
+  await getLastUpdatedAt();
+  await getSymbol();
+  await getPricePrecision();
+  await getOwner();
+  console.log('===== 信息获取完成 =====');
+}
+
+// 执行函数
+getAllInfo();
 ```
 
 #### Solidity Smart Contract Example
@@ -149,10 +429,3 @@ contract JUPriceConsumer {
 3. **Testnet Usage**: The current contract is deployed on JuChain Testnet and is intended for development and testing purposes only.
 4. **Price Volatility**: Cryptocurrency prices can experience significant volatility. Implement appropriate risk management mechanisms.
 5. **Contract Upgrades**: The oracle contract may be updated. Follow official announcements for the latest contract addresses and feature updates.
-
-### Technical Support
-
-For any questions about the JU-USDT oracle or technical support, please contact us through:
-
-* Developer Forum: [forum.juchain.org](https://forum.juchain.org)
-* Technical Support Email: dev@juchain.org
