@@ -1,9 +1,12 @@
 # Table of contents
 
-* [Why Choose JuChain?](README.md)
-* [JuChain Documentation](<README (1).md>)
+* [JuChain Documentation](README.md)
+* [Why Choose JuChain?](<README (1).md>)
 * [English Documentation](en/README.md)
-* [Network Information](network-information.md)
-* [Smart Contracts](smart-contracts.md)
-* [Start Using JuChain](start-using-juchain.md)
-* [JuChain Technical Architecture](juchain-technical-architecture.md)
+
+## Basics
+
+* [Network Information](basics/network-information.md)
+* [Start Using JuChain](basics/start-using-juchain.md)
+* [Smart Contracts](basics/smart-contracts.md)
+* [JuChain Technical Architecture](basics/juchain-technical-architecture.md)
