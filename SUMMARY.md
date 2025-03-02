@@ -1,15 +1,9 @@
 # Table of contents
 
-## Getting Started
+* [JuChain Documentation](README.md)
+* [English Documentation](en/README.md)
+* [中文文档](zh/README.md)
 
-* [Quick Understanding](README.md)
-* [Quick Start](getting-started/quickstart.md)
-* [JuChain Chain INFO](getting-started/chain-info.md)
-
-## Basic Concepts
-
-* [Start Using JuChain](basics/start-using-juchain.md)
-* [Why Choose JuChain?](basics/why-choose-juchain.md)
-* [Network Information](basics/network-info.md)
-* [JuChain Technical Architecture](basics/technical-architecture.md)
-* [Smart Contracts](basics/smart-contracts.md)
+{% hint style="info" %}
+Please select your preferred language above. The documentation content will be displayed according to your selection.
+{% endhint %} 
