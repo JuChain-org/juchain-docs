@@ -17,4 +17,4 @@
 
 ***
 
-* [Oracle](oracle.md)
+* [Price Oracle](price-oracle.md)
