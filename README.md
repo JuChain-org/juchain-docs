@@ -6,8 +6,8 @@ description: JuChain Documentation
 
 Welcome to JuChain documentation! Please select your preferred language:
 
-* [English Documentation](en/)
-* [中文文档](broken-reference)
+* [English Documentation](https://app.gitbook.com/o/EIWLrNlX2e52ikL2UUpW/s/FnN8dEv4ODUZJaBUfPrL/)
+* [中文文档](https://app.gitbook.com/o/EIWLrNlX2e52ikL2UUpW/s/exhsVPX3yJsWzHMYxsyW/)
 
 By default, you will be redirected to the English documentation.
 
