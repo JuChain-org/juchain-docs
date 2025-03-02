@@ -14,3 +14,7 @@
 ## Ecosystem
 
 * [JuChain On-Chain Ecosystem Resources](ecosystem/juchain-on-chain-ecosystem-resources.md)
+
+***
+
+* [Oracle](oracle.md)
