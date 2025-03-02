@@ -6,7 +6,11 @@
 
 ## Basics
 
-* [Network Information](basics/network-information.md)
-* [Start Using JuChain](basics/start-using-juchain.md)
-* [Smart Contracts](basics/smart-contracts.md)
-* [JuChain Technical Architecture](basics/juchain-technical-architecture.md)
+* [Network Information](network-information.md)
+* [Start Using JuChain](start-using-juchain.md)
+* [Smart Contracts](smart-contracts.md)
+* [JuChain Technical Architecture](juchain-technical-architecture.md)
+
+## Ecosystem
+
+* [JuChain On-Chain Ecosystem Resources](ecosystem/juchain-on-chain-ecosystem-resources.md)

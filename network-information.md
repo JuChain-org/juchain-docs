@@ -1,6 +1,6 @@
 # Network Information
 
-##
+
 
 #### JuChain Mainnet
 
@@ -10,7 +10,7 @@
 | Description     | JuChain Public Mainnet       |
 | RPC Endpoint    | TBD                          |
 | Chain ID        | TBD                          |
-| Currency Symbol | ETH                          |
+| Currency Symbol | JU                           |
 | Block Explorer  | http://explorer.juchain.org/ |
 
 #### JuChain Testnet
@@ -20,6 +20,7 @@
 | Network Name    | JuChain Testnet                      |
 | Description     | JuChain Public Testnet               |
 | RPC Endpoint    | https://testnet-rpc.juchain.org      |
+|                 | ws://testnet-ws.juchain.org          |
 | Chain ID        | 66633666                             |
 | Currency Symbol | JU                                   |
 | Block Explorer  | http://explorer-testnet.juchain.org/ |
