@@ -68,13 +68,13 @@ Gets the trading pair symbol tracked by the oracle.
 #### Web3.js Example
 
 ```javascript
-// 适用于Web3.js v4.x的导入方式
+// Import method suitable for Web3.js v4.x
 const { Web3 } = require('web3');
 
-// 初始化 web3 实例，连接到以太坊节点
+// Initialize web3 instance, connecting to the Ethereum node
 const web3 = new Web3('https://testnet-rpc.juchain.org');
 
-// 合约地址和 ABI
+// Contract address and ABI
 const contractAddress = '0xC00E9C9a2ec48e6032255DF4975EfC63c6995881';
 const contractABI = [
 	{
@@ -271,119 +271,119 @@ const contractABI = [
 	}
 ];
 
-// 创建合约实例
+// Create contract instance
 const contract = new web3.eth.Contract(contractABI, contractAddress);
 
-// 获取完整的价格信息
+// Get complete price information
 async function getCompletePrice() {
   try {
     const result = await contract.methods.getLatestPrice().call();
-    console.log('完整价格信息:');
-    console.log(`代币符号: ${result[0]}`);
-    console.log(`价格: ${result[1]}`);
-    console.log(`时间戳: ${result[2]}`);
-    console.log(`时间: ${new Date(Number(result[2]) * 1000).toLocaleString()}`);
+    console.log('Complete price information:');
+    console.log(`Token symbol: ${result[0]}`);
+    console.log(`Price: ${result[1]}`);
+    console.log(`Timestamp: ${result[2]}`);
+    console.log(`Time: ${new Date(Number(result[2]) * 1000).toLocaleString()}`);
     return result;
   } catch (error) {
-    console.error('获取完整价格信息时出错:', error);
+    console.error('Error getting complete price information:', error);
   }
 }
 
-// 获取最新价格
+// Get latest price
 async function getLatestPrice() {
   try {
     const price = await contract.methods.latestPrice().call();
-    console.log(`最新价格: ${price}`);
+    console.log(`Latest price: ${price}`);
     return price;
   } catch (error) {
-    console.error('获取最新价格时出错:', error);
+    console.error('Error getting latest price:', error);
   }
 }
 
-// 获取最后更新时间
+// Get last updated time
 async function getLastUpdatedAt() {
   try {
     const timestamp = await contract.methods.lastUpdatedAt().call();
     const date = new Date(Number(timestamp) * 1000);
-    console.log(`最后更新时间: ${timestamp} (${date.toLocaleString()})`);
+    console.log(`Last updated time: ${timestamp} (${date.toLocaleString()})`);
     return timestamp;
   } catch (error) {
-    console.error('获取最后更新时间时出错:', error);
+    console.error('Error getting last updated time:', error);
   }
 }
 
-// 获取代币符号
+// Get token symbol
 async function getSymbol() {
   try {
     const symbol = await contract.methods.symbol().call();
-    console.log(`代币符号: ${symbol}`);
+    console.log(`Token symbol: ${symbol}`);
     return symbol;
   } catch (error) {
-    console.error('获取代币符号时出错:', error);
+    console.error('Error getting token symbol:', error);
   }
 }
 
-// 获取价格精度
+// Get price precision
 async function getPricePrecision() {
   try {
     const precision = await contract.methods.pricePrecision().call();
-    console.log(`价格精度: ${precision}`);
+    console.log(`Price precision: ${precision}`);
     return precision;
   } catch (error) {
-    console.error('获取价格精度时出错:', error);
+    console.error('Error getting price precision:', error);
   }
 }
 
-// 获取合约拥有者
+// Get contract owner
 async function getOwner() {
   try {
     const owner = await contract.methods.owner().call();
-    console.log(`合约拥有者: ${owner}`);
+    console.log(`Contract owner: ${owner}`);
     return owner;
   } catch (error) {
-    console.error('获取合约拥有者时出错:', error);
+    console.error('Error getting contract owner:', error);
   }
 }
 
-// 更新价格（需要拥有者权限）
+// Update price (requires owner permission)
 async function updatePrice(newPrice, privateKey) {
   try {
-    // 获取账户
+    // Get account
     const account = web3.eth.accounts.privateKeyToAccount(privateKey);
     web3.eth.accounts.wallet.add(account);
     
-    // 创建交易
+    // Create transaction
     const tx = contract.methods.updatePrice(newPrice);
     const gas = await tx.estimateGas({ from: account.address });
     const gasPrice = await web3.eth.getGasPrice();
     
-    // 发送交易
+    // Send transaction
     const receipt = await tx.send({
       from: account.address,
       gas,
       gasPrice
     });
     
-    console.log(`价格更新成功，交易哈希: ${receipt.transactionHash}`);
+    console.log(`Price updated successfully, transaction hash: ${receipt.transactionHash}`);
     return receipt;
   } catch (error) {
-    console.error('更新价格时出错:', error);
+    console.error('Error updating price:', error);
   }
 }
 
-// 获取所有信息
+// Get all information
 async function getAllInfo() {
-  console.log('===== 获取合约所有信息 =====');
+  console.log('===== Getting all contract information =====');
   await getCompletePrice();
   await getLatestPrice();
   await getLastUpdatedAt();
   await getSymbol();
   await getPricePrecision();
   await getOwner();
-  console.log('===== 信息获取完成 =====');
+  console.log('===== Information retrieval complete =====');
 }
 
-// 执行函数
+// Execute function
 getAllInfo();
 ```
 
