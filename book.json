@@ -21,10 +21,12 @@
   },
   "variants": {
     "default": {
-      "title": "English"
+      "title": "English",
+      "path": "en"
     },
     "zh": {
-      "title": "中文"
+      "title": "中文",
+      "path": "zh"
     }
   }
 } 
