@@ -1,0 +1,28 @@
+# 网络信息
+
+## 网络信息
+
+### 网络信息
+
+#### JuChain 主网
+
+| 名称     | 值                            |
+| ------ | ---------------------------- |
+| 网络名称   | JuChain Mainnet              |
+| 描述     | JuChain 公共主网                 |
+| RPC 端点 | 待定                           |
+| 链 ID   | 待定                           |
+| 货币符号   | JU                           |
+| 区块浏览器  | http://explorer.juchain.org/ |
+
+#### JuChain 测试网
+
+| 名称     | 值                                    |
+| ------ | ------------------------------------ |
+| 网络名称   | JuChain Testnet                      |
+| 描述     | JuChain 公共测试网                        |
+| RPC 端点 | https://testnet-rpc.juchain.org      |
+|        | ws://testnet-ws.juchain.org          |
+| 链 ID   | 202599                               |
+| 货币符号   | JU                                   |
+| 区块浏览器  | http://explorer-testnet.juchain.org/ |
