@@ -82,16 +82,7 @@ JuChain 的跨链桥旨在为开发者提供一个测试环境，方便在不同
 
 以下是跨链桥相关合约和代币的详细地址，开发者需确保在正确网络中使用：
 
-| **网络**           | **合约/代币**                                                                                              | **地址**                                       | **链接**                                                                                        |
-| ---------------- | ------------------------------------------------------------------------------------------------------ | -------------------------------------------- | --------------------------------------------------------------------------------------------- |
-| JuChain 测试网      | [BridgeBank ](https://explorer-testnet.juchain.org/address/0x3516949D3c530E4FB65Fa2a02ef808e5587ebaBE) | `0x3516949D3c530E4FB65Fa2a02ef808e5587ebaBE` | -                                                                                             |
-| JuChain 测试网      | [USDT](https://explorer-testnet.juchain.org/token/0x16E0499Cb600ef4F4FbEca756E90D658D9a74E4D)          | `0x16E0499Cb600ef4F4FbEca756E90D658D9a74E4D` | [查看详情](https://explorer-testnet.juchain.org/token/0x16E0499Cb600ef4F4FbEca756E90D658D9a74E4D) |
-| JuChain 测试网      | [tBNB](https://explorer-testnet.juchain.org/token/0x16E0499Cb600ef4F4FbEca756E90D658D9a74E4D)          | `0x2598d2e226Ce13288E314569569838bBc6Ff9402` | [查看详情](https://explorer-testnet.juchain.org/token/0x2598d2e226Ce13288E314569569838bBc6Ff9402) |
-| JuChain 测试网      | [tETH](https://explorer-testnet.juchain.org/token/0x1a4911109be74dc5C9CC8e4AfC3d8D7Fd06CA672)          | `0x1a4911109be74dc5C9CC8e4AfC3d8D7Fd06CA672` | [查看详情](https://explorer-testnet.juchain.org/token/0x1a4911109be74dc5C9CC8e4AfC3d8D7Fd06CA672) |
-| BSC 测试网（Chapel）  | BridgeBank 合约                                                                                          | `0x30DBF30Eb71ddb49d526AFdb832C7Ba4D85953f6` | -                                                                                             |
-| BSC 测试网（Chapel）  | USDT                                                                                                   | `0xcD1093897a5dB4a9aF153772B35AAA066ab969f3` | -                                                                                             |
-| ETH 测试网（Holesky） | [BridgeBank](https://holesky.etherscan.io/address/0x264960f4bf655c14a74DE1A7fC5AA68E71f71924)          | `0x264960f4bf655c14a74DE1A7fC5AA68E71f71924` | [查看详情](https://holesky.etherscan.io/address/0x264960f4bf655c14a74DE1A7fC5AA68E71f71924)       |
-| ETH 测试网（Holesky） | [USDT](https://holesky.etherscan.io/address/0xc7062D0A7553fabbf0b9B5DF9E9648Cffd2B9add)                | `0xc7062D0A7553fabbf0b9B5DF9E9648Cffd2B9add` | [查看详情](https://holesky.etherscan.io/address/0xc7062D0A7553fabbf0b9B5DF9E9648Cffd2B9add)       |
+<table data-header-hidden><thead><tr><th></th><th></th><th width="128"></th><th data-hidden></th><th data-hidden></th></tr></thead><tbody><tr><td><strong>网络</strong></td><td><strong>合约/代币</strong></td><td><strong>地址</strong></td><td></td><td></td></tr><tr><td>JuChain 测试网</td><td><a href="https://explorer-testnet.juchain.org/address/0x3516949D3c530E4FB65Fa2a02ef808e5587ebaBE">BridgeBank </a></td><td><code>0x3516949D3c530E4FB65Fa2a02ef808e5587ebaBE</code></td><td></td><td></td></tr><tr><td>JuChain 测试网</td><td><a href="https://explorer-testnet.juchain.org/token/0x16E0499Cb600ef4F4FbEca756E90D658D9a74E4D">USDT</a></td><td><code>0x16E0499Cb600ef4F4FbEca756E90D658D9a74E4D</code></td><td></td><td></td></tr><tr><td>JuChain 测试网</td><td><a href="https://explorer-testnet.juchain.org/token/0x16E0499Cb600ef4F4FbEca756E90D658D9a74E4D">tBNB</a></td><td><code>0x2598d2e226Ce13288E314569569838bBc6Ff9402</code></td><td></td><td></td></tr><tr><td>JuChain 测试网</td><td><a href="https://explorer-testnet.juchain.org/token/0x1a4911109be74dc5C9CC8e4AfC3d8D7Fd06CA672">tETH</a></td><td><code>0x1a4911109be74dc5C9CC8e4AfC3d8D7Fd06CA672</code></td><td><a href="https://explorer-testnet.juchain.org/token/0x1a4911109be74dc5C9CC8e4AfC3d8D7Fd06CA672">查看详情</a></td><td></td></tr><tr><td>BSC 测试网（Chapel）</td><td><a href="https://testnet.bscscan.com/address/0x30DBF30Eb71ddb49d526AFdb832C7Ba4D85953f6">BridgeBank 合约</a></td><td><code>0x30DBF30Eb71ddb49d526AFdb832C7Ba4D85953f6</code></td><td>-</td><td></td></tr><tr><td>BSC 测试网（Chapel）</td><td><a href="https://testnet.bscscan.com/address/0xcD1093897a5dB4a9aF153772B35AAA066ab969f3">USDT</a></td><td><code>0xcD1093897a5dB4a9aF153772B35AAA066ab969f3</code></td><td>-</td><td></td></tr><tr><td>ETH 测试网（Holesky）</td><td><a href="https://holesky.etherscan.io/address/0x264960f4bf655c14a74DE1A7fC5AA68E71f71924">BridgeBank</a></td><td><code>0x264960f4bf655c14a74DE1A7fC5AA68E71f71924</code></td><td><a href="https://holesky.etherscan.io/address/0x264960f4bf655c14a74DE1A7fC5AA68E71f71924">查看详情</a></td><td></td></tr><tr><td>ETH 测试网（Holesky）</td><td><a href="https://holesky.etherscan.io/address/0xc7062D0A7553fabbf0b9B5DF9E9648Cffd2B9add">USDT</a></td><td><code>0xc7062D0A7553fabbf0b9B5DF9E9648Cffd2B9add</code></td><td><a href="https://holesky.etherscan.io/address/0xc7062D0A7553fabbf0b9B5DF9E9648Cffd2B9add">查看详情</a></td><td></td></tr></tbody></table>
 
 **BridgeBank 合约功能**
 
@@ -167,8 +158,6 @@ BridgeBank 合约是跨链桥的核心，提供了以下关键功能，开发者
 ```
 
 **ETH/BSC BridgeBank ABI**
-
-
 
 ```json
 [
