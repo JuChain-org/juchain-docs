@@ -82,16 +82,16 @@ JuChain 的跨链桥旨在为开发者提供一个测试环境，方便在不同
 
 以下是跨链桥相关合约和代币的详细地址，开发者需确保在正确网络中使用：
 
-| **网络**           | **合约/代币**     | **地址**                                       | **链接**                                                                                        |
-| ---------------- | ------------- | -------------------------------------------- | --------------------------------------------------------------------------------------------- |
-| JuChain 测试网      | BridgeBank 合约 | `0x3516949D3c530E4FB65Fa2a02ef808e5587ebaBE` | -                                                                                             |
-| JuChain 测试网      | USDT          | `0x16E0499Cb600ef4F4FbEca756E90D658D9a74E4D` | [查看详情](https://explorer-testnet.juchain.org/token/0x16E0499Cb600ef4F4FbEca756E90D658D9a74E4D) |
-| JuChain 测试网      | tBNB          | `0x2598d2e226Ce13288E314569569838bBc6Ff9402` | [查看详情](https://explorer-testnet.juchain.org/token/0x2598d2e226Ce13288E314569569838bBc6Ff9402) |
-| JuChain 测试网      | tETH          | `0x1a4911109be74dc5C9CC8e4AfC3d8D7Fd06CA672` | [查看详情](https://explorer-testnet.juchain.org/token/0x1a4911109be74dc5C9CC8e4AfC3d8D7Fd06CA672) |
-| BSC 测试网（Chapel）  | BridgeBank 合约 | `0x30DBF30Eb71ddb49d526AFdb832C7Ba4D85953f6` | -                                                                                             |
-| BSC 测试网（Chapel）  | USDT          | `0xcD1093897a5dB4a9aF153772B35AAA066ab969f3` | -                                                                                             |
-| ETH 测试网（Holesky） | BridgeBank 合约 | `0x264960f4bf655c14a74DE1A7fC5AA68E71f71924` | [查看详情](https://holesky.etherscan.io/address/0x264960f4bf655c14a74DE1A7fC5AA68E71f71924)       |
-| ETH 测试网（Holesky） | USDT          | `0xc7062D0A7553fabbf0b9B5DF9E9648Cffd2B9add` | [查看详情](https://holesky.etherscan.io/address/0xc7062D0A7553fabbf0b9B5DF9E9648Cffd2B9add)       |
+| **网络**           | **合约/代币**                                                                                                | **地址**                                       | **链接**                                                                                        |
+| ---------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| JuChain 测试网      | BridgeBank [合约](https://explorer-testnet.juchain.org/address/0x3516949D3c530E4FB65Fa2a02ef808e5587ebaBE) | `0x3516949D3c530E4FB65Fa2a02ef808e5587ebaBE` | -                                                                                             |
+| JuChain 测试网      | [USDT](https://explorer-testnet.juchain.org/token/0x16E0499Cb600ef4F4FbEca756E90D658D9a74E4D)            | `0x16E0499Cb600ef4F4FbEca756E90D658D9a74E4D` | [查看详情](https://explorer-testnet.juchain.org/token/0x16E0499Cb600ef4F4FbEca756E90D658D9a74E4D) |
+| JuChain 测试网      | [tBNB](https://explorer-testnet.juchain.org/token/0x16E0499Cb600ef4F4FbEca756E90D658D9a74E4D)            | `0x2598d2e226Ce13288E314569569838bBc6Ff9402` | [查看详情](https://explorer-testnet.juchain.org/token/0x2598d2e226Ce13288E314569569838bBc6Ff9402) |
+| JuChain 测试网      | [tETH](https://explorer-testnet.juchain.org/token/0x1a4911109be74dc5C9CC8e4AfC3d8D7Fd06CA672)            | `0x1a4911109be74dc5C9CC8e4AfC3d8D7Fd06CA672` | [查看详情](https://explorer-testnet.juchain.org/token/0x1a4911109be74dc5C9CC8e4AfC3d8D7Fd06CA672) |
+| BSC 测试网（Chapel）  | BridgeBank 合约                                                                                            | `0x30DBF30Eb71ddb49d526AFdb832C7Ba4D85953f6` | -                                                                                             |
+| BSC 测试网（Chapel）  | USDT                                                                                                     | `0xcD1093897a5dB4a9aF153772B35AAA066ab969f3` | -                                                                                             |
+| ETH 测试网（Holesky） | BridgeBank 合约                                                                                            | `0x264960f4bf655c14a74DE1A7fC5AA68E71f71924` | [查看详情](https://holesky.etherscan.io/address/0x264960f4bf655c14a74DE1A7fC5AA68E71f71924)       |
+| ETH 测试网（Holesky） | USDT                                                                                                     | `0xc7062D0A7553fabbf0b9B5DF9E9648Cffd2B9add` | [查看详情](https://holesky.etherscan.io/address/0xc7062D0A7553fabbf0b9B5DF9E9648Cffd2B9add)       |
 
 **BridgeBank 合约功能**
 
@@ -171,7 +171,7 @@ BridgeBank 合约是跨链桥的核心，提供了以下关键功能，开发者
 
 
 ```json
-  [
+[
   {"inputs":[{"internalType":"address","name":"_operatorAddress","type":"address"},{"internalType":"address","name":"_oracleAddress","type":"address"},{"internalType":"address","name":"_bridgeAddress","type":"address"},{"internalType":"address","name":"_tokenDeployer","type":"address"},{"internalType":"addresspayable","name":"_feeReceiver","type":"address"},{"internalType":"uint256","name":"_bridgeServiceFee","type":"uint256"}],"stateMutability":"nonpayable","type":"constructor"},
   {"anonymous":false,"inputs":[{"indexed":false,"internalType":"address","name":"_token","type":"address"},{"indexed":false,"internalType":"uint256","name":"_amount","type":"uint256"},{"indexed":false,"internalType":"address","name":"_beneficiary","type":"address"}],"name":"LogBridgeTokenMint","type":"event"},
   {"anonymous":false,"inputs":[{"indexed":false,"internalType":"address","name":"_token","type":"address"},{"indexed":false,"internalType":"string","name":"_name","type":"string"},{"indexed":false,"internalType":"uint256","name":"_amount","type":"uint256"},{"indexed":false,"internalType":"address","name":"_ownerFrom","type":"address"},{"indexed":false,"internalType":"address","name":"_receiver","type":"address"}],"name":"LogBtcTokenBurn","type":"event"},
