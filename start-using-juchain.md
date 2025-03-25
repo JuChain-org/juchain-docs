@@ -17,7 +17,7 @@
 3. Fill in the following network information and click save:
    * Network Name: JuChain Testnet
    * RPC URL: https://testnet-rpc.juchain.org
-   * Chain ID: 66633666
+   * Chain ID: 202599
    * Currency Symbol: JU
    * Block Explorer: http://explorer-testnet.juchain.org/
 4. JuChain also provides an automatic network addition solution for MetaMask wallet - simply visit the JuChain testnet website testnet.juchain.org and click "Add Network" to complete the addition.
@@ -62,7 +62,7 @@
 6. Fill in network information:
    * Network Name: JuChain Testnet
    * RPC URL: https://testnet-rpc.juchain.org
-   * Chain ID: 66633666
+   * Chain ID: 202599
    * Currency Symbol: JU
    * Block Explorer: http://explorer-testnet.juchain.org/
 7. Click "Confirm" to complete the addition
