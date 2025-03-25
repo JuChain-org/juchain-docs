@@ -14,6 +14,7 @@
 ## Ecosystem
 
 * [JuChain On-Chain Ecosystem Resources](ecosystem/juchain-on-chain-ecosystem-resources.md)
+* [Testnet Faucet](ecosystem/testnet-faucet.md)
 
 ***
 
