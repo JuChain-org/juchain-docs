@@ -1,7 +1,7 @@
 # Table of contents
 
 * [JuChain Documentation](README.md)
-* [Why Choose JuChain?](<README (1).md>)
+* [What is JuChain?](what-is-juchain.md)
 * [English Documentation](en/README.md)
 
 ## Basics
