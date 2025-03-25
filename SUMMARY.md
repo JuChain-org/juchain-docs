@@ -27,3 +27,5 @@
 ## Developer Guide
 
 * [Getting Started](developer-guide/getting-started.md)
+* [Tutorials and Examples: Building and Deploying a Simple dApp](developer-guide/tutorials-and-examples-building-and-deploying-a-simple-dapp.md)
+* [Tutorials and Examples: Building a Simple DeFi Lending dApp](developer-guide/tutorials-and-examples-building-a-simple-defi-lending-dapp.md)
