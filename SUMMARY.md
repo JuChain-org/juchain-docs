@@ -24,4 +24,6 @@
 
 * [Price Oracle](price-oracle.md)
 
-## Group 1
+## Developer Guide
+
+* [Getting Started](developer-guide/getting-started.md)
