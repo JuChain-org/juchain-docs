@@ -51,18 +51,6 @@ JuChain 的跨链桥是一个去中心化的服务，允许开发者在不同测
   * USDT：`0xc7062D0A7553fabbf0b9B5DF9E9648Cffd2B9add`\
     [查看详情](https://holesky.etherscan.io/address/0xc7062D0A7553fabbf0b9B5DF9E9648Cffd2B9add)
 
-***
-
-***
-
-#### 详细报告
-
-**背景与目的**
-
-JuChain 的跨链桥旨在为开发者提供一个测试环境，方便在不同区块链网络之间转移资产，特别是在开发和测试阶段。跨链桥通过智能合约实现资产的锁定、解锁、铸造和销毁，确保跨链操作的安全性和一致性。本文档详细记录了 JuChain 测试网及其与 BSC 测试网（Chapel）和 ETH 测试网（Holesky）的跨链桥信息，供开发者参考。
-
-**测试网设置**
-
 为了使用跨链桥，开发者需要配置开发环境以连接到以下测试网：
 
 * **JuChain 测试网**：
@@ -253,12 +241,13 @@ JuChain 跨链桥支持以下跨链流程：
 #### 从 JuChain 到 BSC 的跨链转移
 
 ```javascript
-// 连接到 JuChain 测试网
-const Web3 = require('web3');
+const { Web3 } = require('web3');
+
+// 连接到JuChain测试网
 const web3 = new Web3('https://testnet-rpc.juchain.org');
 
-// BridgeBank ABI 和合约地址
-const bridgeBankABI = [...]; // 使用上面提供的 JuChain BridgeBank ABI
+// BridgeBank ABI和合约地址
+const bridgeBankABI = [...]; // 使用完整的JuChain BridgeBank ABI
 const bridgeBankAddress = '0x3516949D3c530E4FB65Fa2a02ef808e5587ebaBE';
 
 // 创建合约实例
@@ -269,19 +258,86 @@ const privateKey = '你的私钥';
 const account = web3.eth.accounts.privateKeyToAccount(privateKey);
 web3.eth.accounts.wallet.add(account);
 
+// ERC20代币ABI（用于检查余额和授权）
+const erc20ABI = [
+  {"constant":true,"inputs":[{"name":"_owner","type":"address"}],"name":"balanceOf","outputs":[{"name":"balance","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},
+  {"constant":true,"inputs":[],"name":"decimals","outputs":[{"name":"","type":"uint8"}],"payable":false,"stateMutability":"view","type":"function"},
+  {"constant":true,"inputs":[],"name":"symbol","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},
+  {"constant":false,"inputs":[{"name":"_to","type":"address"},{"name":"_value","type":"uint256"}],"name":"transfer","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},
+  {"constant":false,"inputs":[{"name":"_spender","type":"address"},{"name":"_value","type":"uint256"}],"name":"approve","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},
+  {"constant":true,"inputs":[{"name":"_owner","type":"address"},{"name":"_spender","type":"address"}],"name":"allowance","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"}
+];
+
 // 跨链参数
-const bscChainID = 97; // BSC 测试网 Chain ID
-const receiverAddress = '0x接收地址'; // BSC 上的接收地址
-const tokenAddress = '0x16E0499Cb600ef4F4FbEca756E90D658D9a74E4D'; // JuChain 上的 USDT 地址
-const amount = web3.utils.toWei('10', 'ether'); // 转移 10 个代币
+const bscChainID = 97; // BSC测试网Chain ID
+const receiverAddress = '0x接收地址'; // BSC上的接收地址
+const tokenAddress = '0x16E0499Cb600ef4F4FbEca756E90D658D9a74E4D'; // JuChain上的USDT地址
+const amount = web3.utils.toWei('10', 'ether'); // 转移10个代币
 
 // 执行跨链转移
 async function crossChainTransfer() {
   try {
-    // 获取服务费
-    const fee = await bridgeBank.methods.bridgeServiceFee().call();
+    // 1. 检查账户余额
+    const balance = await web3.eth.getBalance(account.address);
+    console.log('账户余额:', web3.utils.fromWei(balance, 'ether'), 'JU');
+
+    // 2. 检查代币余额
+    const tokenContract = new web3.eth.Contract(erc20ABI, tokenAddress);
+    const tokenBalance = await tokenContract.methods.balanceOf(account.address).call();
+    if (BigInt(tokenBalance) < BigInt(amount)) {
+      console.error('错误: 代币余额不足');
+      return;
+    }
+
+    // 3. 授权代币使用权限
+    const allowance = await tokenContract.methods.allowance(account.address, bridgeBankAddress).call();
+    if (BigInt(allowance) < BigInt(amount)) {
+      console.log('授权额度不足，正在授权...');
+      // 授权一个足够大的数量
+      const maxApproval = '115792089237316195423570985008687907853269984665640564039457584007913129639935'; // 2^256 - 1
+      await tokenContract.methods.approve(bridgeBankAddress, maxApproval).send({
+        from: account.address,
+        gas: 200000
+      });
+      console.log('授权成功');
+    }
+
+    // 4. 获取跨链服务费
+    let fee;
+    try {
+      fee = await bridgeBank.methods.bridgeServiceFee().call();
+      console.log('服务费:', web3.utils.fromWei(fee, 'ether'), 'JU');
+    } catch (error) {
+      console.error('获取服务费失败，使用默认值:', error.message);
+      fee = web3.utils.toWei('0.01', 'ether'); // 默认服务费0.01 JU
+    }
+
+    // 将BigInt转换为字符串，避免类型混合问题
+    if (typeof fee === 'bigint') {
+      fee = fee.toString();
+    }
+
+    // 5. 估算Gas
+    let estimatedGas;
+    try {
+      estimatedGas = await bridgeBank.methods.burnBridgeTokens(
+        bscChainID,
+        receiverAddress,
+        tokenAddress,
+        amount
+      ).estimateGas({ from: account.address, value: fee });
+      console.log('预估Gas:', estimatedGas);
+    } catch (error) {
+      console.error('Gas估算失败，使用默认值:', error.message);
+      estimatedGas = 500000; // 默认Gas限制
+    }
     
-    // 调用 burnBridgeTokens 函数
+    // 将BigInt转换为数字，避免类型混合问题
+    if (typeof estimatedGas === 'bigint') {
+      estimatedGas = Number(estimatedGas);
+    }
+
+    // 6. 调用burnBridgeTokens函数
     const tx = await bridgeBank.methods.burnBridgeTokens(
       bscChainID,
       receiverAddress,
@@ -290,7 +346,9 @@ async function crossChainTransfer() {
     ).send({
       from: account.address,
       value: fee,
-      gas: 500000
+      gas: Math.floor(estimatedGas * 1.5), // 增加50%的Gas限制
+      maxPriorityFeePerGas: web3.utils.toWei('10', 'gwei'),
+      maxFeePerGas: web3.utils.toWei('100', 'gwei')
     });
     
     console.log('跨链转移交易哈希:', tx.transactionHash);
@@ -305,12 +363,13 @@ crossChainTransfer();
 #### 从 BSC 到 JuChain 的跨链转移
 
 ```javascript
-// 连接到 BSC 测试网
-const Web3 = require('web3');
-const web3 = new Web3('https://rpc.ankr.com/bsc_testnet_chapel/b6aba93f145bbc37b4acc1cda2e7c0b38fff5a09fb21a55c1fb65883d35789bd');
+const { Web3 } = require('web3');
 
-// BridgeBank ABI 和合约地址
-const bridgeBankABI = [...]; // 使用上面提供的 ETH/BSC BridgeBank ABI
+// 连接到BSC测试网
+const web3 = new Web3('https://data-seed-prebsc-1-s1.binance.org:8545');
+
+// BridgeBank ABI和合约地址
+const bridgeBankABI = [...]; // 使用完整的BSC BridgeBank ABI
 const bridgeBankAddress = '0x30DBF30Eb71ddb49d526AFdb832C7Ba4D85953f6';
 
 // 创建合约实例
@@ -321,55 +380,99 @@ const privateKey = '你的私钥';
 const account = web3.eth.accounts.privateKeyToAccount(privateKey);
 web3.eth.accounts.wallet.add(account);
 
-// USDT 合约设置
-const usdtABI = [
-  // ERC20 标准接口
-  {
-    "constant": false,
-    "inputs": [
-      {"name": "_spender", "type": "address"},
-      {"name": "_value", "type": "uint256"}
-    ],
-    "name": "approve",
-    "outputs": [{"name": "", "type": "bool"}],
-    "payable": false,
-    "stateMutability": "nonpayable",
-    "type": "function"
-  }
+// ERC20代币ABI
+const erc20ABI = [
+  {"constant":true,"inputs":[{"name":"_owner","type":"address"}],"name":"balanceOf","outputs":[{"name":"balance","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},
+  {"constant":true,"inputs":[],"name":"decimals","outputs":[{"name":"","type":"uint8"}],"payable":false,"stateMutability":"view","type":"function"},
+  {"constant":true,"inputs":[],"name":"symbol","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},
+  {"constant":false,"inputs":[{"name":"_to","type":"address"},{"name":"_value","type":"uint256"}],"name":"transfer","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},
+  {"constant":false,"inputs":[{"name":"_spender","type":"address"},{"name":"_value","type":"uint256"}],"name":"approve","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},
+  {"constant":true,"inputs":[{"name":"_owner","type":"address"},{"name":"_spender","type":"address"}],"name":"allowance","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"}
 ];
-const usdtAddress = '0xcD1093897a5dB4a9aF153772B35AAA066ab969f3'; // BSC 测试网上的 USDT 地址
-const usdtContract = new web3.eth.Contract(usdtABI, usdtAddress);
 
 // 跨链参数
-const receiverAddress = '0x接收地址'; // JuChain 上的接收地址
-const amount = web3.utils.toWei('10', 'ether'); // 转移 10 个代币
+const receiverAddress = '0x接收地址'; // JuChain上的接收地址
+const tokenAddress = '0xcD1093897a5dB4a9aF153772B35AAA066ab969f3'; // BSC上的USDT地址
+const amount = web3.utils.toWei('10', 'ether'); // 转移10个代币
 
 // 执行跨链转移
 async function crossChainTransfer() {
   try {
-    // 获取服务费
-    const fee = await bridgeBank.methods.bridgeServiceFee().call();
-    
-    // 首先授权 BridgeBank 合约使用 USDT
-    await usdtContract.methods.approve(bridgeBankAddress, amount).send({
-      from: account.address,
-      gas: 200000
-    });
-    
-    console.log('授权成功');
-    
-    // 调用 lock 函数
+    // 1. 检查BSC账户余额
+    const balance = await web3.eth.getBalance(account.address);
+    console.log('BSC账户余额:', web3.utils.fromWei(balance, 'ether'), 'BNB');
+
+    // 2. 检查代币余额
+    const tokenContract = new web3.eth.Contract(erc20ABI, tokenAddress);
+    const tokenBalance = await tokenContract.methods.balanceOf(account.address).call();
+    if (BigInt(tokenBalance) < BigInt(amount)) {
+      console.error('错误: 代币余额不足');
+      return;
+    }
+
+    // 3. 授权代币使用权限
+    const allowance = await tokenContract.methods.allowance(account.address, bridgeBankAddress).call();
+    if (BigInt(allowance) < BigInt(amount)) {
+      console.log('授权额度不足，正在进行授权...');
+      
+      // 仅授权100个代币，而不是最大值
+      const approvalAmount = web3.utils.toWei('100', 'ether');
+      await tokenContract.methods.approve(bridgeBankAddress, approvalAmount).send({
+        from: account.address,
+        gas: 200000,
+        gasPrice: web3.utils.toWei('10', 'gwei')
+      });
+      console.log('授权成功');
+    }
+
+    // 4. 获取跨链服务费
+    let fee;
+    try {
+      fee = await bridgeBank.methods.bridgeServiceFee().call();
+      console.log('服务费:', web3.utils.fromWei(fee, 'ether'), 'BNB');
+    } catch (error) {
+      console.error('获取服务费失败，使用默认值:', error.message);
+      fee = web3.utils.toWei('0.01', 'ether'); // 默认服务费0.01 BNB
+    }
+
+    // 将BigInt转换为字符串，避免类型混合问题
+    if (typeof fee === 'bigint') {
+      fee = fee.toString();
+    }
+
+    // 5. 估算Gas
+    let estimatedGas;
+    try {
+      estimatedGas = await bridgeBank.methods.lock(
+        receiverAddress,
+        tokenAddress,
+        amount
+      ).estimateGas({ from: account.address, value: fee });
+      console.log('预估Gas:', estimatedGas);
+    } catch (error) {
+      console.error('Gas估算失败，使用默认值:', error.message);
+      estimatedGas = 500000; // 默认Gas限制
+    }
+
+    // 将BigInt转换为数字，避免类型混合问题
+    if (typeof estimatedGas === 'bigint') {
+      estimatedGas = Number(estimatedGas);
+    }
+
+    // 6. 调用lock函数进行跨链
     const tx = await bridgeBank.methods.lock(
       receiverAddress,
-      usdtAddress,
+      tokenAddress,
       amount
     ).send({
       from: account.address,
       value: fee,
-      gas: 500000
+      gas: Math.floor(estimatedGas * 1.5), // 增加50%的Gas限制
+      gasPrice: web3.utils.toWei('10', 'gwei')
     });
     
     console.log('跨链转移交易哈希:', tx.transactionHash);
+    console.log('跨链转移已提交，请等待跨链桥处理到JuChain...');
   } catch (error) {
     console.error('跨链转移失败:', error);
   }
