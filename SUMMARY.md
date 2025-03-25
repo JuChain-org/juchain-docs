@@ -2,15 +2,13 @@
 
 * [JuChain Documentation](README.md)
 * [What is JuChain?](what-is-juchain.md)
-* [Technical Architecture](technical-architecture.md)
-* [Smart Contract](smart-contract.md)
 
 ## Basics
 
 * [Network Information](network-information.md)
 * [Start Using JuChain](start-using-juchain.md)
-* [Smart Contracts](smart-contracts.md)
-* [JuChain Technical Architecture](juchain-technical-architecture.md)
+* [Technical Architecture](basics/technical-architecture.md)
+* [Smart Contract](basics/smart-contract.md)
 
 ## Ecosystem
 
