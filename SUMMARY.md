@@ -19,3 +19,4 @@
 ***
 
 * [Price Oracle](price-oracle.md)
+* [Technical Architecture](technical-architecture.md)
