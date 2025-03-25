@@ -4,6 +4,7 @@
 * [What is JuChain?](what-is-juchain.md)
 * [English Documentation](en/README.md)
 * [Technical Architecture](technical-architecture.md)
+* [Smart Contract](smart-contract.md)
 
 ## Basics
 
@@ -24,5 +25,3 @@
 * [Price Oracle](price-oracle.md)
 
 ## Group 1
-
-* [Page 1](group-1/page-1.md)
