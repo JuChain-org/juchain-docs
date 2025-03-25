@@ -3,6 +3,7 @@
 * [JuChain Documentation](README.md)
 * [What is JuChain?](what-is-juchain.md)
 * [English Documentation](en/README.md)
+* [Technical Architecture](technical-architecture.md)
 
 ## Basics
 
@@ -13,10 +14,15 @@
 
 ## Ecosystem
 
-* [JuChain On-Chain Ecosystem Resources](ecosystem/juchain-on-chain-ecosystem-resources.md)
+* [On-Chain Ecosystem](ecosystem/on-chain-ecosystem.md)
 * [Testnet Faucet](ecosystem/testnet-faucet.md)
+* [Cross-Chain Bridge](ecosystem/cross-chain-bridge.md)
+* [DEX](ecosystem/dex.md)
 
 ***
 
 * [Price Oracle](price-oracle.md)
-* [Technical Architecture](technical-architecture.md)
+
+## Group 1
+
+* [Page 1](group-1/page-1.md)
