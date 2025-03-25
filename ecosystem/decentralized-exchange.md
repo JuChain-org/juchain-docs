@@ -1,6 +1,4 @@
-# DEX
-
-## Decentralized Exchange (DEX)
+# Decentralized Exchange
 
 JuChain offers a decentralized exchange (DEX) functionality through the `JUV2Router02` (Router), `JUV2Factory` (Factory), and `JUV2Pair` (Pair) contracts, enabling token swaps and liquidity provision. This document details how to perform token swaps and manage liquidity on the JuChain network, applicable to tokens like WJU (Wrapped JU) and USDT.
 

@@ -18,7 +18,7 @@
 * [On-Chain Ecosystem](ecosystem/on-chain-ecosystem.md)
 * [Testnet Faucet](ecosystem/testnet-faucet.md)
 * [Cross-Chain Bridge](ecosystem/cross-chain-bridge.md)
-* [DEX](ecosystem/dex.md)
+* [Decentralized Exchange](ecosystem/decentralized-exchange.md)
 
 ***
 
