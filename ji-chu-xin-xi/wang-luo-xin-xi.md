@@ -25,4 +25,4 @@
 |        | ws://testnet-ws.juchain.org     |
 | 链 ID   | 202599                          |
 | 货币符号   | JU                              |
-| 区块浏览器  | http://testnet.juscan.io        |
+| 区块浏览器  | https://testnet.juscan.io       |
