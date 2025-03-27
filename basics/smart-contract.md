@@ -100,7 +100,7 @@ contract MyContract is Ownable {
 
 #### Contract Verification
 
-After deployment, verify your contract’s source code on JuChain’s block explorer (e.g., `https://explorer-testnet.juchain.org`) for transparency and security. Verification ensures users can audit the deployed bytecode against the source.
+After deployment, verify your contract’s source code on JuChain’s block explorer (e.g., `https://testnet.juscan.io`) for transparency and security. Verification ensures users can audit the deployed bytecode against the source.
 
 **Steps for Verification:**
 
