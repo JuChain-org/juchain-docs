@@ -19,7 +19,7 @@
    * RPC 地址：https://testnet-rpc.juchain.org
    * 链 ID：202599
    * 货币符号：JU
-   * 区块浏览器：http://explorer-testnet.juchain.org/
+   * 区块浏览器：[http://testnet.juscan.io](http://testnet.juscan.io)
 4. JuChain 还提供了 MetaMask 钱包的自动网络添加解决方案 - 只需访问 JuChain 测试网网站 testnet.juchain.org 并点击 "添加网络" 即可完成添加。
 
 #### 步骤 3：获取测试代币
@@ -64,13 +64,13 @@
    * RPC 地址：https://testnet-rpc.juchain.org
    * 链 ID：202599
    * 货币符号：JU
-   * 区块浏览器：http://explorer-testnet.juchain.org/
+   * 区块浏览器：[http://explorer-testnet.juchain.org/](http://testnet.juscan.io)
 7. 点击 "确认" 完成添加
 
 #### 获取测试代币
 
 1. 在钱包页面点击 "接收" 复制您的钱包地址
-2. 打开浏览器访问水龙头网站：http://explorer-testnet.juchain.org/
+2. 打开浏览器访问水龙头网站：http://faucet-testnet.juchain.org/
 3. 将复制的钱包地址粘贴到输入框中
 4. 点击 "获取测试代币"
 5. 等待几秒钟后返回 OKX 钱包查看余额，点击 "发送" 可以看到可用币种中的 JU 余额
