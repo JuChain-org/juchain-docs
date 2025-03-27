@@ -64,7 +64,7 @@
    * RPC 地址：https://testnet-rpc.juchain.org
    * 链 ID：202599
    * 货币符号：JU
-   * 区块浏览器：[http://explorer-testnet.juchain.org/](http://testnet.juscan.io)
+   * 区块浏览器：[http://testnet.juscan.io](http://testnet.juscan.io)
 7. 点击 "确认" 完成添加
 
 #### 获取测试代币
