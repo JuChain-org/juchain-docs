@@ -15,7 +15,7 @@ JuChain 提供了一套基于 Uniswap V2 模型的去中心化交易所（DEX）
 * **网络**: JuChain 测试网 (未来可能适用于主网)
   * **RPC URL**: `https://testnet-rpc.juchain.org` (请以官方渠道信息为准)
   * **链 ID (Chain ID)**: `202599`
-  * **区块浏览器**: `https://explorer-testnet.juchain.org`
+  * **区块浏览器**: `https://testnet.juscan.io`
 * **工具**: Node.js 环境及 Web3.js 或 ethers.js 库，或者 Solidity 开发环境 (如 Remix, Hardhat, Truffle)。
 * **账户**: 一个拥有原生 JU（用于支付 Gas 费）以及相关代币（如 WJU, USDT）的外部账户 (EOA)。
 
