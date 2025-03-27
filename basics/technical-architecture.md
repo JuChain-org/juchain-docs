@@ -166,7 +166,7 @@ JuChain’s design optimizes these key metrics:
 #### 3. Tool Support
 
 * **Frameworks**: Truffle, Hardhat
-* **Block Explorer**: `https://explorer-testnet.juchain.org`
+* **Block Explorer**: `https://testnet.juscan.io`
 
 ***
 
