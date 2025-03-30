@@ -1,416 +1,190 @@
 # Decentralized Exchange
 
-JuChain provides a decentralized exchange (DEX) based on the Uniswap V2 model, enabling token swaps and liquidity provision. This documentation guides developers on interacting with the core DEX contracts using Javascript (Web3.js/ethers.js) or Solidity.
-
 **Core Components:**
 
-* **Router (`JUV2Router02`)**: The primary contract for user interactions (swaps, adding/removing liquidity).
-* **Factory (`JUV2Factory`)**: Creates and manages trading pairs.
-* **Pair (`JUV2Pair`)**: Represents a specific token trading pair (e.g., WJU-USDT) and holds liquidity.
-* **WJU (Wrapped JU)**: The wrapped version of the native JU token, conforming to ERC20 standards allowing interaction with the DEX.
+* **Router (`JUV2Router02`)**: The main entry contract for user interaction, used to execute swaps and add/remove liquidity. Similar to Uniswap V2 Router.
+* **Factory (`JUV2Factory`)**: Creates and manages pair contracts.
+* **Pair (`JUV2Pair`)**: Represents a specific token pair (e.g., WJU-USDT), holds the liquidity pool, and functions as an ERC20 LP token.
+* **WJU (Wrapped JU)**: An ERC20 wrapped version of the native JU token, used for DEX interactions.
 * **USDT**: An example ERC20 token on the network.
 
-### 1. Prerequisites & Network Setup
+**1. Prerequisites and Network Setup**
 
-* **Network**: JuChain Testnet (or mainnet when applicable)
-  * **RPC URL**: `https://testnet-rpc.juchain.org` (Verify with official sources)
+* **Network**: JuChain Testnet
+  * **RPC URL**: `https://testnet-rpc.juchain.org`
   * **Chain ID**: `202599`
-* **Tools**: Node.js environment with Web3.js or ethers.js library, or a Solidity development environment (Remix, Hardhat, Truffle).
-* **Account**: An Externally Owned Account (EOA) with native JU (for gas) and relevant tokens (WJU, USDT).
-
-### 2. Core Contract Addresses & Details
-
-| Contract           | Address                                                              | Solidity Version | Notes                                                                        |
-| ------------------ | -------------------------------------------------------------------- | ---------------- | ---------------------------------------------------------------------------- |
-| **WJU**            | `0x2c67A8Ee92C5dD55b1D133631a32451e123Be1d3`                         | `0.4.26`         | Wrapped JU. Use `deposit()` (payable) to wrap JU, `withdraw()` to unwrap.    |
-| **USDT**           | `0xf173cD2DD28f94F6b7F6B0817E498fe842bC5D02`                         | `0.8.8`          | Standard ERC20 token.                                                        |
-| **Factory**        | `0x66682281BdfeC17fCBcae0480C77edFb0c489339`                         | `0.5.16`         | Deploys and tracks `JUV2Pair` contracts.                                     |
-| **Router**         | `0x6A647E09193a130b0CccBF26A1CF442491bDeCc0`                         | `0.6.6`          | **Main interaction point for Swaps & Liquidity.** Assumes WJU is its `WETH`. |
-| **Pair Init Hash** | `0x2d5d6553271f0bbe36b13a3628f44898e95763f6f3692c2de666389cb179309b` | N/A              | Used for calculating pair addresses (See `JUV2Library.pairFor`).             |
-
-**Important:** The Router (`JUV2Router02`) contract uses a `WETH` address internally. For JuChain, this `WETH` address **must correspond to the WJU address** (`0x2c67A8Ee92C5dD55b1D133631a32451e123Be1d3`) for the `*ETH` functions (e.g., `addLiquidityETH`, `swapExactETHForTokens`) to work correctly with Wrapped JU. We will assume this configuration is correct.
-
-### 3. Interacting with WJU (Wrapping/Unwrapping)
-
-Since the DEX works with ERC20 tokens, you need to wrap your native JU into WJU first.
-
-*   **Wrap JU**: Send native JU to the WJU contract's `deposit()` function (or its fallback function).
-
-    ```javascript
-    // Web3.js Example: Wrap 1 native JU
-    const { Web3 } = require('web3');
-    const web3 = new Web3('https://testnet-rpc.juchain.org');
-    const wjuAddress = '0x2c67A8Ee92C5dD55b1D133631a32451e123Be1d3';
-    const wjuABI = [/* WJU ABI from user */]; // Use the provided WJU ABI
-    const wjuContract = new web3.eth.Contract(wjuABI, wjuAddress);
-    const account = '0xYourAddress';
-    const privateKey = '0xYourPrivateKey'; // Handle securely!
-    const amountToWrap = web3.utils.toWei('1', 'ether');
-
-    async function wrapJU() {
-      const tx = {
-        to: wjuAddress,
-        value: amountToWrap,
-        gas: 300000, // Estimate gas appropriately
-        from: account
-      };
-      const signedTx = await web3.eth.accounts.signTransaction(tx, privateKey);
-      const receipt = await web3.eth.sendSignedTransaction(signedTx.rawTransaction);
-      console.log('JU Wrapped:', receipt.transactionHash);
-      // OR call deposit() explicitly:
-      // const depositTx = wjuContract.methods.deposit();
-      // const gas = await depositTx.estimateGas({ from: account, value: amountToWrap });
-      // const signedDepositTx = await web3.eth.accounts.signTransaction({ ...tx, data: depositTx.encodeABI(), gas }, privateKey);
-      // const depositReceipt = await web3.eth.sendSignedTransaction(signedDepositTx.rawTransaction);
-      // console.log('JU Wrapped via deposit():', depositReceipt.transactionHash);
-    }
-    wrapJU();
-    ```
-*   **Unwrap WJU**: Call the `withdraw()` function on the WJU contract, specifying the amount of WJU to convert back to native JU.
-
-    ```javascript
-    // Web3.js Example: Unwrap 1 WJU
-    async function unwrapWJU() {
-      const amountToUnwrap = web3.utils.toWei('1', 'ether');
-      const tx = wjuContract.methods.withdraw(amountToUnwrap);
-      const gas = await tx.estimateGas({ from: account });
-      const data = tx.encodeABI();
-
-      const signedTx = await web3.eth.accounts.signTransaction({
-          to: wjuAddress,
-          data,
-          gas,
-          from: account
-      }, privateKey);
-      const receipt = await web3.eth.sendSignedTransaction(signedTx.rawTransaction);
-      console.log('WJU Unwrapped:', receipt.transactionHash);
-    }
-    unwrapWJU();
-    ```
-
-### 4. Swap Functionality (Using the Router)
-
-Swaps allow exchanging one token for another through existing liquidity pools.
-
-**Key Router Functions for Swaps:**
-
-* `swapExactTokensForTokens`: Swap an exact amount of input token for a minimum amount of output token.
-* `swapTokensForExactTokens`: Swap a maximum amount of input token for an exact amount of output token.
-* `swapExactETHForTokens`: Swap an exact amount of **WJU** (acting as WETH) for a minimum amount of output token.
-* `swapTokensForExactETH`: Swap a maximum amount of input token for an exact amount of **WJU** (acting as WETH).
-* `swapExactTokensForETH`: Swap an exact amount of input token for a minimum amount of **WJU** (acting as WETH).
-* `swapETHForExactTokens`: Swap a maximum amount of **WJU** (acting as WETH, sent with the transaction) for an exact amount of output token.
-* `*SupportingFeeOnTransferTokens`: Variants designed for tokens that charge a fee on transfer.
-
-**Steps for Swapping:**
-
-1. **Approve Router**: Before swapping ERC20 tokens (like USDT or even WJU when it's the _input_ token in `swapExactTokensFor*`), you must approve the Router contract to spend the token on your behalf. Call the token's `approve(routerAddress, amount)` function.
-2. **Call Swap Function**: Call the desired swap function on the Router contract.
-
-**Example 1: Swap Exact WJU for USDT (using `swapExactETHForTokens`)**
-
-```javascript
-// --- Web3.js Example ---
-const { Web3 } = require('web3');
-const web3 = new Web3('https://testnet-rpc.juchain.org');
-
-const routerAddress = '0x6A647E09193a130b0CccBF26A1CF442491bDeCc0';
-const wjuAddress = '0x2c67A8Ee92C5dD55b1D133631a32451e123Be1d3'; // Acts as WETH
-const usdtAddress = '0xf173cD2DD28f94F6b7F6B0817E498fe842bC5D02';
-const routerABI = [/* Relevant Router ABI Snippets - see section 7 */];
-
-const routerContract = new web3.eth.Contract(routerABI, routerAddress);
-const account = '0xYourAddress';
-const privateKey = '0xYourPrivateKey'; // Handle securely!
-
-async function swapWJUForUSDT(wjuAmountIn, usdtAmountOutMin) {
-  const path = [wjuAddress, usdtAddress]; // Path: WJU -> USDT
-  const deadline = Math.floor(Date.now() / 1000) + 60 * 10; // 10 minutes from now
-
-  // No ERC20 approval needed for WJU when using swapExactETHForTokens
-  // The WJU is sent with the transaction value
-
-  const tx = routerContract.methods.swapExactETHForTokens(
-    usdtAmountOutMin, // Minimum USDT you want to receive (slippage protection)
-    path,
-    account,          // Address to receive the USDT
-    deadline
-  );
-
-  const gas = await tx.estimateGas({ from: account, value: wjuAmountIn });
-  const data = tx.encodeABI();
-
-  const signedTx = await web3.eth.accounts.signTransaction({
-      to: routerAddress,
-      data,
-      gas,
-      value: wjuAmountIn, // Send WJU (as ETH value) with the transaction
-      from: account
-  }, privateKey);
-
-  const receipt = await web3.eth.sendSignedTransaction(signedTx.rawTransaction);
-  console.log(`Swap WJU -> USDT successful: ${receipt.transactionHash}`);
-}
-
-// Example: Swap 1 WJU for at least 0.9 USDT
-const oneWJU = web3.utils.toWei('1', 'ether');
-const pointNineUSDT = web3.utils.toWei('0.9', 'ether'); // USDT might have different decimals! Check USDT contract. Let's assume 18 for example.
-// const pointNineUSDT = '900000000000000000'; // If USDT has 18 decimals
-// CHECK USDT DECIMALS: The provided USDT contract uses OZ ERC20, which defaults to 18 decimals.
-
-swapWJUForUSDT(oneWJU, pointNineUSDT);
-```
-
-**Example 2: Swap Exact USDT for WJU (using `swapExactTokensForETH`)**
-
-```javascript
-// --- Web3.js Example ---
-const { Web3 } = require('web3');
-const web3 = new Web3('https://testnet-rpc.juchain.org');
-
-// Addresses and ABIs as above...
-const usdtABI = [/* USDT ABI from user */];
-const usdtContract = new web3.eth.Contract(usdtABI, usdtAddress);
-
-async function swapUSDTForWJU(usdtAmountIn, wjuAmountOutMin) {
-  const path = [usdtAddress, wjuAddress]; // Path: USDT -> WJU
-  const deadline = Math.floor(Date.now() / 1000) + 60 * 10; // 10 minutes
-
-  // 1. Approve Router to spend USDT
-  console.log(`Approving Router to spend ${web3.utils.fromWei(usdtAmountIn)} USDT...`);
-  const approveTx = usdtContract.methods.approve(routerAddress, usdtAmountIn);
-  const approveGas = await approveTx.estimateGas({ from: account });
-  const approveData = approveTx.encodeABI();
-  const signedApproveTx = await web3.eth.accounts.signTransaction({
-      to: usdtAddress, data: approveData, gas: approveGas, from: account
-  }, privateKey);
-  const approveReceipt = await web3.eth.sendSignedTransaction(signedApproveTx.rawTransaction);
-  console.log(`Approval successful: ${approveReceipt.transactionHash}`);
-
-  // 2. Call swap function
-  console.log(`Swapping ${web3.utils.fromWei(usdtAmountIn)} USDT for WJU...`);
-  const swapTx = routerContract.methods.swapExactTokensForETH(
-    usdtAmountIn,     // Exact USDT amount to send
-    wjuAmountOutMin,  // Minimum WJU you want to receive
-    path,
-    account,          // Address to receive WJU
-    deadline
-  );
-
-  const swapGas = await swapTx.estimateGas({ from: account });
-  const swapData = swapTx.encodeABI();
-
-  const signedSwapTx = await web3.eth.accounts.signTransaction({
-      to: routerAddress, data: swapData, gas: swapGas, from: account
-  }, privateKey);
-
-  const swapReceipt = await web3.eth.sendSignedTransaction(signedSwapTx.rawTransaction);
-  console.log(`Swap USDT -> WJU successful: ${swapReceipt.transactionHash}`);
-}
-
-// Example: Swap 1 USDT for at least 0.9 WJU (assuming 18 decimals for both)
-const oneUSDT = web3.utils.toWei('1', 'ether');
-const pointNineWJU = web3.utils.toWei('0.9', 'ether');
-
-swapUSDTForWJU(oneUSDT, pointNineWJU);
-```
-
-**Notes on Swaps:**
-
-* **Slippage:** Set `amountOutMin` (for exact input swaps) or `amountInMax` (for exact output swaps) carefully to protect against price changes during transaction execution.
-* **Path:** The `path` array defines the route for the swap. For direct swaps (e.g., WJU-USDT), it's `[tokenInAddress, tokenOutAddress]`. For multi-hop swaps, include intermediate tokens.
-* **Deadline:** Transactions pending after the deadline will fail, preventing execution at an unfavorable old price.
-* **Gas:** Gas costs vary. Use `estimateGas` before sending.
-* **Liquidity:** Swaps require sufficient liquidity in the relevant pair contract. Check the pair on the explorer or via `getReserves`.
-
-### 5. Liquidity Provision (Using the Router)
-
-Users can provide liquidity to a pair (e.g., WJU-USDT) and earn fees from swaps occurring in that pair. They receive LP (Liquidity Provider) tokens representing their share.
-
-**Key Router Functions for Liquidity:**
-
-* `addLiquidity`: Add liquidity for a pair of two ERC20 tokens.
-* `addLiquidityETH`: Add liquidity for a pair involving WJU (acting as WETH) and another ERC20 token. WJU is sent with the transaction value.
-* `removeLiquidity`: Remove liquidity for a pair of two ERC20 tokens by burning LP tokens.
-* `removeLiquidityETH`: Remove liquidity for a WJU (acting as WETH) / ERC20 pair by burning LP tokens. Receives WJU and the ERC20 token.
-* `*WithPermit`: Variants allowing liquidity removal using an off-chain signature (EIP-712) instead of a prior `approve` transaction for the LP token.
-
-**Steps for Adding Liquidity:**
-
-1. **Approve Router**: Approve the Router to spend _both_ ERC20 tokens you are providing (unless one is WJU being provided via `addLiquidityETH`).
-2. **Call Add Function**: Call `addLiquidity` or `addLiquidityETH`. You specify _desired_ amounts, but the actual amounts taken will maintain the pair's current price ratio. Set minimum amounts (`amountAMin`, `amountBMin`, `amountETHMin`) to control slippage.
-
-**Example: Add Liquidity for WJU-USDT (using `addLiquidityETH`)**
-
-```javascript
-// --- Web3.js Example ---
-const { Web3 } = require('web3');
-const web3 = new Web3('https://testnet-rpc.juchain.org');
-
-// Addresses, ABIs, account, privateKey as above...
-
-async function addLiquidityWJUUSDT(wjuAmountDesired, usdtAmountDesired, wjuAmountMin, usdtAmountMin) {
-  const deadline = Math.floor(Date.now() / 1000) + 60 * 10;
-
-  // 1. Approve Router to spend USDT
-  console.log(`Approving Router to spend ${web3.utils.fromWei(usdtAmountDesired)} USDT...`);
-  const approveTx = usdtContract.methods.approve(routerAddress, usdtAmountDesired); // Approve desired amount or max_uint
-  const approveGas = await approveTx.estimateGas({ from: account });
-  const approveData = approveTx.encodeABI();
-  const signedApproveTx = await web3.eth.accounts.signTransaction({
-      to: usdtAddress, data: approveData, gas: approveGas, from: account
-  }, privateKey);
-  const approveReceipt = await web3.eth.sendSignedTransaction(signedApproveTx.rawTransaction);
-  console.log(`Approval successful: ${approveReceipt.transactionHash}`);
-
-  // 2. Add Liquidity
-  console.log(`Adding liquidity: ${web3.utils.fromWei(wjuAmountDesired)} WJU and ${web3.utils.fromWei(usdtAmountDesired)} USDT...`);
-  const addLiqTx = routerContract.methods.addLiquidityETH(
-    usdtAddress,        // The ERC20 token address
-    usdtAmountDesired,  // Desired amount of USDT to add
-    usdtAmountMin,      // Minimum amount of USDT to add (slippage)
-    wjuAmountMin,       // Minimum amount of WJU to add (slippage)
-    account,            // Address to receive LP tokens
-    deadline
-  );
-
-  const addLiqGas = await addLiqTx.estimateGas({ from: account, value: wjuAmountDesired });
-  const addLiqData = addLiqTx.encodeABI();
-
-  const signedAddLiqTx = await web3.eth.accounts.signTransaction({
-      to: routerAddress,
-      data: addLiqData,
-      gas: addLiqGas,
-      value: wjuAmountDesired, // Send the desired WJU amount (router calculates optimal)
-      from: account
-  }, privateKey);
-
-  const addLiqReceipt = await web3.eth.sendSignedTransaction(signedAddLiqTx.rawTransaction);
-  console.log(`Add Liquidity WJU-USDT successful: ${addLiqReceipt.transactionHash}`);
-  // The receipt logs will contain info about actual amounts added and LP tokens minted.
-}
-
-// Example: Add ~1 WJU and ~100 USDT (assuming this is near the current ratio)
-// Set minimums slightly lower for slippage tolerance, e.g., 99%
-const wjuToAdd = web3.utils.toWei('1', 'ether');
-const usdtToAdd = web3.utils.toWei('100', 'ether'); // Assuming 18 decimals
-const wjuMin = web3.utils.toWei('0.99', 'ether'); // 99% of desired WJU
-const usdtMin = web3.utils.toWei('99', 'ether');   // 99% of desired USDT
-
-addLiquidityWJUUSDT(wjuToAdd, usdtToAdd, wjuMin, usdtMin);
-```
-
-**Steps for Removing Liquidity:**
-
-1. **Get Pair Address**: Determine the address of the liquidity pair contract (e.g., WJU-USDT pair). You can use the Factory's `getPair(tokenA, tokenB)` function or calculate it using `JUV2Library.pairFor` logic (see Solidity example below or use a library).
-2. **Approve Router**: Approve the Router contract to spend your LP tokens. Call the `approve(routerAddress, liquidityAmount)` function _on the Pair contract_.
-3. **Call Remove Function**: Call `removeLiquidity` or `removeLiquidityETH`, specifying the amount of LP tokens (`liquidity`) to burn and the minimum amounts of underlying tokens you expect back (`amountAMin`, `amountBMin`, `amountETHMin`).
-
-**Example: Remove Liquidity from WJU-USDT (using `removeLiquidityETH`)**
-
-```javascript
-// --- Web3.js Example ---
-const { Web3 } = require('web3');
-const web3 = new Web3('https://testnet-rpc.juchain.org');
-
-// Addresses, ABIs, account, privateKey as above...
-const factoryABI = [/* Factory ABI from user */];
-const factoryAddress = '0x66682281BdfeC17fCBcae0480C77edFb0c489339';
-const pairABI = [/* JUV2Pair ABI - can often use standard ERC20 ABI + burn/mint/sync etc. */];
-
-const factoryContract = new web3.eth.Contract(factoryABI, factoryAddress);
-
-async function removeLiquidityWJUUSDT(liquidityAmount, usdtAmountMin, wjuAmountMin) {
-  const deadline = Math.floor(Date.now() / 1000) + 60 * 10;
-
-  // 1. Get Pair Address
-  const pairAddress = await factoryContract.methods.getPair(wjuAddress, usdtAddress).call();
-  if (pairAddress === '0x0000000000000000000000000000000000000000') {
-    console.error("Pair does not exist!");
-    return;
-  }
-  console.log(`Pair Address: ${pairAddress}`);
-  const pairContract = new web3.eth.Contract(pairABI, pairAddress);
-
-  // 2. Approve Router to spend LP tokens
-  console.log(`Approving Router to spend ${liquidityAmount} LP tokens...`); // LP amounts often don't use 18 decimals
-  const approveTx = pairContract.methods.approve(routerAddress, liquidityAmount); // Use raw amount, or convert if needed
-  const approveGas = await approveTx.estimateGas({ from: account });
-  const approveData = approveTx.encodeABI();
-  const signedApproveTx = await web3.eth.accounts.signTransaction({
-      to: pairAddress, data: approveData, gas: approveGas, from: account
-  }, privateKey);
-  const approveReceipt = await web3.eth.sendSignedTransaction(signedApproveTx.rawTransaction);
-  console.log(`LP Token Approval successful: ${approveReceipt.transactionHash}`);
-
-  // 3. Remove Liquidity
-  console.log(`Removing ${liquidityAmount} liquidity...`);
-  const removeLiqTx = routerContract.methods.removeLiquidityETH(
-    usdtAddress,        // The ERC20 token address in the pair
-    liquidityAmount,    // Amount of LP tokens to burn
-    usdtAmountMin,      // Min USDT to receive
-    wjuAmountMin,       // Min WJU to receive
-    account,            // Address to receive underlying tokens
-    deadline
-  );
-
-  const removeLiqGas = await removeLiqTx.estimateGas({ from: account });
-  const removeLiqData = removeLiqTx.encodeABI();
-
-  const signedRemoveLiqTx = await web3.eth.accounts.signTransaction({
-      to: routerAddress,
-      data: removeLiqData,
-      gas: removeLiqGas,
-      from: account
-      // No value needed for removeLiquidityETH
-  }, privateKey);
-
-  const removeLiqReceipt = await web3.eth.sendSignedTransaction(signedRemoveLiqTx.rawTransaction);
-  console.log(`Remove Liquidity WJU-USDT successful: ${removeLiqReceipt.transactionHash}`);
-}
-
-// Example: Remove 1 LP token (assuming LP token has 18 decimals, adjust if not!)
-const oneLpToken = web3.utils.toWei('1', 'ether');
-const minUsdtExpected = web3.utils.toWei('49', 'ether'); // Example: Expect at least 49 USDT
-const minWjuExpected = web3.utils.toWei('0.49', 'ether'); // Example: Expect at least 0.49 WJU
-
-removeLiquidityWJUUSDT(oneLpToken, minUsdtExpected, minWjuExpected);
-```
-
-**Notes on Liquidity:**
-
-* **Ratio:** When adding liquidity, provide tokens proportionally to the current reserve ratio in the pair. If you provide amounts at a different ratio, the router will use the optimal amount of one token based on the desired amount of the other, potentially leaving some of the first token unused (refunded if WJU, kept in wallet if ERC20).
-* **First Provider:** The first liquidity provider sets the initial exchange rate.
-* **LP Tokens:** Represent your share of the pool. They can be transferred or staked if other protocols support it. LP token amounts usually have 18 decimals but check the specific pair contract.
-* **Impermanent Loss:** Be aware of impermanent loss – the potential difference in value between holding tokens in a liquidity pool versus just holding them in your wallet.
-
-### 6. Using the Factory
-
-While most interactions happen via the Router, you might need the Factory to:
-
-* **Check if a pair exists:** `getPair(address tokenA, address tokenB)` returns the pair address or `address(0)`.
-* **Get pair address deterministically:** Use the `pairFor` logic (see `JUV2Library` in the Router code) which involves `create2`, the factory address, token addresses, and the `INIT_CODE_PAIR_HASH` (`0x2d5d6553271f0bbe36b13a3628f44898e95763f6f3692c2de666389cb179309b`).
-* **Create a pair:** `createPair(address tokenA, address tokenB)` creates a new pair contract if it doesn't exist. Usually called by the Router automatically when needed during `addLiquidity` if the pair is new.
-
-**Example: Calculate Pair Address (Solidity Helper)**
+  * **Block Explorer**: `https://testnet.juscan.io`
+* **Tools**:
+  * Node.js environment and Web3.js library (`const { Web3 } = require('web3');`) or similar libraries (ethers.js).
+  * Solidity development environment (optional, for contract interaction or understanding).
+* **Account and Credentials**:
+  * An external owned account (EOA) address (`USER_ADDRESS`).
+  * The private key of that account (`PRIVATE_KEY`), **must be securely stored and managed**, never hardcoded or exposed.
+  * The account needs to hold native JU (for gas payments) and tokens required for interaction (such as WJU, USDT).
+* **Basic Setup**:
+  * Initialize Web3 instance: `const web3 = new Web3(RPC_URL);`
+  * Create contract instances: Use the corresponding ABIs (see Section 7) and contract addresses to create Web3 Contract objects for WJU, USDT, Router, and Factory. Pair contract instances are typically created dynamically after obtaining their addresses.
+
+**2. Core Contract Addresses and Details**
+
+| Contract           | Address                                                              | Description                                                                                               |
+| ------------------ | -------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
+| **WJU**            | `0x2c67A8Ee92C5dD55b1D133631a32451e123Be1d3`                         | Wrapped JU. Use `deposit()` (payable) to wrap, `withdraw()` to unwrap. 18 decimals.                       |
+| **USDT**           | `0xf173cD2DD28f94F6b7F6B0817E498fe842bC5D02`                         | Standard ERC20 token. Usually 18 decimals (confirm with on-chain `decimals()`).                           |
+| **Factory**        | `0x66682281BdfeC17fCBcae0480C77edFb0c489339`                         | Deploys and tracks `JUV2Pair` contracts.                                                                  |
+| **Router**         | `0x6A647E09193a130b0CccBF26A1CF442491bDeCc0`                         | **Main interaction entry point**. Treats WJU address as its `WETH` address (verify with `router.WETH()`). |
+| **Pair Init Hash** | `0x2d5d6553271f0bbe36b13a3628f44898e95763f6f3692c2de666389cb179309b` | Used for deterministic pair address calculation (with `create2`).                                         |
+
+**Key Configuration:** The router contract (`JUV2Router02`) **must** point to the WJU address on JuChain (`0x2c67A8Ee92C5dD55b1D133631a32451e123Be1d3`) as its `WETH` address. This allows functions with the `ETH` suffix in the router to handle WJU correctly.
+
+**3. Interacting with WJU (Wrapping/Unwrapping)**
+
+Converting native JU to ERC20-compatible WJU is a prerequisite for interacting with the DEX.
+
+* **Wrap JU**: Call the `deposit()` payable function on the WJU contract.
+  * **Operation:** Construct a transaction to the WJU contract address, call `deposit()` (provided in the ABI), and include a `value` field in the transaction with the amount of native JU you wish to wrap (in Wei).
+* **Unwrap WJU**: Call the `withdraw(uint256 wad)` function on the WJU contract.
+  * **Operation:** Call the `withdraw` function with the parameter `wad` set to the amount of WJU you wish to unwrap back to native JU (in Wei). This transaction does not include a `value`.
+
+**4. Swap Functionality (Using the Router)**
+
+Use the router contract to swap tokens using existing liquidity pools.
+
+**Common Swap Functions:**
+
+* `swapExactETHForTokens`: Swap an **exact amount** of WJU for **at least** a specified amount of an ERC20 token.
+* `swapExactTokensForETH`: Swap an **exact amount** of an ERC20 token for **at least** a specified amount of WJU.
+* `swapExactTokensForTokens`: Swap an **exact amount** of an input ERC20 token for **at least** a specified amount of an output ERC20 token.
+
+**Core Parameters:**
+
+* `amountIn` / `amountOut`: The amounts involved.
+* `amountOutMin` / `amountInMax`: Slippage control, ensuring you receive no less than/pay no more than this value.
+* `path`: An array of addresses defining the swap path, e.g., `[WJU_ADDRESS, USDT_ADDRESS]` or `[USDT_ADDRESS, WJU_ADDRESS]`.
+* `to`: The address receiving the tokens.
+* `deadline`: Unix timestamp after which the transaction becomes invalid.
+
+**Process: Swapping WJU for USDT (calling `swapExactETHForTokens`)**
+
+1. **Determine Input:** Decide the exact amount of WJU to spend (`wjuAmountIn`, in Wei).
+2. **Calculate Minimum Output (Slippage Control):**
+   * Call the router's `getAmountsOut(wjuAmountIn, [WJU_ADDRESS, USDT_ADDRESS])` view function to get the expected USDT output amount `expectedUsdtAmount`.
+   * Calculate `usdtAmountOutMin = expectedUsdtAmount * (1 - slippageTolerance)` based on your acceptable slippage percentage (e.g., 1% or 0.01). **Note:** Use BigInt when handling large number calculations.
+3. **Prepare Transaction:**
+   * Set `deadline` (e.g., current time + 10 minutes).
+   * Construct a `swapExactETHForTokens` function call with parameters: `usdtAmountOutMin`, `path = [WJU_ADDRESS, USDT_ADDRESS]`, `to = USER_ADDRESS`, `deadline`.
+4. **Send Transaction:**
+   * Sign the constructed transaction (using `PRIVATE_KEY`).
+   * When sending the transaction, **you must include `value: wjuAmountIn`** as WJU is transferred as the native token.
+   * It's recommended to use `estimateGas` to estimate the Gas Limit and potentially add some buffer (e.g., \* 1.1).
+
+**Process: Swapping USDT for WJU (calling `swapExactTokensForETH`)**
+
+1. **Determine Input:** Decide the exact amount of USDT to spend (`usdtAmountIn`, in Wei).
+2. **Approve Router:**
+   * Call the **USDT contract's** `approve(ROUTER_ADDRESS, usdtAmountIn)` function.
+   * **Must wait** for this approval transaction to be confirmed before proceeding.
+   * _Optimization:_ First call `usdtContract.methods.allowance(USER_ADDRESS, ROUTER_ADDRESS)` to check existing allowance; skip approval if sufficient.
+3. **Calculate Minimum Output (Slippage Control):**
+   * Call the router's `getAmountsOut(usdtAmountIn, [USDT_ADDRESS, WJU_ADDRESS])` to get the expected WJU output amount `expectedWjuAmount`.
+   * Calculate `wjuAmountOutMin = expectedWjuAmount * (1 - slippageTolerance)`.
+4. **Prepare Transaction:**
+   * Set `deadline`.
+   * Construct a `swapExactTokensForETH` function call with parameters: `usdtAmountIn`, `wjuAmountOutMin`, `path = [USDT_ADDRESS, WJU_ADDRESS]`, `to = USER_ADDRESS`, `deadline`.
+5. **Send Transaction:**
+   * Sign and send the transaction.
+   * This transaction **does not include a `value`**.
+   * Similarly, it's recommended to estimate Gas.
+
+**Swap Considerations:**
+
+* **Slippage:** `amountOutMin`/`amountInMax` are crucial protections against unfavorable price movements.
+* **Gas:** All write operations require Gas (native JU).
+* **Deadline:** Prevents transactions from staying in the mempool too long and executing at prices that significantly differ from expectations.
+* **Path (`path`):** Ensure the path is correct; complex swaps may require WJU as an intermediate route.
+
+**5. Liquidity Management (Using the Router)**
+
+Provide liquidity to token pairs to earn trading fees and receive LP tokens representing your share.
+
+**Common Liquidity Functions:**
+
+* `addLiquidityETH`: Add liquidity for WJU and an ERC20 token.
+* `removeLiquidityETH`: Remove liquidity for WJU and an ERC20 token.
+* `addLiquidity`: Add liquidity for two ERC20 tokens.
+* `removeLiquidity`: Remove liquidity for two ERC20 tokens.
+
+**Process: Adding WJU-USDT Liquidity (calling `addLiquidityETH`)**
+
+1. **Determine Desired Amounts:** Decide the desired amount of WJU (`wjuAmountDesired`) and USDT (`usdtAmountDesired`) to provide. Note: The actual ratio added will be determined by the current pool, with your provided amounts serving as maximums and desired ratios.
+2. **Calculate Minimum Acceptable Amounts (Slippage Control):** Based on acceptable slippage, calculate `wjuAmountMin` and `usdtAmountMin`.
+3. **Check Balances:** Ensure your account has sufficient WJU (provided via `value`) and USDT.
+4. **Approve Router (for USDT):**
+   * Call the **USDT contract's** `approve(ROUTER_ADDRESS, usdtAmountDesired)` function.
+   * Wait for the approval transaction to be confirmed.
+   * _Optimization:_ First check `allowance`; skip if sufficient.
+5. **Prepare Transaction:**
+   * Set `deadline`.
+   * Construct an `addLiquidityETH` function call with parameters: `token = USDT_ADDRESS`, `amountTokenDesired = usdtAmountDesired`, `amountTokenMin = usdtAmountMin`, `amountETHMin = wjuAmountMin`, `to = USER_ADDRESS`, `deadline`.
+6. **Send Transaction:**
+   * Sign and send the transaction.
+   * **Must include `value: wjuAmountDesired`** to provide WJU.
+   * It's recommended to estimate Gas. Upon success, `USER_ADDRESS` will receive WJU-USDT LP tokens.
+
+**Process: Removing WJU-USDT Liquidity (calling `removeLiquidityETH`)**
+
+1. **Determine Removal Amount:** Decide the amount of LP tokens to remove (`liquidityAmount`, in Wei). LP tokens typically also have 18 decimals.
+2. **Calculate Minimum Return Amounts (Slippage Control):** Based on the current pool ratio and acceptable slippage, estimate the minimum WJU (`wjuAmountMin`) and USDT (`usdtAmountMin`) to receive. You can query the Pair contract's `getReserves` and LP token's `totalSupply` to assist in calculations.
+3. **Get Pair Address:** Call `factoryContract.methods.getPair(WJU_ADDRESS, USDT_ADDRESS)` to get the WJU-USDT Pair contract address (`pairAddress`).
+4. **Approve Router (for LP Tokens):**
+   * Create a Pair contract instance: `const pairContract = new web3.eth.Contract(ABIs.JUV2PAIR_ABI, pairAddress);`
+   * Call the **Pair contract's** `approve(ROUTER_ADDRESS, liquidityAmount)` function.
+   * Wait for the approval transaction to be confirmed.
+5. **Prepare Transaction:**
+   * Set `deadline`.
+   * Construct a `removeLiquidityETH` function call with parameters: `token = USDT_ADDRESS`, `liquidity = liquidityAmount`, `amountTokenMin = usdtAmountMin`, `amountETHMin = wjuAmountMin`, `to = USER_ADDRESS`, `deadline`.
+6. **Send Transaction:**
+   * Sign and send the transaction.
+   * This transaction **does not include a `value`**.
+   * It's recommended to estimate Gas. Upon success, `USER_ADDRESS` will receive WJU and USDT.
+
+**Liquidity Management Considerations:**
+
+* **Impermanent Loss:** An inherent risk when providing liquidity, which occurs when the relative price of tokens changes.
+* **LP Tokens:** LP tokens themselves are ERC20 tokens that can be transferred or used in other DeFi protocols (if supported).
+* **First Addition:** If you're the first provider, you'll set the initial exchange rate.
+
+**6. Using the Factory**
+
+The factory contract is primarily used to create and query pairs.
+
+* **Query Pair Address:**
+  * Call `getPair(address tokenA, address tokenB)`.
+  * If a non-zero address is returned, the pair exists.
+  * If `0x000...000` is returned, the pair doesn't exist.
+* **Create Pair:**
+  * If you confirm through `getPair` that the pair doesn't exist, you can call `createPair(address tokenA, address tokenB)`.
+  * The `tokenA` and `tokenB` addresses can be in any order.
+  * The factory will deploy a new Pair contract using `create2` and emit a `PairCreated` event.
+  * Typically, the `addLiquidity*` functions automatically call `createPair` if the pair doesn't exist, but manual calling ensures its existence.
+* **Get All Pairs Information:** `allPairsLength()` and `allPairs(uint index)` are available, but iterating may be costly.
+* **Deterministically Calculate Pair Address:** Using the `pairFor` logic (see Solidity example below), combined with the factory address, sorted token addresses, and `initCodeHash`, you can pre-calculate the pair address off-chain.
+
+**Example: Calculating Pair Address (Solidity Helper Library)**
 
 ```solidity
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0; // Use appropriate version for your contract
+pragma solidity ^0.8.0;
 
 library PairUtil {
-    // Calculates the CREATE2 address for a pair (logic adapted from JUV2Library)
+    // Calculate the pair address for a given factory and token pair
     function pairFor(address factory, address tokenA, address tokenB) internal pure returns (address pair) {
         (address token0, address token1) = tokenA < tokenB ? (tokenA, tokenB) : (tokenB, tokenA);
         bytes32 salt = keccak256(abi.encodePacked(token0, token1));
-        // INIT_CODE_PAIR_HASH for the provided Factory/Pair bytecode
+        // JuChain DEX Pair contract init code hash
         bytes32 initCodeHash = 0x2d5d6553271f0bbe36b13a3628f44898e95763f6f3692c2de666389cb179309b;
-
         pair = address(uint160(uint(keccak256(abi.encodePacked(
-                hex'ff',
-                factory,
-                salt,
-                initCodeHash
+                hex'ff', factory, salt, initCodeHash
             )))));
     }
 }
@@ -420,157 +194,146 @@ contract MyDEXInteractor {
     address constant WJU = 0x2c67A8Ee92C5dD55b1D133631a32451e123Be1d3;
     address constant USDT = 0xf173cD2DD28f94F6b7F6B0817E498fe842bC5D02;
 
+    // Get the expected address of the WJU-USDT pair
     function getWjuUsdtPairAddress() external pure returns (address) {
         return PairUtil.pairFor(FACTORY, WJU, USDT);
     }
 }
 ```
 
-### 7. Key ABI Snippets (Router `0x6A64...`)
+**7. Contract ABIs**
 
-Use these snippets with Web3.js/ethers.js. Obtain the full ABI from the block explorer or compile the provided source code. **Note:** The ABIs provided in the prompt for the router were mostly incorrect (looked like ERC20 ABIs); use ABIs derived from the actual `JUV2Router02` code.
+**Strongly Recommended:** Always verify and obtain the latest, most complete official ABIs for specified contract addresses from the JuChain block explorer (`https://testnet.juscan.io`).
 
 ```json
-[
-  // --- Swap Functions ---
-  {
-    "inputs": [
-      { "internalType": "uint256", "name": "amountIn", "type": "uint256" },
-      { "internalType": "uint256", "name": "amountOutMin", "type": "uint256" },
-      { "internalType": "address[]", "name": "path", "type": "address[]" },
-      { "internalType": "address", "name": "to", "type": "address" },
-      { "internalType": "uint256", "name": "deadline", "type": "uint256" }
-    ],
-    "name": "swapExactTokensForTokens",
-    "outputs": [ { "internalType": "uint256[]", "name": "amounts", "type": "uint256[]" } ],
-    "stateMutability": "nonpayable", "type": "function"
-  },
-  {
-    "inputs": [
-      { "internalType": "uint256", "name": "amountOutMin", "type": "uint256" },
-      { "internalType": "address[]", "name": "path", "type": "address[]" },
-      { "internalType": "address", "name": "to", "type": "address" },
-      { "internalType": "uint256", "name": "deadline", "type": "uint256" }
-    ],
-    "name": "swapExactETHForTokens",
-    "outputs": [ { "internalType": "uint256[]", "name": "amounts", "type": "uint256[]" } ],
-    "stateMutability": "payable", "type": "function"
-  },
-  {
-    "inputs": [
-      { "internalType": "uint256", "name": "amountIn", "type": "uint256" },
-      { "internalType": "uint256", "name": "amountOutMin", "type": "uint256" },
-      { "internalType": "address[]", "name": "path", "type": "address[]" },
-      { "internalType": "address", "name": "to", "type": "address" },
-      { "internalType": "uint256", "name": "deadline", "type": "uint256" }
-    ],
-    "name": "swapExactTokensForETH",
-    "outputs": [ { "internalType": "uint256[]", "name": "amounts", "type": "uint256[]" } ],
-    "stateMutability": "nonpayable", "type": "function"
-  },
-  // --- Liquidity Functions ---
-  {
-    "inputs": [
-      { "internalType": "address", "name": "tokenA", "type": "address" },
-      { "internalType": "address", "name": "tokenB", "type": "address" },
-      { "internalType": "uint256", "name": "amountADesired", "type": "uint256" },
-      { "internalType": "uint256", "name": "amountBDesired", "type": "uint256" },
-      { "internalType": "uint256", "name": "amountAMin", "type": "uint256" },
-      { "internalType": "uint256", "name": "amountBMin", "type": "uint256" },
-      { "internalType": "address", "name": "to", "type": "address" },
-      { "internalType": "uint256", "name": "deadline", "type": "uint256" }
-    ],
-    "name": "addLiquidity",
-    "outputs": [
-      { "internalType": "uint256", "name": "amountA", "type": "uint256" },
-      { "internalType": "uint256", "name": "amountB", "type": "uint256" },
-      { "internalType": "uint256", "name": "liquidity", "type": "uint256" }
-    ],
-    "stateMutability": "nonpayable", "type": "function"
-  },
-  {
-    "inputs": [
-      { "internalType": "address", "name": "token", "type": "address" },
-      { "internalType": "uint256", "name": "amountTokenDesired", "type": "uint256" },
-      { "internalType": "uint256", "name": "amountTokenMin", "type": "uint256" },
-      { "internalType": "uint256", "name": "amountETHMin", "type": "uint256" },
-      { "internalType": "address", "name": "to", "type": "address" },
-      { "internalType": "uint256", "name": "deadline", "type": "uint256" }
-    ],
-    "name": "addLiquidityETH",
-    "outputs": [
-      { "internalType": "uint256", "name": "amountToken", "type": "uint256" },
-      { "internalType": "uint256", "name": "amountETH", "type": "uint256" },
-      { "internalType": "uint256", "name": "liquidity", "type": "uint256" }
-    ],
-    "stateMutability": "payable", "type": "function"
-  },
-  {
-    "inputs": [
-      { "internalType": "address", "name": "tokenA", "type": "address" },
-      { "internalType": "address", "name": "tokenB", "type": "address" },
-      { "internalType": "uint256", "name": "liquidity", "type": "uint256" },
-      { "internalType": "uint256", "name": "amountAMin", "type": "uint256" },
-      { "internalType": "uint256", "name": "amountBMin", "type": "uint256" },
-      { "internalType": "address", "name": "to", "type": "address" },
-      { "internalType": "uint256", "name": "deadline", "type": "uint256" }
-    ],
-    "name": "removeLiquidity",
-    "outputs": [
-      { "internalType": "uint256", "name": "amountA", "type": "uint256" },
-      { "internalType": "uint256", "name": "amountB", "type": "uint256" }
-    ],
-    "stateMutability": "nonpayable", "type": "function"
-  },
-  {
-    "inputs": [
-      { "internalType": "address", "name": "token", "type": "address" },
-      { "internalType": "uint256", "name": "liquidity", "type": "uint256" },
-      { "internalType": "uint256", "name": "amountTokenMin", "type": "uint256" },
-      { "internalType": "uint256", "name": "amountETHMin", "type": "uint256" },
-      { "internalType": "address", "name": "to", "type": "address" },
-      { "internalType": "uint256", "name": "deadline", "type": "uint256" }
-    ],
-    "name": "removeLiquidityETH",
-    "outputs": [
-      { "internalType": "uint256", "name": "amountToken", "type": "uint256" },
-      { "internalType": "uint256", "name": "amountETH", "type": "uint256" }
-    ],
-    "stateMutability": "nonpayable", "type": "function"
-  },
-  // --- Read/Helper Functions ---
-   {
-    "inputs": [],
-    "name": "factory",
-    "outputs": [ { "internalType": "address", "name": "", "type": "address" } ],
-    "stateMutability": "pure", "type": "function"
-  },
-   {
-    "inputs": [],
-    "name": "WETH", // Should return the WJU address
-    "outputs": [ { "internalType": "address", "name": "", "type": "address" } ],
-    "stateMutability": "pure", "type": "function"
-  },
-  {
-    "inputs": [
-      {"internalType": "uint256", "name": "amountIn", "type": "uint256"},
-      {"internalType": "address[]", "name": "path", "type": "address[]"}
-    ],
-    "name": "getAmountsOut",
-    "outputs": [ {"internalType": "uint256[]", "name": "amounts", "type": "uint256[]"} ],
-    "stateMutability": "view", "type": "function"
-  },
-  {
-    "inputs": [
-      {"internalType": "uint256", "name": "amountOut", "type": "uint256"},
-      {"internalType": "address[]", "name": "path", "type": "address[]"}
-    ],
-    "name": "getAmountsIn",
-    "outputs": [ {"internalType": "uint256[]", "name": "amounts", "type": "uint256[]"} ],
-    "stateMutability": "view", "type": "function"
-  }
-]
+{
+  "WJU_ABI": [
+    {"constant": false, "inputs": [{"name": "guy", "type": "address"}, {"name": "wad", "type": "uint256"}], "name": "approve", "outputs": [{"name": "", "type": "bool"}], "payable": false, "stateMutability": "nonpayable", "type": "function"},
+    {"constant": false, "inputs": [], "name": "deposit", "outputs": [], "payable": true, "stateMutability": "payable", "type": "function"},
+    {"constant": false, "inputs": [{"name": "dst", "type": "address"}, {"name": "wad", "type": "uint256"}], "name": "transfer", "outputs": [{"name": "", "type": "bool"}], "payable": false, "stateMutability": "nonpayable", "type": "function"},
+    {"constant": false, "inputs": [{"name": "src", "type": "address"}, {"name": "dst", "type": "address"}, {"name": "wad", "type": "uint256"}], "name": "transferFrom", "outputs": [{"name": "", "type": "bool"}], "payable": false, "stateMutability": "nonpayable", "type": "function"},
+    {"constant": false, "inputs": [{"name": "wad", "type": "uint256"}], "name": "withdraw", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function"},
+    {"payable": true, "stateMutability": "payable", "type": "fallback"},
+    {"anonymous": false, "inputs": [{"indexed": true, "name": "src", "type": "address"}, {"indexed": true, "name": "guy", "type": "address"}, {"indexed": false, "name": "wad", "type": "uint256"}], "name": "Approval", "type": "event"},
+    {"anonymous": false, "inputs": [{"indexed": true, "name": "src", "type": "address"}, {"indexed": true, "name": "dst", "type": "address"}, {"indexed": false, "name": "wad", "type": "uint256"}], "name": "Transfer", "type": "event"},
+    {"anonymous": false, "inputs": [{"indexed": true, "name": "dst", "type": "address"}, {"indexed": false, "name": "wad", "type": "uint256"}], "name": "Deposit", "type": "event"},
+    {"anonymous": false, "inputs": [{"indexed": true, "name": "src", "type": "address"}, {"indexed": false, "name": "wad", "type": "uint256"}], "name": "Withdrawal", "type": "event"},
+    {"constant": true, "inputs": [{"name": "", "type": "address"}, {"name": "", "type": "address"}], "name": "allowance", "outputs": [{"name": "", "type": "uint256"}], "payable": false, "stateMutability": "view", "type": "function"},
+    {"constant": true, "inputs": [{"name": "", "type": "address"}], "name": "balanceOf", "outputs": [{"name": "", "type": "uint256"}], "payable": false, "stateMutability": "view", "type": "function"},
+    {"constant": true, "inputs": [], "name": "decimals", "outputs": [{"name": "", "type": "uint8"}], "payable": false, "stateMutability": "view", "type": "function"},
+    {"constant": true, "inputs": [], "name": "name", "outputs": [{"name": "", "type": "string"}], "payable": false, "stateMutability": "view", "type": "function"},
+    {"constant": true, "inputs": [], "name": "symbol", "outputs": [{"name": "", "type": "string"}], "payable": false, "stateMutability": "view", "type": "function"},
+    {"constant": true, "inputs": [], "name": "totalSupply", "outputs": [{"name": "", "type": "uint256"}], "payable": false, "stateMutability": "view", "type": "function"}
+  ],
+  "USDT_ABI": [
+    {"inputs": [], "stateMutability": "nonpayable", "type": "constructor"},
+    {"anonymous": false, "inputs": [{"indexed": true, "internalType": "address", "name": "owner", "type": "address"}, {"indexed": true, "internalType": "address", "name": "spender", "type": "address"}, {"indexed": false, "internalType": "uint256", "name": "value", "type": "uint256"}], "name": "Approval", "type": "event"},
+    {"anonymous": false, "inputs": [{"indexed": true, "internalType": "address", "name": "from", "type": "address"}, {"indexed": true, "internalType": "address", "name": "to", "type": "address"}, {"indexed": false, "internalType": "uint256", "name": "value", "type": "uint256"}], "name": "Transfer", "type": "event"},
+    {"inputs": [{"internalType": "address", "name": "owner", "type": "address"}, {"internalType": "address", "name": "spender", "type": "address"}], "name": "allowance", "outputs": [{"internalType": "uint256", "name": "", "type": "uint256"}], "stateMutability": "view", "type": "function"},
+    {"inputs": [{"internalType": "address", "name": "spender", "type": "address"}, {"internalType": "uint256", "name": "amount", "type": "uint256"}], "name": "approve", "outputs": [{"internalType": "bool", "name": "", "type": "bool"}], "stateMutability": "nonpayable", "type": "function"},
+    {"inputs": [{"internalType": "address", "name": "account", "type": "address"}], "name": "balanceOf", "outputs": [{"internalType": "uint256", "name": "", "type": "uint256"}], "stateMutability": "view", "type": "function"},
+    {"inputs": [], "name": "decimals", "outputs": [{"internalType": "uint8", "name": "", "type": "uint8"}], "stateMutability": "view", "type": "function"},
+    {"inputs": [{"internalType": "address", "name": "spender", "type": "address"}, {"internalType": "uint256", "name": "subtractedValue", "type": "uint256"}], "name": "decreaseAllowance", "outputs": [{"internalType": "bool", "name": "", "type": "bool"}], "stateMutability": "nonpayable", "type": "function"},
+    {"inputs": [{"internalType": "address", "name": "spender", "type": "address"}, {"internalType": "uint256", "name": "addedValue", "type": "uint256"}], "name": "increaseAllowance", "outputs": [{"internalType": "bool", "name": "", "type": "bool"}], "stateMutability": "nonpayable", "type": "function"},
+    {"inputs": [], "name": "name", "outputs": [{"internalType": "string", "name": "", "type": "string"}], "stateMutability": "view", "type": "function"},
+    {"inputs": [], "name": "symbol", "outputs": [{"internalType": "string", "name": "", "type": "string"}], "stateMutability": "view", "type": "function"},
+    {"inputs": [], "name": "totalSupply", "outputs": [{"internalType": "uint256", "name": "", "type": "uint256"}], "stateMutability": "view", "type": "function"},
+    {"inputs": [{"internalType": "address", "name": "to", "type": "address"}, {"internalType": "uint256", "name": "amount", "type": "uint256"}], "name": "transfer", "outputs": [{"internalType": "bool", "name": "", "type": "bool"}], "stateMutability": "nonpayable", "type": "function"},
+    {"inputs": [{"internalType": "address", "name": "from", "type": "address"}, {"internalType": "address", "name": "to", "type": "address"}, {"internalType": "uint256", "name": "amount", "type": "uint256"}], "name": "transferFrom", "outputs": [{"internalType": "bool", "name": "", "type": "bool"}], "stateMutability": "nonpayable", "type": "function"}
+  ],
+  "FACTORY_ABI": [
+    {"inputs": [{"internalType": "address", "name": "_feeToSetter", "type": "address"}], "payable": false, "stateMutability": "nonpayable", "type": "constructor"},
+    {"anonymous": false, "inputs": [{"indexed": true, "internalType": "address", "name": "token0", "type": "address"}, {"indexed": true, "internalType": "address", "name": "token1", "type": "address"}, {"indexed": false, "internalType": "address", "name": "pair", "type": "address"}, {"indexed": false, "internalType": "uint256", "name": "", "type": "uint256"}], "name": "PairCreated", "type": "event"},
+    {"constant": true, "inputs": [{"internalType": "uint256", "name": "", "type": "uint256"}], "name": "allPairs", "outputs": [{"internalType": "address", "name": "pair", "type": "address"}], "payable": false, "stateMutability": "view", "type": "function"},
+    {"constant": true, "inputs": [], "name": "allPairsLength", "outputs": [{"internalType": "uint256", "name": "", "type": "uint256"}], "payable": false, "stateMutability": "view", "type": "function"},
+    {"constant": false, "inputs": [{"internalType": "address", "name": "tokenA", "type": "address"}, {"internalType": "address", "name": "tokenB", "type": "address"}], "name": "createPair", "outputs": [{"internalType": "address", "name": "pair", "type": "address"}], "payable": false, "stateMutability": "nonpayable", "type": "function"},
+    {"constant": true, "inputs": [], "name": "feeTo", "outputs": [{"internalType": "address", "name": "", "type": "address"}], "payable": false, "stateMutability": "view", "type": "function"},
+    {"constant": true, "inputs": [], "name": "feeToSetter", "outputs": [{"internalType": "address", "name": "", "type": "address"}], "payable": false, "stateMutability": "view", "type": "function"},
+    {"constant": true, "inputs": [{"internalType": "address", "name": "", "type": "address"}, {"internalType": "address", "name": "", "type": "address"}], "name": "getPair", "outputs": [{"internalType": "address", "name": "pair", "type": "address"}], "payable": false, "stateMutability": "view", "type": "function"},
+    {"constant": false, "inputs": [{"internalType": "address", "name": "_feeTo", "type": "address"}], "name": "setFeeTo", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function"},
+    {"constant": false, "inputs": [{"internalType": "address", "name": "_feeToSetter", "type": "address"}], "name": "setFeeToSetter", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function"}
+  ],
+  "ROUTER_ABI": [
+    {"inputs": [{"internalType": "address", "name": "_factory", "type": "address"}, {"internalType": "address", "name": "_WETH", "type": "address"}], "stateMutability": "nonpayable", "type": "constructor"},
+    {"stateMutability": "payable", "type": "receive"},
+    {"inputs": [], "name": "WETH", "outputs": [{"internalType": "address", "name": "", "type": "address"}], "stateMutability": "pure", "type": "function"},
+    {"inputs": [{"internalType": "address", "name": "tokenA", "type": "address"}, {"internalType": "address", "name": "tokenB", "type": "address"}, {"internalType": "uint256", "name": "amountADesired", "type": "uint256"}, {"internalType": "uint256", "name": "amountBDesired", "type": "uint256"}, {"internalType": "uint256", "name": "amountAMin", "type": "uint256"}, {"internalType": "uint256", "name": "amountBMin", "type": "uint256"}, {"internalType": "address", "name": "to", "type": "address"}, {"internalType": "uint256", "name": "deadline", "type": "uint256"}], "name": "addLiquidity", "outputs": [{"internalType": "uint256", "name": "amountA", "type": "uint256"}, {"internalType": "uint256", "name": "amountB", "type": "uint256"}, {"internalType": "uint256", "name": "liquidity", "type": "uint256"}], "stateMutability": "nonpayable", "type": "function"},
+    {"inputs": [{"internalType": "address", "name": "token", "type": "address"}, {"internalType": "uint256", "name": "amountTokenDesired", "type": "uint256"}, {"internalType": "uint256", "name": "amountTokenMin", "type": "uint256"}, {"internalType": "uint256", "name": "amountETHMin", "type": "uint256"}, {"internalType": "address", "name": "to", "type": "address"}, {"internalType": "uint256", "name": "deadline", "type": "uint256"}], "name": "addLiquidityETH", "outputs": [{"internalType": "uint256", "name": "amountToken", "type": "uint256"}, {"internalType": "uint256", "name": "amountETH", "type": "uint256"}, {"internalType": "uint256", "name": "liquidity", "type": "uint256"}], "stateMutability": "payable", "type": "function"},
+    {"inputs": [], "name": "factory", "outputs": [{"internalType": "address", "name": "", "type": "address"}], "stateMutability": "pure", "type": "function"},
+    {"inputs": [{"internalType": "uint256", "name": "amountOut", "type": "uint256"}, {"internalType": "uint256", "name": "reserveIn", "type": "uint256"}, {"internalType": "uint256", "name": "reserveOut", "type": "uint256"}], "name": "getAmountIn", "outputs": [{"internalType": "uint256", "name": "amountIn", "type": "uint256"}], "stateMutability": "pure", "type": "function"},
+    {"inputs": [{"internalType": "uint256", "name": "amountIn", "type": "uint256"}, {"internalType": "uint256", "name": "reserveIn", "type": "uint256"}, {"internalType": "uint256", "name": "reserveOut", "type": "uint256"}], "name": "getAmountOut", "outputs": [{"internalType": "uint256", "name": "amountOut", "type": "uint256"}], "stateMutability": "pure", "type": "function"},
+    {"inputs": [{"internalType": "uint256", "name": "amountOut", "type": "uint256"}, {"internalType": "address[]", "name": "path", "type": "address[]"}], "name": "getAmountsIn", "outputs": [{"internalType": "uint256[]", "name": "amounts", "type": "uint256[]"}], "stateMutability": "view", "type": "function"},
+    {"inputs": [{"internalType": "uint256", "name": "amountIn", "type": "uint256"}, {"internalType": "address[]", "name": "path", "type": "address[]"}], "name": "getAmountsOut", "outputs": [{"internalType": "uint256[]", "name": "amounts", "type": "uint256[]"}], "stateMutability": "view", "type": "function"},
+    {"inputs": [{"internalType": "uint256", "name": "amountA", "type": "uint256"}, {"internalType": "uint256", "name": "reserveA", "type": "uint256"}, {"internalType": "uint256", "name": "reserveB", "type": "uint256"}], "name": "quote", "outputs": [{"internalType": "uint256", "name": "amountB", "type": "uint256"}], "stateMutability": "pure", "type": "function"},
+    {"inputs": [{"internalType": "address", "name": "tokenA", "type": "address"}, {"internalType": "address", "name": "tokenB", "type": "address"}, {"internalType": "uint256", "name": "liquidity", "type": "uint256"}, {"internalType": "uint256", "name": "amountAMin", "type": "uint256"}, {"internalType": "uint256", "name": "amountBMin", "type": "uint256"}, {"internalType": "address", "name": "to", "type": "address"}, {"internalType": "uint256", "name": "deadline", "type": "uint256"}], "name": "removeLiquidity", "outputs": [{"internalType": "uint256", "name": "amountA", "type": "uint256"}, {"internalType": "uint256", "name": "amountB", "type": "uint256"}], "stateMutability": "nonpayable", "type": "function"},
+    {"inputs": [{"internalType": "address", "name": "token", "type": "address"}, {"internalType": "uint256", "name": "liquidity", "type": "uint256"}, {"internalType": "uint256", "name": "amountTokenMin", "type": "uint256"}, {"internalType": "uint256", "name": "amountETHMin", "type": "uint256"}, {"internalType": "address", "name": "to", "type": "address"}, {"internalType": "uint256", "name": "deadline", "type": "uint256"}], "name": "removeLiquidityETH", "outputs": [{"internalType": "uint256", "name": "amountToken", "type": "uint256"}, {"internalType": "uint256", "name": "amountETH", "type": "uint256"}], "stateMutability": "nonpayable", "type": "function"},
+    {"inputs": [{"internalType": "address", "name": "token", "type": "address"}, {"internalType": "uint256", "name": "liquidity", "type": "uint256"}, {"internalType": "uint256", "name": "amountTokenMin", "type": "uint256"}, {"internalType": "uint256", "name": "amountETHMin", "type": "uint256"}, {"internalType": "address", "name": "to", "type": "address"}, {"internalType": "uint256", "name": "deadline", "type": "uint256"}], "name": "removeLiquidityETHSupportingFeeOnTransferTokens", "outputs": [{"internalType": "uint256", "name": "amountETH", "type": "uint256"}], "stateMutability": "nonpayable", "type": "function"},
+    {"inputs": [{"internalType": "address", "name": "token", "type": "address"}, {"internalType": "uint256", "name": "liquidity", "type": "uint256"}, {"internalType": "uint256", "name": "amountTokenMin", "type": "uint256"}, {"internalType": "uint256", "name": "amountETHMin", "type": "uint256"}, {"internalType": "address", "name": "to", "type": "address"}, {"internalType": "uint256", "name": "deadline", "type": "uint256"}, {"internalType": "bool", "name": "approveMax", "type": "bool"}, {"internalType": "uint8", "name": "v", "type": "uint8"}, {"internalType": "bytes32", "name": "r", "type": "bytes32"}, {"internalType": "bytes32", "name": "s", "type": "bytes32"}], "name": "removeLiquidityETHWithPermit", "outputs": [{"internalType": "uint256", "name": "amountToken", "type": "uint256"}, {"internalType": "uint256", "name": "amountETH", "type": "uint256"}], "stateMutability": "nonpayable", "type": "function"},
+    {"inputs": [{"internalType": "address", "name": "token", "type": "address"}, {"internalType": "uint256", "name": "liquidity", "type": "uint256"}, {"internalType": "uint256", "name": "amountTokenMin", "type": "uint256"}, {"internalType": "uint256", "name": "amountETHMin", "type": "uint256"}, {"internalType": "address", "name": "to", "type": "address"}, {"internalType": "uint256", "name": "deadline", "type": "uint256"}, {"internalType": "bool", "name": "approveMax", "type": "bool"}, {"internalType": "uint8", "name": "v", "type": "uint8"}, {"internalType": "bytes32", "name": "r", "type": "bytes32"}, {"internalType": "bytes32", "name": "s", "type": "bytes32"}], "name": "removeLiquidityETHWithPermitSupportingFeeOnTransferTokens", "outputs": [{"internalType": "uint256", "name": "amountETH", "type": "uint256"}], "stateMutability": "nonpayable", "type": "function"},
+    {"inputs": [{"internalType": "address", "name": "tokenA", "type": "address"}, {"internalType": "address", "name": "tokenB", "type": "address"}, {"internalType": "uint256", "name": "liquidity", "type": "uint256"}, {"internalType": "uint256", "name": "amountAMin", "type": "uint256"}, {"internalType": "uint256", "name": "amountBMin", "type": "uint256"}, {"internalType": "address", "name": "to", "type": "address"}, {"internalType": "uint256", "name": "deadline", "type": "uint256"}, {"internalType": "bool", "name": "approveMax", "type": "bool"}, {"internalType": "uint8", "name": "v", "type": "uint8"}, {"internalType": "bytes32", "name": "r", "type": "bytes32"}, {"internalType": "bytes32", "name": "s", "type": "bytes32"}], "name": "removeLiquidityWithPermit", "outputs": [{"internalType": "uint256", "name": "amountA", "type": "uint256"}, {"internalType": "uint256", "name": "amountB", "type": "uint256"}], "stateMutability": "nonpayable", "type": "function"},
+    {"inputs": [{"internalType": "uint256", "name": "amountIn", "type": "uint256"}, {"internalType": "uint256", "name": "amountOutMin", "type": "uint256"}, {"internalType": "address[]", "name": "path", "type": "address[]"}, {"internalType": "address", "name": "to", "type": "address"}, {"internalType": "uint256", "name": "deadline", "type": "uint256"}], "name": "swapExactETHForTokens", "outputs": [{"internalType": "uint256[]", "name": "amounts", "type": "uint256[]"}], "stateMutability": "payable", "type": "function"},
+    {"inputs": [{"internalType": "uint256", "name": "amountOutMin", "type": "uint256"}, {"internalType": "address[]", "name": "path", "type": "address[]"}, {"internalType": "address", "name": "to", "type": "address"}, {"internalType": "uint256", "name": "deadline", "type": "uint256"}], "name": "swapExactETHForTokensSupportingFeeOnTransferTokens", "outputs": [], "stateMutability": "payable", "type": "function"},
+    {"inputs": [{"internalType": "uint256", "name": "amountIn", "type": "uint256"}, {"internalType": "uint256", "name": "amountOutMin", "type": "uint256"}, {"internalType": "address[]", "name": "path", "type": "address[]"}, {"internalType": "address", "name": "to", "type": "address"}, {"internalType": "uint256", "name": "deadline", "type": "uint256"}], "name": "swapExactTokensForETH", "outputs": [{"internalType": "uint256[]", "name": "amounts", "type": "uint256[]"}], "stateMutability": "nonpayable", "type": "function"},
+    {"inputs": [{"internalType": "uint256", "name": "amountIn", "type": "uint256"}, {"internalType": "uint256", "name": "amountOutMin", "type": "uint256"}, {"internalType": "address[]", "name": "path", "type": "address[]"}, {"internalType": "address", "name": "to", "type": "address"}, {"internalType": "uint256", "name": "deadline", "type": "uint256"}], "name": "swapExactTokensForETHSupportingFeeOnTransferTokens", "outputs": [], "stateMutability": "nonpayable", "type": "function"},
+    {"inputs": [{"internalType": "uint256", "name": "amountIn", "type": "uint256"}, {"internalType": "uint256", "name": "amountOutMin", "type": "uint256"}, {"internalType": "address[]", "name": "path", "type": "address[]"}, {"internalType": "address", "name": "to", "type": "address"}, {"internalType": "uint256", "name": "deadline", "type": "uint256"}], "name": "swapExactTokensForTokens", "outputs": [{"internalType": "uint256[]", "name": "amounts", "type": "uint256[]"}], "stateMutability": "nonpayable", "type": "function"},
+    {"inputs": [{"internalType": "uint256", "name": "amountIn", "type": "uint256"}, {"internalType": "uint256", "name": "amountOutMin", "type": "uint256"}, {"internalType": "address[]", "name": "path", "type": "address[]"}, {"internalType": "address", "name": "to", "type": "address"}, {"internalType": "uint256", "name": "deadline", "type": "uint256"}], "name": "swapExactTokensForTokensSupportingFeeOnTransferTokens", "outputs": [], "stateMutability": "nonpayable", "type": "function"},
+    {"inputs": [{"internalType": "uint256", "name": "amountOut", "type": "uint256"}, {"internalType": "uint256", "name": "amountInMax", "type": "uint256"}, {"internalType": "address[]", "name": "path", "type": "address[]"}, {"internalType": "address", "name": "to", "type": "address"}, {"internalType": "uint256", "name": "deadline", "type": "uint256"}], "name": "swapTokensForExactETH", "outputs": [{"internalType": "uint256[]", "name": "amounts", "type": "uint256[]"}], "stateMutability": "nonpayable", "type": "function"},
+    {"inputs": [{"internalType": "uint256", "name": "amountOut", "type": "uint256"}, {"internalType": "uint256", "name": "amountInMax", "type": "uint256"}, {"internalType": "address[]", "name": "path", "type": "address[]"}, {"internalType": "address", "name": "to", "type": "address"}, {"internalType": "uint256", "name": "deadline", "type": "uint256"}], "name": "swapTokensForExactTokens", "outputs": [{"internalType": "uint256[]", "name": "amounts", "type": "uint256[]"}], "stateMutability": "nonpayable", "type": "function"},
+    {"inputs": [{"internalType": "uint256", "name": "amountOut", "type": "uint256"}, {"internalType": "address[]", "name": "path", "type": "address[]"}, {"internalType": "address", "name": "to", "type": "address"}, {"internalType": "uint256", "name": "deadline", "type": "uint256"}], "name": "swapETHForExactTokens", "outputs": [{"internalType": "uint256[]", "name": "amounts", "type": "uint256[]"}], "stateMutability": "payable", "type": "function"}
+  ],
+  "JUV2PAIR_ABI": [
+    {"inputs": [], "payable": false, "stateMutability": "nonpayable", "type": "constructor"},
+    {"anonymous": false, "inputs": [{"indexed": true, "internalType": "address", "name": "owner", "type": "address"}, {"indexed": true, "internalType": "address", "name": "spender", "type": "address"}, {"indexed": false, "internalType": "uint256", "name": "value", "type": "uint256"}], "name": "Approval", "type": "event"},
+    {"anonymous": false, "inputs": [{"indexed": true, "internalType": "address", "name": "sender", "type": "address"}, {"indexed": false, "internalType": "uint256", "name": "amount0", "type": "uint256"}, {"indexed": false, "internalType": "uint256", "name": "amount1", "type": "uint256"}, {"indexed": true, "internalType": "address", "name": "to", "type": "address"}], "name": "Burn", "type": "event"},
+    {"anonymous": false, "inputs": [{"indexed": true, "internalType": "address", "name": "sender", "type": "address"}, {"indexed": false, "internalType": "uint256", "name": "amount0", "type": "uint256"}, {"indexed": false, "internalType": "uint256", "name": "amount1", "type": "uint256"}], "name": "Mint", "type": "event"},
+    {"anonymous": false, "inputs": [{"indexed": true, "internalType": "address", "name": "sender", "type": "address"}, {"indexed": false, "internalType": "uint256", "name": "amount0In", "type": "uint256"}, {"indexed": false, "internalType": "uint256", "name": "amount1In", "type": "uint256"}, {"indexed": false, "internalType": "uint256", "name": "amount0Out", "type": "uint256"}, {"indexed": false, "internalType": "uint256", "name": "amount1Out", "type": "uint256"}, {"indexed": true, "internalType": "address", "name": "to", "type": "address"}], "name": "Swap", "type": "event"},
+    {"anonymous": false, "inputs": [{"indexed": false, "internalType": "uint112", "name": "reserve0", "type": "uint112"}, {"indexed": false, "internalType": "uint112", "name": "reserve1", "type": "uint112"}], "name": "Sync", "type": "event"},
+    {"anonymous": false, "inputs": [{"indexed": true, "internalType": "address", "name": "from", "type": "address"}, {"indexed": true, "internalType": "address", "name": "to", "type": "address"}, {"indexed": false, "internalType": "uint256", "name": "value", "type": "uint256"}], "name": "Transfer", "type": "event"},
+    {"constant": true, "inputs": [], "name": "DOMAIN_SEPARATOR", "outputs": [{"internalType": "bytes32", "name": "", "type": "bytes32"}], "payable": false, "stateMutability": "view", "type": "function"},
+    {"constant": true, "inputs": [], "name": "MINIMUM_LIQUIDITY", "outputs": [{"internalType": "uint256", "name": "", "type": "uint256"}], "payable": false, "stateMutability": "pure", "type": "function"},
+    {"constant": true, "inputs": [], "name": "PERMIT_TYPEHASH", "outputs": [{"internalType": "bytes32", "name": "", "type": "bytes32"}], "payable": false, "stateMutability": "pure", "type": "function"},
+    {"constant": true, "inputs": [{"internalType": "address", "name": "owner", "type": "address"}, {"internalType": "address", "name": "spender", "type": "address"}], "name": "allowance", "outputs": [{"internalType": "uint256", "name": "", "type": "uint256"}], "payable": false, "stateMutability": "view", "type": "function"},
+    {"constant": false, "inputs": [{"internalType": "address", "name": "spender", "type": "address"}, {"internalType": "uint256", "name": "value", "type": "uint256"}], "name": "approve", "outputs": [{"internalType": "bool", "name": "", "type": "bool"}], "payable": false, "stateMutability": "nonpayable", "type": "function"},
+    {"constant": true, "inputs": [{"internalType": "address", "name": "owner", "type": "address"}], "name": "balanceOf", "outputs": [{"internalType": "uint256", "name": "", "type": "uint256"}], "payable": false, "stateMutability": "view", "type": "function"},
+    {"constant": false, "inputs": [{"internalType": "address", "name": "to", "type": "address"}], "name": "burn", "outputs": [{"internalType": "uint256", "name": "amount0", "type": "uint256"}, {"internalType": "uint256", "name": "amount1", "type": "uint256"}], "payable": false, "stateMutability": "nonpayable", "type": "function"},
+    {"constant": true, "inputs": [], "name": "decimals", "outputs": [{"internalType": "uint8", "name": "", "type": "uint8"}], "payable": false, "stateMutability": "pure", "type": "function"},
+    {"constant": true, "inputs": [], "name": "factory", "outputs": [{"internalType": "address", "name": "", "type": "address"}], "payable": false, "stateMutability": "view", "type": "function"},
+    {"constant": true, "inputs": [], "name": "getReserves", "outputs": [{"internalType": "uint112", "name": "_reserve0", "type": "uint112"}, {"internalType": "uint112", "name": "_reserve1", "type": "uint112"}, {"internalType": "uint32", "name": "_blockTimestampLast", "type": "uint32"}], "payable": false, "stateMutability": "view", "type": "function"},
+    {"constant": false, "inputs": [{"internalType": "address", "name": "_token0", "type": "address"}, {"internalType": "address", "name": "_token1", "type": "address"}], "name": "initialize", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function"},
+    {"constant": true, "inputs": [], "name": "kLast", "outputs": [{"internalType": "uint256", "name": "", "type": "uint256"}], "payable": false, "stateMutability": "view", "type": "function"},
+    {"constant": false, "inputs": [{"internalType": "address", "name": "to", "type": "address"}], "name": "mint", "outputs": [{"internalType": "uint256", "name": "liquidity", "type": "uint256"}], "payable": false, "stateMutability": "nonpayable", "type": "function"},
+    {"constant": true, "inputs": [], "name": "name", "outputs": [{"internalType": "string", "name": "", "type": "string"}], "payable": false, "stateMutability": "pure", "type": "function"},
+    {"constant": true, "inputs": [{"internalType": "address", "name": "owner", "type": "address"}], "name": "nonces", "outputs": [{"internalType": "uint256", "name": "", "type": "uint256"}], "payable": false, "stateMutability": "view", "type": "function"},
+    {"constant": false, "inputs": [{"internalType": "address", "name": "owner", "type": "address"}, {"internalType": "address", "name": "spender", "type": "address"}, {"internalType": "uint256", "name": "value", "type": "uint256"}, {"internalType": "uint256", "name": "deadline", "type": "uint256"}, {"internalType": "uint8", "name": "v", "type": "uint8"}, {"internalType": "bytes32", "name": "r", "type": "bytes32"}, {"internalType": "bytes32", "name": "s", "type": "bytes32"}], "name": "permit", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function"},
+    {"constant": true, "inputs": [], "name": "price0CumulativeLast", "outputs": [{"internalType": "uint256", "name": "", "type": "uint256"}], "payable": false, "stateMutability": "view", "type": "function"},
+    {"constant": true, "inputs": [], "name": "price1CumulativeLast", "outputs": [{"internalType": "uint256", "name": "", "type": "uint256"}], "payable": false, "stateMutability": "view", "type": "function"},
+    {"constant": false, "inputs": [{"internalType": "address", "name": "to", "type": "address"}], "name": "skim", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function"},
+    {"constant": false, "inputs": [{"internalType": "uint256", "name": "amount0Out", "type": "uint256"}, {"internalType": "uint256", "name": "amount1Out", "type": "uint256"}, {"internalType": "address", "name": "to", "type": "address"}, {"internalType": "bytes", "name": "data", "type": "bytes"}], "name": "swap", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function"},
+    {"constant": true, "inputs": [], "name": "symbol", "outputs": [{"internalType": "string", "name": "", "type": "string"}], "payable": false, "stateMutability": "pure", "type": "function"},
+    {"constant": false, "inputs": [], "name": "sync", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function"},
+    {"constant": true, "inputs": [], "name": "token0", "outputs": [{"internalType": "address", "name": "", "type": "address"}], "payable": false, "stateMutability": "view", "type": "function"},
+    {"constant": true, "inputs": [], "name": "token1", "outputs": [{"internalType": "address", "name": "", "type": "address"}], "payable": false, "stateMutability": "view", "type": "function"},
+    {"constant": true, "inputs": [], "name": "totalSupply", "outputs": [{"internalType": "uint256", "name": "", "type": "uint256"}], "payable": false, "stateMutability": "view", "type": "function"},
+    {"constant": false, "inputs": [{"internalType": "address", "name": "to", "type": "address"}, {"internalType": "uint256", "name": "value", "type": "uint256"}], "name": "transfer", "outputs": [{"internalType": "bool", "name": "", "type": "bool"}], "payable": false, "stateMutability": "nonpayable", "type": "function"},
+    {"constant": false, "inputs": [{"internalType": "address", "name": "from", "type": "address"}, {"internalType": "address", "name": "to", "type": "address"}, {"internalType": "uint256", "name": "value", "type": "uint256"}], "name": "transferFrom", "outputs": [{"internalType": "bool", "name": "", "type": "bool"}], "payable": false, "stateMutability": "nonpayable", "type": "function"}
+  ]
+}
 ```
 
-**(Remember to obtain and use the correct, complete ABIs for WJU, USDT, Factory, and Pair contracts as needed).**
+```json
+```
 
+{% hint style="info" %}
+**Best Practices for Interaction (Reference Implementation):**
+
+* **Transaction Sending Wrapper:** Use helper functions to handle nonce retrieval, gas price setting, transaction signing (`web3.eth.accounts.signTransaction`), and sending (`web3.eth.sendSignedTransaction`), including `try...catch` error handling.
+* **Gas Estimation:** Use the contract method's `.estimateGas()` before sending transactions, and consider adding a small buffer (e.g., 10-20%) to prevent gas insufficiency due to chain state changes.
+* **Slippage Control:** For Swap and liquidity operations, always calculate and use `amount*Min` or `amount*Max` parameters.
+* **Approve Check:** Before executing operations that spend ERC20 tokens, check the existing `allowance` to avoid unnecessary `approve` transactions.
+* **Deadline:** Set reasonable `deadline` for time-sensitive operations (Swap, Liquidity).
+* **Large Number Handling:** Use `BigInt` (Javascript native) or `web3.utils.toWei/fromWei` and BN.js (built into Web3.js) to handle token amounts.
+{% endhint %}
+
+{% hint style="warning" %}
+Always thoroughly test on testnet before deploying to mainnet or handling real assets. Always refer to the official JuChain documentation and block explorer for the latest, most authoritative information and complete ABIs. Manage your private keys securely!
+{% endhint %}
