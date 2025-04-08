@@ -1,95 +1,125 @@
 # Price Oracle
 
-The JuChain Oracle service delivers reliable on-chain price data for decentralized applications (dApps). The JU-USDT Price Oracle specifically provides real-time pricing of JU tokens against USDT, empowering DeFi apps, trading platforms, and smart contracts needing accurate price feeds. This guide is tailored for the JuChain Testnet, where developers can test oracle functionality.
+The JuChain Oracle service provides reliable on-chain price data for decentralized applications (dApps). The JU-USDT Price Oracle specifically delivers real-time pricing of the JU token relative to USDT, supporting DeFi applications, trading platforms, and other smart contracts requiring precise price data.
+
+#### Mainnet Deployment Information
+
+* **Network**: JuChain Mainnet
+* **Contract Address**: `0x49E5c7f25711abe668F404307b27f4bE4836B0e7`
+* **Deployer Address**: `0x7389F1B4717F5152B6Cc107bce4A42a11dC0b76E`
+* **Owner**: `0x5021A15FaAFEFEC1daCB1c8b24FFE3F3E3f7277b`
+* **Updater Permission Address**: `0xa6F32fe2920AcF559699825AFaC493aa4F49Ac1D`
+* **Deployment Transaction Hash**: `0x233654f76766fb0f9fd1377a573bed11c60a44c0cdc8e59340ffda333d191140`
+
+#### Testnet Deployment Information
+
+This document also includes information about the JuChain Testnet environment, where developers can test oracle functionality.
 
 {% hint style="info" %}
-The current public chain supports Solidity compilation up to version 0.8.8 only. Support for later versions will roll out gradually per official updates.
+The current public chain Solidity version compilation supports only <= 0.8.8. Support for subsequent versions will be gradually rolled out based on official announcements.
 {% endhint %}
 
 ***
 
-### Contract Details
+#### Contract Information
+
+**Mainnet Contract Information**
+
+* **Network**: JuChain Mainnet
+* **Contract Address**: `0x49E5c7f25711abe668F404307b27f4bE4836B0e7`
+* **Deployer Address**: `0x7389F1B4717F5152B6Cc107bce4A42a11dC0b76E`
+* **Owner**: `0x5021A15FaAFEFEC1daCB1c8b24FFE3F3E3f7277b`
+* **Updater Permission Address**: `0xa6F32fe2920AcF559699825AFaC493aa4F49Ac1D`
+* **Deployment Transaction Hash**: `0x233654f76766fb0f9fd1377a573bed11c60a44c0cdc8e59340ffda333d191140`
+* **Update Frequency**: Every 1 minute
+* **Price Source**: Aggregated data from JU-USDT trading pairs across multiple centralized and decentralized exchanges
+
+**Testnet Contract Information**
 
 * **Network**: JuChain Testnet
 * **Contract Address**: `0x70D3Fc0bcf1ffD64111FC0C708DA407d9732Ab95`
 * **Deployer Address**: `0xa01d5Be3fDea4Fd8f1C35Ced0919353036De15d0`
-* **Update Authority Address**: `0x4878683a8C3007258278824228a92aC4E072F050` (only this address can update prices)
-* **Deployment Tx Hash**: `0x7e42454909c3ea9b52af4af84217149a87aa71aa08f129e11a01d5cea0989659`
+* **Updater Permission Address**: `0x4878683a8C3007258278824228a92aC4E072F050` (only this address can update prices)
+* **Deployment Transaction Hash**: `0x7e42454909c3ea9b52af4af84217149a87aa71aa08f129e11a01d5cea0989659`
 * **Update Frequency**: Every 1 minute
-* **Price Source**: Aggregates JU-USDT pair data from multiple centralized and decentralized exchanges
+* **Price Source**: Aggregated data from JU-USDT trading pairs across multiple centralized and decentralized exchanges
 
-#### Permissions
+**Permission Details**
 
-* **Deployer (Owner)**: `0xa01d5Be3fDea4Fd8f1C35Ced0919353036De15d0`—manages the contract and assigns permissions.
-* **Authorized Updater**: `0x4878683a8C3007258278824228a92aC4E072F050`—the sole account allowed to call `updatePrice`.
-* **Design Update**: Future versions will separate deployer and updater roles for enhanced security.
+* **Deployer (Owner)**:
+  * Mainnet: `0x5021A15FaAFEFEC1daCB1c8b24FFE3F3E3f7277b`, responsible for contract management and permission allocation.
+  * Testnet: `0xa01d5Be3fDea4Fd8f1C35Ced0919353036De15d0`, responsible for contract management and permission allocation.
+* **Authorized Updater**:
+  * Mainnet: `0xa6F32fe2920AcF559699825AFaC493aa4F49Ac1D`, the only account authorized to call `updatePrice` to update prices.
+  * Testnet: `0x4878683a8C3007258278824228a92aC4E072F050`, the only account authorized to call `updatePrice` to update prices.
+* **Design Change**: The new oracle version separates the deployer and price updater roles to enhance security.
 
 ***
 
-### Key Methods
+#### Key Methods
 
-#### `getLatestPrice`
+**`getLatestPrice`**
 
-* **Description**: Fetches the latest JU-USDT price info.
+* **Description**: Retrieves the latest price information for the JU-USDT trading pair.
 * **Returns**:
-  * `string`: Trading pair symbol (e.g., `"JU/USDT"`)
-  * `uint256`: Latest price (divide by precision for actual value)
-  * `uint256`: Last update timestamp (Unix timestamp)
-*   **Example Call**:
+  * `string`: Trading pair symbol (e.g., `"JU/USDT"`).
+  * `uint256`: Latest price (must be divided by the precision value).
+  * `uint256`: Last update timestamp (Unix timestamp).
+*   **Call Example**:
 
     ```solidity
     (string memory symbol, uint256 price, uint256 timestamp) = oracle.getLatestPrice();
     ```
 
-#### `latestPrice`
+**`latestPrice`**
 
-* **Description**: Retrieves the latest price value only.
+* **Description**: Retrieves the latest price value (without additional information).
 * **Returns**:
-  * `uint256`: Latest price
+  * `uint256`: Latest price value.
 
-#### `pricePrecision`
+**`pricePrecision`**
 
-* **Description**: Gets the price precision for calculating the real price.
+* **Description**: Retrieves the price precision value used to calculate the actual price.
 * **Returns**:
-  * `uint256`: Precision (e.g., `1e8`; actual price = returned price / precision)
+  * `uint256`: Price precision (e.g., `1e8`, actual price = returned price / precision).
 
-#### `lastUpdatedAt`
+**`lastUpdatedAt`**
 
-* **Description**: Returns the timestamp of the last price update.
+* **Description**: Retrieves the timestamp of the last price update.
 * **Returns**:
-  * `uint256`: Unix timestamp
+  * `uint256`: Unix timestamp.
 
-#### `symbol`
+**`symbol`**
 
-* **Description**: Fetches the trading pair symbol.
+* **Description**: Retrieves the trading pair symbol.
 * **Returns**:
-  * `string`: Pair symbol (e.g., `"JU/USDT"`)
+  * `string`: Trading pair symbol (e.g., `"JU/USDT"`).
 
-#### `updatePrice`
+**`updatePrice`**
 
-* **Description**: Updates the JU-USDT price (restricted to the authorized updater).
+* **Description**: Updates the JU-USDT price, callable only by the authorized updater.
 * **Parameters**:
-  * `uint256 _price`: New price value
-* **Permission**: Only callable by `0x4878683a8C3007258278824228a92aC4E072F050`
+  * `uint256 _price`: New price value.
+* **Permission**: Only `0x4878683a8C3007258278824228a92aC4E072F050` can call this.
 
-#### `setAuthorizedUpdater`
+**`setAuthorizedUpdater`**
 
-* **Description**: Assigns a new authorized updater (restricted to the owner).
+* **Description**: Sets a new authorized updater, callable only by the Owner.
 * **Parameters**:
-  * `address newAuthorizedUpdater`: New updater address
-* **Permission**: Only callable by `0xa01d5Be3fDea4Fd8f1C35Ced0919353036De15d0`
+  * `address newAuthorizedUpdater`: New authorized updater address.
+* **Permission**: Only `0xa01d5Be3fDea4Fd8f1C35Ced0919353036De15d0` can call this.
 
-#### `owner`
+**`owner`**
 
-* **Description**: Returns the current contract owner’s address.
+* **Description**: Retrieves the current contract owner address.
 * **Returns**:
-  * `address`: Owner address
+  * `address`: Owner address.
 
 ***
 
-### ABI
+#### ABI
 
-Here’s the full ABI for the JU-USDT Price Oracle:
+Below is the complete ABI for the JU-USDT Price Oracle:
 
 ```json
 [
@@ -140,42 +170,56 @@ Here’s the full ABI for the JU-USDT Price Oracle:
   {"inputs": [], "name": "lastUpdatedAt", "outputs": [{"internalType": "uint256", "name": "", "type": "uint256"}], "stateMutability": "view", "type": "function"},
   {"inputs": [], "name": "latestPrice", "outputs": [{"internalType": "uint256", "name": "", "type": "uint256"}], "stateMutability": "view", "type": "function"},
   {"inputs": [], "name": "owner", "outputs": [{"internalType": "address", "name": "", "type": "address"}], "stateMutability": "view", "type": "function"},
-  {"inputs": [], "name": "pricePrecision", "outputs": [{"internalType": "uint256", "name": "", "type": "uint256"}], "stateMutability": "view", "type": "function"},
+  {"inputs LuaTeX error (string "[]"):1: unexpected symbol near ']'.
+": [], "name": "pricePrecision", "outputs": [{"internalType": "uint256", "name": "", "type": "uint256"}], "stateMutability": "view", "type": "function"},
   {"inputs": [], "name": "symbol", "outputs": [{"internalType": "string", "name": "", "type": "string"}], "stateMutability": "view", "type": "function"}
 ]
 ```
 
 ***
 
-### Usage Examples
+#### Usage Examples
 
-#### Web3.js Example
+**Web3.js Example**
 
-Here’s how to interact with the oracle using Web3.js:
+The following code demonstrates how to interact with the oracle using Web3.js:
 
 ```javascript
 const { Web3 } = require('web3');
-const web3 = new Web3('https://testnet-rpc.juchain.org');
 
-const contractAddress = '0x70D3Fc0bcf1ffD64111FC0C708DA407d9732Ab95';
+// Mainnet RPC
+const mainnetRpc = 'https://rpc.juchain.org';
+// Testnet RPC
+const testnetRpc = 'https://testnet-rpc.juchain.org';
+
+// Select network (Mainnet/Testnet)
+const web3 = new Web3(mainnetRpc); // or testnetRpc
+
+// Mainnet contract address
+const mainnetContractAddress = '0x49E5c7f25711abe668F404307b27f4bE4836B0e7';
+// Testnet contract address
+const testnetContractAddress = '0x70D3Fc0bcf1ffD64111FC0C708DA407d9732Ab95';
+
+// Select contract address
+const contractAddress = mainnetContractAddress; // or testnetContractAddress
 const contract = new web3.eth.Contract(abi, contractAddress);
 
-// Fetch full price info
+// Get complete price information
 async function getCompletePrice() {
   try {
     const [symbol, price, timestamp] = await contract.methods.getLatestPrice().call();
     const precision = await contract.methods.pricePrecision().call();
-    console.log('Full Price Info:');
-    console.log(`Pair: ${symbol}`);
+    console.log('Complete Price Information:');
+    console.log(`Trading Pair: ${symbol}`);
     console.log(`Price: ${price / precision} JU/USDT`);
     console.log(`Timestamp: ${timestamp} (${new Date(Number(timestamp) * 1000).toLocaleString()})`);
     return { symbol, price, timestamp, precision };
   } catch (error) {
-    console.error('Failed to fetch price info:', error);
+    console.error('Failed to fetch price information:', error);
   }
 }
 
-// Fetch latest price only
+// Get latest price
 async function getLatestPrice() {
   try {
     const price = await contract.methods.latestPrice().call();
@@ -187,7 +231,7 @@ async function getLatestPrice() {
   }
 }
 
-// Fetch authorized updater
+// Get authorized updater
 async function getAuthorizedUpdater() {
   try {
     const updater = await contract.methods.authorizedUpdater().call();
@@ -198,7 +242,7 @@ async function getAuthorizedUpdater() {
   }
 }
 
-// Update price (authorized updater only)
+// Update price (only for authorized updater)
 async function updatePrice(newPrice, privateKey) {
   try {
     const account = web3.eth.accounts.privateKeyToAccount(privateKey);
@@ -206,14 +250,14 @@ async function updatePrice(newPrice, privateKey) {
     const tx = contract.methods.updatePrice(newPrice);
     const gas = await tx.estimateGas({ from: account.address });
     const receipt = await tx.send({ from: account.address, gas });
-    console.log(`Price updated successfully, Tx Hash: ${receipt.transactionHash}`);
+    console.log(`Price updated successfully, Transaction Hash: ${receipt.transactionHash}`);
     return receipt;
   } catch (error) {
     console.error('Failed to update price:', error);
   }
 }
 
-// Run all queries
+// Execute all queries
 async function getAllInfo() {
   await getCompletePrice();
   await getLatestPrice();
@@ -223,9 +267,9 @@ async function getAllInfo() {
 getAllInfo();
 ```
 
-#### Solidity Example
+**Solidity Example**
 
-Here’s a sample smart contract consuming the oracle:
+Below is an example of a smart contract utilizing the oracle:
 
 ```solidity
 // SPDX-License-Identifier: MIT
@@ -246,7 +290,7 @@ contract JUPriceConsumer {
     function getJUPrice() public view returns (uint256) {
         (, uint256 price, ) = oracle.getLatestPrice();
         uint256 precision = oracle.pricePrecision();
-        return price; // Frontend must divide by precision
+        return price; // Frontend needs to divide by precision
     }
 
     function getFormattedPrice() public view returns (string memory symbol, uint256 price, uint256 precision, uint256 timestamp) {
@@ -259,11 +303,20 @@ contract JUPriceConsumer {
 
 ***
 
-### Key Notes
+#### Important Notes
 
-* **Price Precision**: The returned `price` must be divided by `pricePrecision()` (e.g., `1e8` for 8-decimal precision) to get the actual value.
-* **Update Permissions**: Only `0x4878683a8C3007258278824228a92aC4E072F050` can call `updatePrice`. The owner can change this via `setAuthorizedUpdater`.
-* **Update Delay**: Prices refresh every 1 minute—check `lastUpdatedAt` to ensure data freshness.
-* **Testnet Only**: This contract is for the JuChain Testnet, not production.
-* **Price Volatility**: Crypto prices can swing wildly—add risk management to your dApp.
-* **Contract Upgrades**: The oracle may be updated—stay tuned to official announcements for the latest address and features.
+* **Network Selection**:
+  * Mainnet: For production environments, contract address is `0x49E5c7f25711abe668F404307b27f4bE4836B0e7`.
+  * Testnet: For development and testing, contract address is `0x70D3Fc0bcf1ffD64111FC0C708DA407d9732Ab95`.
+* **Price Precision**: The `price` returned by the contract must be divided by the value from `pricePrecision()` (e.g., `1e8` indicates 8 decimal precision).
+* **Update Permissions**:
+  * Mainnet: Only `0xa6F32fe2920AcF559699825AFaC493aa4F49Ac1D` can call `updatePrice`.
+  * Testnet: Only `0x4878683a8C3007258278824228a92aC4E072F050` can call `updatePrice`.
+  * The Owner can change the updater via `setAuthorizedUpdater`.
+* **Update Delay**: Prices are updated every 1 minute. Check `lastUpdatedAt` to ensure data freshness before use.
+* **Price Volatility**: Cryptocurrency prices may fluctuate significantly; consider implementing risk management mechanisms in your dApp.
+* **Contract Upgrades**: The oracle contract may be updated. Stay tuned to official announcements for the latest addresses and features.
+* **Mainnet Considerations**:
+  * Operations on the mainnet incur real costs; exercise caution.
+  * Thoroughly test on the testnet before deploying to the mainnet.
+
