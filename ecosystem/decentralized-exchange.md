@@ -2,6 +2,10 @@
 
 JuChain provides a decentralized exchange (DEX) functionality based on the Uniswap V2 model, allowing users to perform token swaps and provide liquidity.
 
+{% hint style="info" %}
+JuChain currently supports Solidity versions <= 0.8.8 for compilation. Support for later versions will be gradually introduced based on official announcements.
+{% endhint %}
+
 ### Mainnet Deployment Information
 
 * **Network**: JuChain Mainnet
