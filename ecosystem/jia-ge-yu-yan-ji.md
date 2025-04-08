@@ -1,18 +1,29 @@
 # 价格预言机
 
-## JU-USDT 价格预言机
+## 价格预言机
 
-JuChain 预言机服务为去中心化应用（dApps）提供可靠的链上价格数据。JU-USDT 价格预言机专门提供 JU 代币相对于 USDT 的实时价格，支持 DeFi 应用、交易平台和其他需要精准价格数据的智能合约。本文档适用于 JuChain 测试网环境，开发者可在此测试预言机功能。
+### JU-USDT 价格预言机
+
+JuChain 预言机服务为去中心化应用（dApps）提供可靠的链上价格数据。JU-USDT 价格预言机专门提供 JU 代币相对于 USDT 的实时价格，支持 DeFi 应用、交易平台和其他需要精准价格数据的智能合约。
 
 {% hint style="info" %}
 当前公链 Solidity 版本编译仅支持 <= 0.8.8，后续版本支持将根据官方通知逐步开放。
 {% endhint %}
 
+#### 合约信息
 
+**主网合约信息**
 
-***
+* **网络**：JuChain 主网
+* **合约地址**：`0x49E5c7f25711abe668F404307b27f4bE4836B0e7`
+* **部署地址**：`0x7389F1B4717F5152B6Cc107bce4A42a11dC0b76E`
+* **Owner**：`0x5021A15FaAFEFEC1daCB1c8b24FFE3F3E3f7277b`
+* **更新权限地址**：`0xa6F32fe2920AcF559699825AFaC493aa4F49Ac1D`
+* **部署交易哈希**：`0x233654f76766fb0f9fd1377a573bed11c60a44c0cdc8e59340ffda333d191140`
+* **更新频率**：每 1 分钟
+* **价格来源**：聚合多个中心化和去中心化交易所的 JU-USDT 交易对数据
 
-### 合约信息
+**测试网合约信息**
 
 * **网络**：JuChain 测试网
 * **合约地址**：`0x70D3Fc0bcf1ffD64111FC0C708DA407d9732Ab95`
@@ -22,17 +33,19 @@ JuChain 预言机服务为去中心化应用（dApps）提供可靠的链上价�
 * **更新频率**：每 1 分钟
 * **价格来源**：聚合多个中心化和去中心化交易所的 JU-USDT 交易对数据
 
-#### 权限说明
+**权限说明**
 
-* **部署者（Owner）**：`0xa01d5Be3fDea4Fd8f1C35Ced0919353036De15d0`，负责合约管理和权限分配。
-* **授权更新者（Authorized Updater）**：`0x4878683a8C3007258278824228a92aC4E072F050`，唯一有权调用 `updatePrice` 更新价格的账户。
+* **部署者（Owner）**：
+  * 主网：`0x5021A15FaAFEFEC1daCB1c8b24FFE3F3E3f7277b`，负责合约管理和权限分配。
+  * 测试网：`0xa01d5Be3fDea4Fd8f1C35Ced0919353036De15d0`，负责合约管理和权限分配。
+* **授权更新者（Authorized Updater）**：
+  * 主网：`0xa6F32fe2920AcF559699825AFaC493aa4F49Ac1D`，唯一有权调用 `updatePrice` 更新价格的账户。
+  * 测试网：`0x4878683a8C3007258278824228a92aC4E072F050`，唯一有权调用 `updatePrice` 更新价格的账户。
 * **设计变更**：新版预言机将部署者和价格更新者分离，提升安全性。
 
-***
+#### 主要方法
 
-### 主要方法
-
-#### `getLatestPrice`
+**`getLatestPrice`**
 
 * **描述**：获取 JU-USDT 交易对的最新价格信息。
 * **返回值**：
@@ -45,53 +58,51 @@ JuChain 预言机服务为去中心化应用（dApps）提供可靠的链上价�
     (string memory symbol, uint256 price, uint256 timestamp) = oracle.getLatestPrice();
     ```
 
-#### `latestPrice`
+**`latestPrice`**
 
 * **描述**：获取最新价格值（不含额外信息）。
 * **返回值**：
   * `uint256`：最新价格值。
 
-#### `pricePrecision`
+**`pricePrecision`**
 
 * **描述**：获取价格精度值，用于计算实际价格。
 * **返回值**：
   * `uint256`：价格精度（如 `1e8`，实际价格 = 返回价格 / 精度）。
 
-#### `lastUpdatedAt`
+**`lastUpdatedAt`**
 
 * **描述**：获取价格最后更新的时间戳。
 * **返回值**：
   * `uint256`：Unix 时间戳。
 
-#### `symbol`
+**`symbol`**
 
 * **描述**：获取交易对符号。
 * **返回值**：
   * `string`：交易对符号（如 `"JU/USDT"`）。
 
-#### `updatePrice`
+**`updatePrice`**
 
 * **描述**：更新 JU-USDT 价格，仅限授权更新者调用。
 * **参数**：
   * `uint256 _price`：新价格值。
 * **权限**：仅 `0x4878683a8C3007258278824228a92aC4E072F050` 可调用。
 
-#### `setAuthorizedUpdater`
+**`setAuthorizedUpdater`**
 
 * **描述**：设置新的授权更新者，仅限 Owner 调用。
 * **参数**：
   * `address newAuthorizedUpdater`：新授权更新者地址。
 * **权限**：仅 `0xa01d5Be3fDea4Fd8f1C35Ced0919353036De15d0` 可调用。
 
-#### `owner`
+**`owner`**
 
 * **描述**：获取当前合约拥有者地址。
 * **返回值**：
   * `address`：Owner 地址。
 
-***
-
-### ABI
+#### ABI
 
 以下是 JU-USDT 价格预言机的完整 ABI：
 
@@ -149,19 +160,30 @@ JuChain 预言机服务为去中心化应用（dApps）提供可靠的链上价�
 ]
 ```
 
-***
+#### 使用示例
 
-### 使用示例
-
-#### Web3.js 示例
+**Web3.js 示例**
 
 以下代码展示如何通过 Web3.js 与预言机交互：
 
 ```javascript
 const { Web3 } = require('web3');
-const web3 = new Web3('https://testnet-rpc.juchain.org');
 
-const contractAddress = '0x70D3Fc0bcf1ffD64111FC0C708DA407d9732Ab95';
+// 主网 RPC
+const mainnetRpc = 'https://rpc.juchain.org';
+// 测试网 RPC
+const testnetRpc = 'https://testnet-rpc.juchain.org';
+
+// 选择网络（主网/测试网）
+const web3 = new Web3(mainnetRpc); // 或 testnetRpc
+
+// 主网合约地址
+const mainnetContractAddress = '0x49E5c7f25711abe668F404307b27f4bE4836B0e7';
+// 测试网合约地址
+const testnetContractAddress = '0x70D3Fc0bcf1ffD64111FC0C708DA407d9732Ab95';
+
+// 选择合约地址
+const contractAddress = mainnetContractAddress; // 或 testnetContractAddress
 const contract = new web3.eth.Contract(abi, contractAddress);
 
 // 获取完整价格信息
@@ -227,7 +249,7 @@ async function getAllInfo() {
 getAllInfo();
 ```
 
-#### Solidity 示例
+**Solidity 示例**
 
 以下是使用预言机的智能合约示例：
 
@@ -261,15 +283,19 @@ contract JUPriceConsumer {
 }
 ```
 
-***
+#### 重要注意事项
 
-### 重要注意事项
-
+* **网络选择**：
+  * 主网：用于生产环境，合约地址为 `0x49E5c7f25711abe668F404307b27f4bE4836B0e7`
+  * 测试网：用于开发和测试，合约地址为 `0x70D3Fc0bcf1ffD64111FC0C708DA407d9732Ab95`
 * **价格精度**：合约返回的 `price` 需除以 `pricePrecision()` 返回的值以获得实际价格（如 `1e8` 表示 8 位精度）。
-* **更新权限**：仅 `0x4878683a8C3007258278824228a92aC4E072F050` 可调用 `updatePrice`，Owner 可通过 `setAuthorizedUpdater` 更换更新者。
+* **更新权限**：
+  * 主网：仅 `0xa6F32fe2920AcF559699825AFaC493aa4F49Ac1D` 可调用 `updatePrice`
+  * 测试网：仅 `0x4878683a8C3007258278824228a92aC4E072F050` 可调用 `updatePrice`
+  * Owner 可通过 `setAuthorizedUpdater` 更换更新者
 * **更新延迟**：价格每 1 分钟更新一次，使用前请检查 `lastUpdatedAt` 确保数据新鲜度。
-* **测试网环境**：当前合约仅用于 JuChain 测试网，不适用于生产环境。
 * **价格波动**：加密货币价格可能剧烈波动，建议在 dApp 中加入风险管理机制。
 * **合约升级**：预言机合约可能更新，请关注官方公告以获取最新地址和功能。
-
-####
+* **主网注意事项**：
+  * 主网环境下的操作将产生实际费用，请谨慎操作
+  * 建议先在测试网充分测试后再在主网部署
