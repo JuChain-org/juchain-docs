@@ -51,8 +51,6 @@ JuChain currently supports Solidity versions <= 0.8.8 for compilation. Support f
 
 | Contract           | Address                                                              | Description                                                                                                             |
 | ------------------ | -------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
-| **WJU**            | `0x2c67A8Ee92C5dD55b1D133631a32451e123Be1d3`                         | Wrapped JU. `deposit()` (payable) to wrap, `withdraw()` to unwrap. 18 decimals.                                         |
-| **USDT**           | `0xf173cD2DD28f94F6b7F6B0817E498fe842bC5D02`                         | Standard ERC20 token. Usually 18 decimals (verify with on-chain `decimals()`).                                          |
 | **Factory**        | `0xCcbcecDd7d8D115Df79fc85847F38F9A5965326c`                         | Deploys and tracks `JUV2Pair` trading pair contracts.                                                                   |
 | **Router**         | `0x09f58Aa3C7A8101062855C66E43a83920EB23511`                         | **Main interaction entry point**. Internally treats WJU address as its `WETH` address (verifiable via `router.WETH()`). |
 | **Pair Init Hash** | `0x2d5d6553271f0bbe36b13a3628f44898e95763f6f3692c2de666389cb179309b` | Used for deterministic pair address calculation (with `create2`).                                                       |
