@@ -8,14 +8,14 @@
 
 **JuChain Mainnet**
 
-| Name            | Value                   |
-| --------------- | ----------------------- |
-| Network Name    | JuChain Mainnet         |
-| Description     | JuChain Public Mainnet  |
-| RPC Endpoint    | https://rpc.juchain.org |
-| Chain ID        | 210000                  |
-| Currency Symbol | JU                      |
-| Block Explorer  | https://juscan.io       |
+| Name            | Value                                                  |
+| --------------- | ------------------------------------------------------ |
+| Network Name    | JuChain Mainnet                                        |
+| Description     | JuChain Public Mainnet                                 |
+| RPC Endpoint    | <p>https://rpc.juchain.org<br>wss://ws.juchain.org</p> |
+| Chain ID        | 210000                                                 |
+| Currency Symbol | JU                                                     |
+| Block Explorer  | https://juscan.io                                      |
 
 **JuChain Testnet**
 
