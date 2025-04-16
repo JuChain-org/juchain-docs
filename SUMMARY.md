@@ -33,6 +33,7 @@
 * [教程与示例：构建并部署一个简单的 dApp](kai-fa-zhe-zhi-nan/jiao-cheng-yu-shi-li-gou-jian-bing-bu-shu-yi-ge-jian-dan-de-dapp.md)
 * [教程与示例：构建一个简单的 DeFi 借贷 dApp](kai-fa-zhe-zhi-nan/jiao-cheng-yu-shi-li-gou-jian-yi-ge-jian-dan-de-defi-jie-dai-dapp.md)
 * [技术参考](kai-fa-zhe-zhi-nan/ji-shu-can-kao.md)
+* [合约源码验证实践](kai-fa-zhe-zhi-nan/he-yue-yuan-ma-yan-zheng-shi-jian.md)
 
 ## 社区与支持
 
