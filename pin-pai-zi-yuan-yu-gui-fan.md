@@ -2,13 +2,15 @@
 
 ## 品牌 Logo
 
+、
+
 <figure><img src=".gitbook/assets/logo.svg" alt=""><figcaption><p>徽标</p></figcaption></figure>
 
 <figure><img src=".gitbook/assets/logo1.svg" alt=""><figcaption><p>水平锁定图标</p></figcaption></figure>
 
 <figure><img src=".gitbook/assets/logo2.svg" alt=""><figcaption><p>垂直锁定图标</p></figcaption></figure>
 
-{% file src=".gitbook/assets/JuChain Brand Resource.zip" %}
+{% file src=".gitbook/assets/JuChain Brand Resource (1).zip" %}
 
 ## 尺寸
 
