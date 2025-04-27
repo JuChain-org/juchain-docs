@@ -8,6 +8,8 @@
 
 <figure><img src=".gitbook/assets/logo2.svg" alt=""><figcaption><p>垂直锁定图标</p></figcaption></figure>
 
+{% file src=".gitbook/assets/JuChain Brand Resource.zip" %}
+
 ## 尺寸
 
 1、垂直锁定（带文字标识的标志）宽度不得小于 99px。此规定适用于彩色和单色版本的标志。
@@ -48,3 +50,7 @@ R:255 G:255 B:255\
 Hex: #FFFFFF
 
 <figure><img src=".gitbook/assets/Frame 1410104225.png" alt=""><figcaption></figcaption></figure>
+
+黑色
+
+<figure><img src=".gitbook/assets/#000000.png" alt=""><figcaption></figcaption></figure>
