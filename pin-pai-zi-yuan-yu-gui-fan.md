@@ -35,10 +35,6 @@
    c. JU 代币的表达\
    d. 作为图标
 
-
-
-
-
 ## 尺寸
 
 1、垂直锁定（带文字标识的标志）宽度不得小于 99px。此规定适用于彩色和单色版本的标志。
@@ -46,12 +42,6 @@
 2、水平锁定（带文字标识的标志）宽度不得小于 65px。此规定适用于彩色和单色版本的标志。
 
 3、标志宽度不得小于 24px。此规定适用于彩色和单色版本的标志。
-
-
-
-
-
-
 
 ## 品牌颜色：
 
@@ -75,4 +65,53 @@ Hex: #FFFFFF
 
 <figure><img src=".gitbook/assets/#000000.png" alt=""><figcaption></figcaption></figure>
 
+## 对项目的期望
+
+1. 项目在使用徽标前应先获得 JuChain 的批准。
+2. 项目需要提交其希望使用徽标的方案，并解释其分发方式。
+3. 项目应以适当且尊重的方式使用 JuChain 徽标，同时确保遵守知识产权法。
+4. 项目不得以暗示认可或赞助的方式使用 JuChain 徽标——特殊情况下，请先获得公关部门的批准，我们将根据具体情况进行评估。
+5. 如果项目获得批准使用 JuChain 徽标，其使用必须对 JuChain 和项目本身产生积极的影响。
+6. 项目应遵循品牌指南，以确保所有材料的一致性。
+
+
+
 ## 项目可以做什么
+
+{% hint style="success" %}
+项目必须使用“由 JuChain 提供支持”、“可在 JuChain 上使用”、“基于 JuChain 构建”等措辞，并在社交媒体上标记 JuChain的标识。
+{% endhint %}
+
+{% hint style="success" %}
+项目只能在其网站和社交媒体帖子中添加 JuChain 徽标，用于说明其项目基于 JuChain 构建或由 JuChain 提供支持。
+{% endhint %}
+
+{% hint style="success" %}
+项目必须以与 JuChain 品牌一致的方式使用 JuChain 徽标，不得以任何方式对其进行更改。
+{% endhint %}
+
+## 项目应避免的行为
+
+{% hint style="danger" %}
+项目不得以任何方式修改 JuChain 徽标。
+{% endhint %}
+
+{% hint style="danger" %}
+项目不得以暗示 JuChain 认可或赞助的方式使用 JuChain 徽标。在极少数情况下，此类行为必须经管理层批准和授权。
+{% endhint %}
+
+{% hint style="danger" %}
+项目不得以误导或欺骗的方式使用 JuChain 徽标。
+{% endhint %}
+
+{% hint style="danger" %}
+除非得到管理层的批准，否则项目不得使用“官方”、“合作伙伴”、“与 JuChain 合作”等措辞。
+{% endhint %}
+
+{% hint style="danger" %}
+项目不得以诽谤 JuChain 的方式使用 JuChain徽标。
+{% endhint %}
+
+{% hint style="info" %}
+在某些情况下，我们将根据具体情况进行评估，因为评估可能取决于多种因素，需要根据具体项目和业务需求进行调整。
+{% endhint %}
