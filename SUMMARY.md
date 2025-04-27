@@ -38,3 +38,7 @@
 ## 社区与支持
 
 * [社区与支持](she-qu-yu-zhi-chi/she-qu-yu-zhi-chi.md)
+
+***
+
+* [品牌资源与规范](pin-pai-zi-yuan-yu-gui-fan.md)
