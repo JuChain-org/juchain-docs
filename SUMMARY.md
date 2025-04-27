@@ -32,3 +32,4 @@
 ## Community & Support
 
 * [Community & Support](community-and-support/community-and-support.md)
+* [Brand Resources & Guidelines](community-and-support/brand-resources-and-guidelines.md)
