@@ -6,15 +6,15 @@
 
 ### Light Mode
 
-<figure><img src="../.gitbook/assets/Icon Logo-black.svg" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Icon Logo-black.svg" alt=""><figcaption><p>Icon Logo (black)</p></figcaption></figure>
 
-<div><figure><img src="../.gitbook/assets/Logomark Colored Version-cross-black.svg" alt=""><figcaption></figcaption></figure> <figure><img src="../.gitbook/assets/Logomark Colored Version-vertical-black.svg" alt=""><figcaption></figcaption></figure></div>
+<div><figure><img src="../.gitbook/assets/Logomark Colored Version-cross-black.svg" alt=""><figcaption><p>Horizontal Lockup (black)</p></figcaption></figure> <figure><img src="../.gitbook/assets/Logomark Colored Version-vertical-black.svg" alt=""><figcaption><p>Vertical Lockup (black)</p></figcaption></figure></div>
 
 ### Dark Mode
 
-<figure><img src="../.gitbook/assets/Icon Logo.svg" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Icon Logo.svg" alt=""><figcaption><p>Icon Logo (white)</p></figcaption></figure>
 
-<div><figure><img src="../.gitbook/assets/Logomark Colored Version-cross.svg" alt=""><figcaption></figcaption></figure> <figure><img src="../.gitbook/assets/Logomark Colored Version-vertical.svg" alt=""><figcaption></figcaption></figure></div>
+<div><figure><img src="../.gitbook/assets/Logomark Colored Version-cross.svg" alt=""><figcaption><p>Horizontal Lockup (white)</p></figcaption></figure> <figure><img src="../.gitbook/assets/Logomark Colored Version-vertical.svg" alt=""><figcaption><p>Vertical Lockup (white)"</p></figcaption></figure></div>
 
 ***
 
