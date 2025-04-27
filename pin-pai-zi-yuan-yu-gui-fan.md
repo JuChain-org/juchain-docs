@@ -2,17 +2,17 @@
 
 ## 品牌 Logo
 
+#### 浅色模式
+
+<figure><img src=".gitbook/assets/Icon Logo-black.svg" alt=""><figcaption><p>徽标</p></figcaption></figure>
+
+<div><figure><img src=".gitbook/assets/Logomark Colored Version-cross-black.svg" alt=""><figcaption><p>水平锁定图标</p></figcaption></figure> <figure><img src=".gitbook/assets/Logomark Colored Version-vertical-black.svg" alt=""><figcaption><p>垂直锁定图标</p></figcaption></figure></div>
+
 #### 深色模式
 
 <figure><img src=".gitbook/assets/Icon Logo.svg" alt=""><figcaption><p>深色模式-徽标</p></figcaption></figure>
 
 <div><figure><img src=".gitbook/assets/Logomark Colored Version-cross.svg" alt=""><figcaption><p>深色模式-水平锁定图标</p></figcaption></figure> <figure><img src=".gitbook/assets/Logomark Colored Version-vertical.svg" alt=""><figcaption><p>深色模式-垂直锁定图标</p></figcaption></figure></div>
-
-#### 浅色模式
-
-<figure><img src=".gitbook/assets/Icon Logo-black.svg" alt=""><figcaption><p>徽标</p></figcaption></figure>
-
-<div><figure><img src=".gitbook/assets/Logomark Colored Version-cross-black.svg" alt=""><figcaption></figcaption></figure> <figure><img src=".gitbook/assets/Logomark Colored Version-vertical-black.svg" alt=""><figcaption><p>垂直锁定图标</p></figcaption></figure></div>
 
 {% file src=".gitbook/assets/JuChain Brand Resource (1).zip" %}
 品牌资源包
@@ -29,7 +29,7 @@
    c. JU 代币的表达\
    d. 作为图标
 
-## 尺寸
+## Logo 尺寸
 
 1、垂直锁定（带文字标识的标志）宽度不得小于 99px。此规定适用于彩色和单色版本的标志。
 
@@ -41,23 +41,17 @@
 
 主色：
 
-C:67 M:0 Y:24 K:0\
-R:35 G:202 B:215\
-Hex: #23CAD7
-
-<div align="left"><figure><img src=".gitbook/assets/Frame 1410104223.svg" alt=""><figcaption></figcaption></figure></div>
+<div align="center"><figure><img src=".gitbook/assets/Frame 1410104223.svg" alt=""><figcaption><p>C:67 M:0 Y:24 K:0<br>R:35 G:202 B:215<br>Hex: #23CAD7</p></figcaption></figure></div>
 
 白色：
 
-C:0 M:0 Y:0 K:0\
-R:255 G:255 B:255\
-Hex: #FFFFFF
-
-<div align="left"><figure><img src=".gitbook/assets/Frame 1410104225.svg" alt=""><figcaption></figcaption></figure></div>
+<div align="center"><figure><img src=".gitbook/assets/Frame 1410104225.svg" alt=""><figcaption><p>C:0 M:0 Y:0 K:0<br>R:255 G:255 B:255<br>Hex: #FFFFFF</p></figcaption></figure></div>
 
 黑色
 
-<div align="left"><figure><img src=".gitbook/assets/Frame 1410104226.svg" alt=""><figcaption></figcaption></figure></div>
+<div align="center"><figure><img src=".gitbook/assets/Frame 1410104226.svg" alt=""><figcaption><p>C:100 M:100 Y:100 K:100<br>R:0 G:0 B:0<br>Hex: #000000</p></figcaption></figure></div>
+
+##
 
 ## 对项目的期望
 
