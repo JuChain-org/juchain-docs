@@ -2,23 +2,17 @@
 
 ## 品牌 Logo
 
+#### 深色模式
+
+<figure><img src=".gitbook/assets/Icon Logo.svg" alt=""><figcaption><p>深色模式-徽标</p></figcaption></figure>
+
+<div><figure><img src=".gitbook/assets/Logomark Colored Version-cross.svg" alt=""><figcaption><p>深色模式-水平锁定图标</p></figcaption></figure> <figure><img src=".gitbook/assets/Logomark Colored Version-vertical.svg" alt=""><figcaption><p>深色模式-垂直锁定图标</p></figcaption></figure></div>
+
 #### 浅色模式
 
 <figure><img src=".gitbook/assets/Icon Logo-black.svg" alt=""><figcaption><p>徽标</p></figcaption></figure>
 
-<figure><img src=".gitbook/assets/Logomark Colored Version-cross-black.svg" alt=""><figcaption><p>水平锁定图标</p></figcaption></figure>
-
-<figure><img src=".gitbook/assets/Logomark Colored Version-vertical-black.svg" alt=""><figcaption><p>垂直锁定图标</p></figcaption></figure>
-
-#### 深色模式
-
-
-
-<figure><img src=".gitbook/assets/logo.svg" alt=""><figcaption><p>徽标</p></figcaption></figure>
-
-<figure><img src=".gitbook/assets/logo1.svg" alt=""><figcaption><p>水平锁定图标</p></figcaption></figure>
-
-<figure><img src=".gitbook/assets/logo2.svg" alt=""><figcaption><p>垂直锁定图标</p></figcaption></figure>
+<div><figure><img src=".gitbook/assets/Logomark Colored Version-cross-black.svg" alt=""><figcaption></figcaption></figure> <figure><img src=".gitbook/assets/Logomark Colored Version-vertical-black.svg" alt=""><figcaption><p>垂直锁定图标</p></figcaption></figure></div>
 
 {% file src=".gitbook/assets/JuChain Brand Resource (1).zip" %}
 品牌资源包
@@ -51,7 +45,7 @@ C:67 M:0 Y:24 K:0\
 R:35 G:202 B:215\
 Hex: #23CAD7
 
-<div align="center"><figure><img src=".gitbook/assets/Frame 1410104223.png" alt=""><figcaption></figcaption></figure></div>
+<div align="left"><figure><img src=".gitbook/assets/Frame 1410104223.svg" alt=""><figcaption></figcaption></figure></div>
 
 白色：
 
@@ -59,11 +53,11 @@ C:0 M:0 Y:0 K:0\
 R:255 G:255 B:255\
 Hex: #FFFFFF
 
-<figure><img src=".gitbook/assets/Frame 1410104225.png" alt=""><figcaption></figcaption></figure>
+<div align="left"><figure><img src=".gitbook/assets/Frame 1410104225.svg" alt=""><figcaption></figcaption></figure></div>
 
 黑色
 
-<figure><img src=".gitbook/assets/#000000.png" alt=""><figcaption></figcaption></figure>
+<div align="left"><figure><img src=".gitbook/assets/Frame 1410104226.svg" alt=""><figcaption></figcaption></figure></div>
 
 ## 对项目的期望
 
@@ -73,6 +67,7 @@ Hex: #FFFFFF
 4. 项目不得以暗示认可或赞助的方式使用 JuChain 徽标——特殊情况下，请先获得公关部门的批准，我们将根据具体情况进行评估。
 5. 如果项目获得批准使用 JuChain 徽标，其使用必须对 JuChain 和项目本身产生积极的影响。
 6. 项目应遵循品牌指南，以确保所有材料的一致性。
+7. 在某些情况下，我们将根据具体情况进行评估，因为评估可能取决于多种因素，需要根据具体项目和业务需求进行调整。
 
 
 
@@ -110,8 +105,4 @@ Hex: #FFFFFF
 
 {% hint style="danger" %}
 项目不得以诽谤 JuChain 的方式使用 JuChain徽标。
-{% endhint %}
-
-{% hint style="info" %}
-在某些情况下，我们将根据具体情况进行评估，因为评估可能取决于多种因素，需要根据具体项目和业务需求进行调整。
 {% endhint %}
