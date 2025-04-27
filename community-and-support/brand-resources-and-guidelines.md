@@ -14,7 +14,11 @@
 
 <figure><img src="../.gitbook/assets/Icon Logo.svg" alt=""><figcaption><p>Icon Logo (white)</p></figcaption></figure>
 
-<div><figure><img src="../.gitbook/assets/Logomark Colored Version-cross.svg" alt=""><figcaption><p>Horizontal Lockup (white)</p></figcaption></figure> <figure><img src="../.gitbook/assets/Logomark Colored Version-vertical.svg" alt=""><figcaption><p>Vertical Lockup (white)"</p></figcaption></figure></div>
+<div><figure><img src="../.gitbook/assets/Logomark Colored Version-cross.svg" alt=""><figcaption><p>Horizontal Lockup (white)</p></figcaption></figure> <figure><img src="../.gitbook/assets/Logomark Colored Version-vertical.svg" alt=""><figcaption><p>Vertical Lockup (white)</p></figcaption></figure></div>
+
+{% file src="../.gitbook/assets/JuChain Brand Resource.zip" %}
+Download the Brand Resource Pack
+{% endfile %}
 
 ***
 
@@ -23,11 +27,14 @@
 1. **Primary logo** should be used wherever possible together with the wordmark.
 2. **Horizontal lockup** must always be left-aligned; never right-align.
 3. **Vertical lockup** must always be center-aligned; never left- or right-align.
-4. Use the logo only for:
-   * Buttons
-   * Profile pictures
-   * Denoting JU tokens
-   * As an icon
+4.  Use the logo only for:
+
+    * Buttons
+    * Profile pictures
+    * Denoting JU tokens
+    * As an icon
+
+
 
 ***
 
@@ -40,6 +47,12 @@
 ***
 
 ## Brand Colors
+
+<figure><img src="../.gitbook/assets/Frame 1410104223.svg" alt=""><figcaption><p>C:67 M:0 Y:24 K:0<br>R:35 G:202 B:215<br>Hex: #23CAD7</p></figcaption></figure>
+
+<figure><img src="../.gitbook/assets/Frame 1410104225.svg" alt=""><figcaption><p>C:0 M:0 Y:0 K:0<br>R:255 G:255 B:255<br>Hex: #FFFFFF</p></figcaption></figure>
+
+<figure><img src="../.gitbook/assets/Frame 1410104226.svg" alt=""><figcaption><p>C:100 M:100 Y:100 K:100<br>R:0 G:0 B:0<br>Hex: #000000</p></figcaption></figure>
 
 ***
 
