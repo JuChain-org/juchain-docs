@@ -1,6 +1,6 @@
 # 在 JuScan 浏览器上通过图形化界面验证合约源码
 
-对已部署的智能合约进行源码验证，是确保项目透明度和用户信任的关键步骤。验证后，用户可以直接在 Juscan 区块链浏览器上查看合约的源代码，了解其功能并与之安全交互。本指南将详细介绍如何通过 Juscan（基于开源的 Blockscout 浏览器）提供的图形用户界面 (GUI) 来完成合约验证。这为不熟悉命令行工具（如 Hardhat 或 Foundry）的用户提供了一种直观便捷的验证方式。
+本指南将详细介绍如何通过 JuScan 提供的图形用户界面 (GUI) 来完成合约验证。这为不熟悉命令行工具（如 Hardhat 或 Foundry）的用户提供了一种直观便捷的验证方式。验证后，用户可以直接在 JuScan 区块链浏览器上查看合约的源代码，了解其功能并与之安全交互。
 
 ***
 
@@ -29,7 +29,7 @@
 2. **输入合约地址 (Contract Address to Verify)**: 如果您不是从合约页面直接跳转过来的，在此处粘贴您要验证的合约地址。
 3. **选择合约许可证 (Contract License)**:
    * 从下拉菜单中选择与您合约源代码中 `SPDX-License-Identifier` (如果声明了) 相匹配的开源许可证。强烈建议指定许可证。
-   * Juscan/Blockscout 支持多种常见许可证，包括 MIT, GPL 系列, Apache, Unlicense 等。
+   * JuScan 支持多种常见许可证，包括 MIT, GPL 系列, Apache, Unlicense 等。
    * 如果代码不开源或未指定许可证，选择 "No License (None)"。
 4. **选择验证方式 (Verification method / Compiler type)**:
    * 此下拉菜单提供多种验证输入类型。请选择与您的项目和编译输出最匹配的方式：
