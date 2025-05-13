@@ -26,7 +26,7 @@
 
     * **推荐**: 直接导航到您部署的合约地址页面。在合约详情页的 "Code" (代码) 选项卡下，查找并点击 "Verify & Publish" (验证并发布) 按钮或链接。
     * 或者，在 JuScan 浏览器的主菜单中寻找 "More" (更多) / "Tools" (工具) -> "Verify Contract" (验证合约) 的选项。
-    * 或者，尝试直接访问验证 URL:`https://juscan.io/contract-verification`。
+    * 或者，尝试直接访问验证 URL:`https://juscan.io/contract-verification（对于测试网络请访问https://testnet.juscan.io/contract-verification)` 。
 
     <figure><img src="../../.gitbook/assets/截屏2025-05-13 13.44.18.png" alt="" width="375"><figcaption><p>在此模块输入合约地址并选择许可证，然后选择验证方式</p></figcaption></figure>
 2. **输入合约地址 (Contract Address to Verify)**: 如果您不是从合约页面直接跳转过来的，需要在此处粘贴您要验证的合约地址。
