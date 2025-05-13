@@ -24,11 +24,11 @@
 
 1.  **访问验证页面**:
 
-    <figure><img src="../../.gitbook/assets/截屏2025-05-13 13.44.18.png" alt="" width="375"><figcaption><p>验证页面基础信息</p></figcaption></figure>
-
     * **推荐**: 直接导航到您部署的合约地址页面。在合约详情页的 "Code" (代码) 选项卡下，查找并点击 "Verify & Publish" (验证并发布) 按钮或链接。
     * 或者，在 JuScan 浏览器的主菜单中寻找 "More" (更多) / "Tools" (工具) -> "Verify Contract" (验证合约) 的选项。
     * 或者，尝试直接访问验证 URL:`https://juscan.io/contract-verification`。
+
+    <figure><img src="../../.gitbook/assets/截屏2025-05-13 13.44.18.png" alt="" width="375"><figcaption><p>在此模块输入合约地址并选择许可证，然后选择验证方式</p></figcaption></figure>
 2. **输入合约地址 (Contract Address to Verify)**: 如果您不是从合约页面直接跳转过来的，需要在此处粘贴您要验证的合约地址。
 3. **选择合约许可证 (Contract License)**:
    * 从下拉菜单中选择与您合约源代码中 `SPDX-License-Identifier` (如果声明了) 相匹配的开源许可证。强烈建议指定许可证。
@@ -39,15 +39,14 @@
 * 此下拉菜单提供多种验证输入类型。请选择与您的项目和编译输出最匹配的方式：
   * **Solidity (Single file / Flattened source code)**: 适用于**单个 `.sol` 或 `.yul` 文件**。如果您的合约包含 `import` 语句，您需要先将所有依赖的代码"扁平化"(flatten)到这一个文件中。这是最直接的方式，但对于复杂项目可能需要预处理。
   * **Solidity (Standard JSON input)**: **推荐方式之一**。您需要上传由 Solidity 编译器生成的标准 JSON 输入文件。该文件包含了所有源码、编译器设置等信息，验证成功率较高。
-  * **Solidity (Multi-part files)**: 适用于包含多个 `.sol` 或 `.yul` 文件（例如，主合约、库、接口）并通过 `import` 相互引用的项目。您需要分别上传所有相关的源文件。
-  * **Solidity (Sourcify)**: **推荐方式之一**。通过上传 Sourcify 生成的元数据 (`metadata.json`) 和所有相关的源文件进行验证。这确保了构建的可复现性。
+  * **Solidity (Multi-part files)**: 适用于包含多个（至少两个） `.sol` 或 `.yul` 文件（例如，主合约、库、接口）并通过 `import` 相互引用的项目。您需要分别上传所有相关的源文件。
   * **Solidity (Hardhat)** / **Solidity (Foundry)**: 允许直接使用 Hardhat 或 Foundry 项目的编译产物（如 build-info 文件）进行验证。请根据界面提示操作。
   * **Vyper (Contract)**: 适用于单个 Vyper 合约文件。
   * **Vyper (Multi-part files)**: 适用于包含多个 Vyper 文件的项目。
 
 5. **填写详细信息 (根据所选验证方式变化)**:
 
-<figure><img src="../../.gitbook/assets/截屏2025-05-13 13.46.32.png" alt="" width="375"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/截屏2025-05-13 13.46.32.png" alt="" width="375"><figcaption><p>填写详细信息模块</p></figcaption></figure>
 
 * 根据您选择的验证方式，下方会显示不同的输入字段。
 * **通用字段**:
@@ -63,8 +62,6 @@
   * 上传包含标准 JSON 输入的 `.json` 文件。
 * **对于 Solidity (Multi-part files)**:
   * 逐个上传所有的 `.sol` 或 `.yul` 源文件，包括主合约和所有依赖文件。
-* **对于 Solidity (Sourcify)**:
-  * 上传 `metadata.json` 文件以及所有相关的源文件。
 
 6. **提交验证**: 仔细核对所有信息后，点击 "Verify and Publish" (验证并发布) 或类似名称的按钮提交验证请求。
 
