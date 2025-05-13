@@ -1,4 +1,4 @@
-# Verifying Contract Source Code on JuScan Browser via Graphical Interface
+# Verifying Contract Source Code on JuScan Browser via GUI
 
 This guide provides a detailed walkthrough on how to verify a smart contract's source code using the graphical user interface (GUI) provided by JuScan. This approach is designed for users who are not familiar with command-line tools like Hardhat or Foundry, offering an intuitive and user-friendly method. Once verified, users can view the contract’s source code on the JuScan blockchain explorer, understand its functionality, and interact with it securely.
 
@@ -22,6 +22,8 @@ Before starting the verification process, ensure you have the following informat
 
 ### Steps for Graphical Verification
 
+<figure><img src="../../.gitbook/assets/截屏2025-05-13 14.25.31.png" alt="" width="375"><figcaption></figcaption></figure>
+
 1. **Access the Verification Page**:
    * **Recommended**: Navigate directly to the contract address page of your deployed contract. On the contract details page, locate the **Code** tab and click the **Verify & Publish** button or link.
    * Alternatively, find the verification option in the JuScan browser’s main menu under **More** / **Tools** -> **Verify Contract**.
@@ -41,22 +43,27 @@ Before starting the verification process, ensure you have the following informat
      * **Vyper (Contract)**: Suitable for a single Vyper contract file.
      * **Vyper (Multi-part files)**: Suitable for projects with multiple Vyper files.
 5. **Fill in Detailed Information** (varies by verification method):
-   * Depending on the selected verification method, different input fields will appear.
-   * **Common Fields**:
-     * **Compiler Version**: Select the **exact** compiler version used during deployment (e.g., `0.8.8`). Avoid selecting Nightly Builds.
-     * **EVM Version**: Select the target EVM version specified during compilation. If the compiler’s default was used, choose `default` or the corresponding default EVM for the compiler.
-     * **Optimization Enabled**: If optimization was enabled during compilation, select **Yes** and specify the number of **Optimization Runs** (e.g., `200`). If disabled, select **No**.
-   * **For Solidity (Single file / Flattened)**:
-     * **Is Yul contract?**: Check this box if you are uploading Yul (`.yul`) code.
-     * **Enter the Solidity Contract Code**: Paste the complete, flattened Solidity or Yul source code into the provided text box.
-     * **Constructor Arguments**: If the contract has a constructor, paste the ABI-encoded parameter string (starting with `0x`) here.
-     * **Contract Libraries**: If the contract links to external libraries, click **Add Contract Library** and provide the **name** and **deployed address** of each library.
-   * **For Solidity (Standard JSON input)**:
-     * Upload the `.json` file containing the standard JSON input.
-   * **For Solidity (Multi-part files)**:
-     * Upload all `.sol` or `.yul` source files individually, including the main contract and all dependencies.
+
+<figure><img src="../../.gitbook/assets/截屏2025-05-13 14.25.55.png" alt="" width="563"><figcaption></figcaption></figure>
+
+* Depending on the selected verification method, different input fields will appear.
+* **Common Fields**:
+  * **Compiler Version**: Select the **exact** compiler version used during deployment (e.g., `0.8.8`). Avoid selecting Nightly Builds.
+  * **EVM Version**: Select the target EVM version specified during compilation. If the compiler’s default was used, choose `default` or the corresponding default EVM for the compiler.
+  * **Optimization Enabled**: If optimization was enabled during compilation, select **Yes** and specify the number of **Optimization Runs** (e.g., `200`). If disabled, select **No**.
+* **For Solidity (Single file / Flattened)**:
+  * **Is Yul contract?**: Check this box if you are uploading Yul (`.yul`) code.
+  * **Enter the Solidity Contract Code**: Paste the complete, flattened Solidity or Yul source code into the provided text box.
+  * **Constructor Arguments**: If the contract has a constructor, paste the ABI-encoded parameter string (starting with `0x`) here.
+  * **Contract Libraries**: If the contract links to external libraries, click **Add Contract Library** and provide the **name** and **deployed address** of each library.
+* **For Solidity (Standard JSON input)**:
+  * Upload the `.json` file containing the standard JSON input.
+* **For Solidity (Multi-part files)**:
+  * Upload all `.sol` or `.yul` source files individually, including the main contract and all dependencies.
+
 6. **Submit Verification**:
-   * Double-check all provided information, then click **Verify and Publish** or a similarly named button to submit the verification request.
+
+* Double-check all provided information, then click **Verify and Publish** or a similarly named button to submit the verification request.
 
 ***
 
