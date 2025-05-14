@@ -23,12 +23,7 @@ Follow these simple steps to claim test JU tokens from the JuChain Testnet Fauce
 **Step 1: Set Up Your Wallet**
 
 1. Install and configure a wallet that supports the JuChain Testnet, like MetaMask or any EVM-compatible wallet.
-2. Add the JuChain Testnet to your wallet:
-   * **Network Name**: JuChain Testnet
-   * **RPC URL**: `https://rpc-testnet.juchain.org`
-   * **Chain ID**: 202599
-   * **Currency Symbol**: JU
-   * **Block Explorer URL**: `https://explorer-testnet.juchain.org`
+2. [Add the JuChain Testnet to your wallet.](../start-using-juchain.md)
 3. Copy your wallet address.
 
 **Step 2: Visit the Faucet**
