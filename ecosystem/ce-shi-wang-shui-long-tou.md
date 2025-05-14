@@ -19,12 +19,7 @@ JuChain 测试网水龙头是一个开发者工具，旨在为 JuChain 测试网
 #### 步骤 1：准备您的钱包
 
 1. 确保您已安装并配置支持 JuChain 测试网的钱包，例如 MetaMask 或其他兼容 EVM 的钱包。
-2. 添加 JuChain 测试网到您的钱包：
-   * **网络名称**: JuChain Testnet
-   * **RPC URL**: `https://rpc-testnet.juchain.org`
-   * **链 ID**: 202599
-   * **货币符号**: JU
-   * **区块浏览器 URL**: `https://explorer-testnet.juchain.org`
+2. [添加 JuChain 测试网到您的钱包](../kai-shi-shi-yong-juchain.md)
 3. 复制您的钱包地址。
 
 #### 步骤 2：访问水龙头
