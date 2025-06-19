@@ -25,6 +25,13 @@
 
 * [Quick Start](developer-guide/quick-start.md)
 * [Getting Started](developer-guide/getting-started.md)
+* [Wallet](developer-guide/wallet.md)
+* [Faucets](developer-guide/faucets.md)
+* [Block Explorers](developer-guide/block-explorers.md)
+* [Oracles](developer-guide/oracles.md)
+* [Utility Contracts](developer-guide/utility-contracts.md)
+* [DefiLlama TVL Integration](developer-guide/defillama-tvl-integration.md)
+* [Cross-chain Protocols](developer-guide/cross-chain-protocols.md)
 * [Tutorials and Examples: Building and Deploying a Simple dApp](developer-guide/tutorials-and-examples-building-and-deploying-a-simple-dapp.md)
 * [Tutorials and Examples: Building a Simple DeFi Lending dApp](developer-guide/tutorials-and-examples-building-a-simple-defi-lending-dapp.md)
 * [Technical Reference](developer-guide/technical-reference.md)
