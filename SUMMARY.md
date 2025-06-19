@@ -29,6 +29,7 @@
 
 ## 开发者指南
 
+* [快速开始](kai-fa-zhe-zhi-nan/kuai-su-kai-shi.md)
 * [入门指南](kai-fa-zhe-zhi-nan/ru-men-zhi-nan.md)
 * [教程与示例：构建并部署一个简单的 DApp](kai-fa-zhe-zhi-nan/jiao-cheng-yu-shi-li-gou-jian-bing-bu-shu-yi-ge-jian-dan-de-dapp.md)
 * [教程与示例：构建一个简单的 DeFi 借贷 DApp](kai-fa-zhe-zhi-nan/jiao-cheng-yu-shi-li-gou-jian-yi-ge-jian-dan-de-defi-jie-dai-dapp.md)
