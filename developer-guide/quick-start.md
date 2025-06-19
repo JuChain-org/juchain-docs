@@ -29,7 +29,7 @@
 
 
 
-**Hardhat**[**​**](https://docs.bitlayer.org/docs/Build/GettingStarted/QuickStart#hardhat)
+**Hardhat​**
 
 Modify your Hardhat config file `hardhat.config.ts` to point at the Juchain Testnet public RPC.
 
@@ -46,7 +46,7 @@ const config: HardhatUserConfig = {
 };
 ```
 
-**Foundry**[**​**](https://docs.bitlayer.org/docs/Build/GettingStarted/QuickStart#foundry)
+**Foundry​**
 
 To deploy using the Juchain Testnet Public RPC, run:
 
@@ -54,7 +54,7 @@ To deploy using the Juchain Testnet Public RPC, run:
 forge create ... --rpc-url=https://testnet-rpc.juchain.org --legacy
 ```
 
-**Remix Web IDE**[**​**](https://docs.bitlayer.org/docs/Build/GettingStarted/QuickStart#remix-web-ide)
+**Remix Web IDE​**
 
 After compiling your contracts, the easiest way to deploy using Remix is by [setting up Metamask](https://docs.bitlayer.org/user-guide/setup#metamask), then selecting the **Juchain Testnet** network.
 
@@ -62,7 +62,7 @@ In the “Deploy and Run Transactions” tab, use the “Environment” drop-dow
 
 Connect your wallet and select the Juchain Testnet. Your account should be selected automatically in Remix, and you can click “Deploy.”
 
-**Truffle**[**​**](https://docs.bitlayer.org/docs/Build/GettingStarted/QuickStart#truffle)
+**Truffle​**
 
 caution
 
@@ -84,7 +84,7 @@ module.exports = {
 }
 ```
 
-**Brownie**[**​**](https://docs.bitlayer.org/docs/Build/GettingStarted/QuickStart#brownie)
+**Brownie​**
 
 To add the Juchain Testnet, run the following command:
 
@@ -126,7 +126,7 @@ To deploy on Juchain, run the following command. In this example, `token.py` is 
 brownie run token.py --network Juchain
 ```
 
-**ethers.js**[**​**](https://docs.bitlayer.org/docs/Build/GettingStarted/QuickStart#ethersjs)
+**ethers.js​**
 
 Setting up a Juchain Testnet provider in an `ethers` script:
 
@@ -136,11 +136,11 @@ import { ethers } from "ethers"
 const provider = new ethers.providers.JsonRpcProvider("https://testnet-rpc.juchain.org")
 ```
 
-**scaffold-eth**[**​**](https://docs.bitlayer.org/docs/Build/GettingStarted/QuickStart#scaffold-eth)
+**scaffold-eth​**
 
 To deploy using Scaffold-eth, you’ll need to point both your Hardhat and React settings at the Juchain Testnet.
 
-**Configure Hardhat**[**​**](https://docs.bitlayer.org/docs/Build/GettingStarted/QuickStart#configure-hardhat)
+**Configure Hardhat​**
 
 In the `packages/hardhat/hardhat.config.js` file, you’ll add the network and select it as the default network.
 
