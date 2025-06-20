@@ -29,6 +29,7 @@
 * [Faucets](developer-guide/faucets.md)
 * [Block Explorers](developer-guide/block-explorers.md)
 * [Oracles](developer-guide/oracles.md)
+* [JSON-RPC](developer-guide/json-rpc.md)
 * [Utility Contracts](developer-guide/utility-contracts.md)
 * [DefiLlama TVL Integration](developer-guide/defillama-tvl-integration.md)
 * [Cross-chain Protocols](developer-guide/cross-chain-protocols.md)
