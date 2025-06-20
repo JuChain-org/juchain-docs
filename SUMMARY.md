@@ -34,6 +34,7 @@
 * [钱包](kai-fa-zhe-zhi-nan/qian-bao.md)
 * [预言机](kai-fa-zhe-zhi-nan/yu-yan-ji.md)
 * [JSON-RPC](kai-fa-zhe-zhi-nan/json-rpc.md)
+* [合约](kai-fa-zhe-zhi-nan/he-yue.md)
 * [开发者常见问题解答（FAQ）](kai-fa-zhe-zhi-nan/kai-fa-zhe-chang-jian-wen-ti-jie-da-faq.md)
 * [教程与示例：构建并部署一个简单的 DApp](kai-fa-zhe-zhi-nan/jiao-cheng-yu-shi-li-gou-jian-bing-bu-shu-yi-ge-jian-dan-de-dapp.md)
 * [教程与示例：构建一个简单的 DeFi 借贷 DApp](kai-fa-zhe-zhi-nan/jiao-cheng-yu-shi-li-gou-jian-yi-ge-jian-dan-de-defi-jie-dai-dapp.md)

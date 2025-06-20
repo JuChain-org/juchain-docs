@@ -1,11 +1,9 @@
 # 预言机
 
-## Faucets  水龙头
+## 测试币水龙头
 
 \
-如果您想与 Juchain 测试网上的 Dapps 进行交互，您的第一站就是去“水龙头”加满您的“水箱”。
-
-\
+如果您想与 Juchain 测试网上的 Dapps 进行交互，您的第一站就是去“水龙头”加满您的“水箱”。\
 这里有一个直接分发 Juchain 测试网代币的水龙头： [https://faucet-testnet.juchain.org/](https://faucet-testnet.juchain.org/)
 
 <figure><img src="https://juchain.gitbook.io/~gitbook/image?url=https%3A%2F%2F2354961557-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FFnN8dEv4ODUZJaBUfPrL%252Fuploads%252Frn1HPsBvrTVmWjEUyX5W%252F%25E6%2588%25AA%25E5%25B1%258F2025-06-19%2520%25E4%25B8%258B%25E5%258D%25884.19.24.png%3Falt%3Dmedia%26token%3Dacd1237d-3dbe-408b-ba36-0fedb9a1250a&#x26;width=768&#x26;dpr=4&#x26;quality=100&#x26;sign=5f3b8995&#x26;sv=2" alt=""><figcaption></figcaption></figure>
@@ -15,8 +13,6 @@
 
 \
 JuChain 测试网水龙头是一款开发者友好型工具，可分发少量测试网代币 (JU)，供在 JuChain 测试网上使用。这些代币仅用于测试目的，不具有实际价值，可用于支付 Gas 费用、部署智能合约或与 DApp 交互。
-
-
 
 #### JuChain 测试网
 
