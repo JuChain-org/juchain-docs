@@ -32,7 +32,6 @@
 * [JSON-RPC](developer-guide/json-rpc.md)
 * [Developer FAQ](developer-guide/developer-faq.md)
 * [Utility Contracts](developer-guide/utility-contracts.md)
-* [Cross-chain Protocols](developer-guide/cross-chain-protocols.md)
 * [Tutorials and Examples: Building and Deploying a Simple dApp](developer-guide/tutorials-and-examples-building-and-deploying-a-simple-dapp.md)
 * [Tutorials and Examples: Building a Simple DeFi Lending dApp](developer-guide/tutorials-and-examples-building-a-simple-defi-lending-dapp.md)
 * [Technical Reference](developer-guide/technical-reference.md)
