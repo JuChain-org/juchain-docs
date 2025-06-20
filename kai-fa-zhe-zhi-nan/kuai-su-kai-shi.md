@@ -1,5 +1,11 @@
 # 快速开始
 
+
+
+{% hint style="warning" %}
+JuChain 当前仅支持 Solidity 版本 <= 0.8.8 进行编译，后续版本支持将根据官方通知逐步开放。
+{% endhint %}
+
 ## 配置网络
 
 ### 网络信息

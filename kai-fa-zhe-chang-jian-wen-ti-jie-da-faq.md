@@ -61,7 +61,7 @@ module.exports = {
 
 ### 9. JuChain 支持哪些 Solidity 版本？
 
-JuChain 兼容 EVM，推荐使用 Solidity 0.8.x 及以上版本。
+JuChain 当前仅支持 Solidity 版本 <= 0.8.8 进行编译，后续版本支持将根据官方通知逐步开放。
 
 ### 10. 如何获取更多技术支持？
 
