@@ -62,7 +62,7 @@ Please make sure your wallet address has enough JU tokens on the JuChain testnet
 
 #### 9. What Solidity versions does JuChain support? <a href="#id-9.-juchain-zhi-chi-na-xie-solidity-ban-ben" id="id-9.-juchain-zhi-chi-na-xie-solidity-ban-ben"></a>
 
-JuChain is compatible with EVM and it is recommended to use Solidity 0.8.x and above.
+**JuChain currently only supports Solidity version <= 0.8.8 for compilation, and support for subsequent versions will be gradually opened according to official notifications.**
 
 #### &#x20;10. How can I get more technical support? <a href="#id-10.-ru-he-huo-qu-geng-duo-ji-shu-zhi-chi" id="id-10.-ru-he-huo-qu-geng-duo-ji-shu-zhi-chi"></a>
 
