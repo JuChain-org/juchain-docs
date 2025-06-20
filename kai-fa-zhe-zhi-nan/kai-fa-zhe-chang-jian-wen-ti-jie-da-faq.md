@@ -68,10 +68,6 @@ JuChain 兼容 EVM，推荐使用 Solidity 0.8.x 及以上版本。
 * 访问 JuChain 社区与支持
 * 加入官方 Telegram、Discord 。
 
-***
 
-如需更详细的 Q\&A 或针对某一类问题（如节点搭建、API 调用等）扩展内容，请告知！
-
-Add Context
 
 \
