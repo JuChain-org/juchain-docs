@@ -6,10 +6,10 @@
 
 #### 主网 点击此处访问 Juchain 主网区块浏览器： <a href="#mainnet" id="mainnet"></a>
 
-* [Juchain Mainnet Explorer  Juchain 主网浏览器](https://juscan.io/)
+* [Juchain 主网浏览器](https://juscan.io/)
 
 #### 测试网 <a href="#testnet" id="testnet"></a>
 
 点击此处访问 Juchain 测试网区块浏览器：
 
-* [Juchain Testnet Explorer  Juchain 测试网浏览器](https://testnet.juscan.io/)
+* [Juchain 测试网浏览器](https://testnet.juscan.io/)
