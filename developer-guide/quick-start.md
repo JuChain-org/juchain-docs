@@ -17,15 +17,14 @@
 
 **JuChain Testnet**
 
-| Name            | Value                           |
-| --------------- | ------------------------------- |
-| Network Name    | JuChain Testnet                 |
-| Description     | JuChain Public Testnet          |
-| RPC Endpoint    | https://testnet-rpc.juchain.org |
-|                 | ws://testnet-ws.juchain.org     |
-| Chain ID        | 202599                          |
-| Currency Symbol | JU                              |
-| Block Explorer  | https://testnet.juscan.io       |
+| Name            | Value                                                                    |
+| --------------- | ------------------------------------------------------------------------ |
+| Network Name    | JuChain Testnet                                                          |
+| Description     | JuChain Public Testnet                                                   |
+| RPC Endpoint    | <p>https://testnet-rpc.juchain.org</p><p>ws://testnet-ws.juchain.org</p> |
+| Chain ID        | 202599                                                                   |
+| Currency Symbol | JU                                                                       |
+| Block Explorer  | https://testnet.juscan.io                                                |
 
 
 
