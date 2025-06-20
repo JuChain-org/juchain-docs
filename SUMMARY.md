@@ -35,13 +35,16 @@
 * [预言机](kai-fa-zhe-zhi-nan/yu-yan-ji.md)
 * [JSON-RPC](kai-fa-zhe-zhi-nan/json-rpc.md)
 * [合约](kai-fa-zhe-zhi-nan/he-yue.md)
-* [开发者常见问题解答（FAQ）](kai-fa-zhe-zhi-nan/kai-fa-zhe-chang-jian-wen-ti-jie-da-faq.md)
 * [教程与示例：构建并部署一个简单的 DApp](kai-fa-zhe-zhi-nan/jiao-cheng-yu-shi-li-gou-jian-bing-bu-shu-yi-ge-jian-dan-de-dapp.md)
 * [教程与示例：构建一个简单的 DeFi 借贷 DApp](kai-fa-zhe-zhi-nan/jiao-cheng-yu-shi-li-gou-jian-yi-ge-jian-dan-de-defi-jie-dai-dapp.md)
 * [技术参考](kai-fa-zhe-zhi-nan/ji-shu-can-kao.md)
 * [合约源码验证实践](kai-fa-zhe-zhi-nan/he-yue-yuan-ma-yan-zheng-shi-jian.md)
   * [在 JuScan 浏览器上通过图形化界面验证合约源码](kai-fa-zhe-zhi-nan/he-yue-yuan-ma-yan-zheng-shi-jian/zai-juscan-liu-lan-qi-shang-tong-guo-tu-xing-hua-jie-mian-yan-zheng-he-yue-yuan-ma.md)
   * [使用 Hardhat 框架完成 JuChain 上的合约验证流程](kai-fa-zhe-zhi-nan/he-yue-yuan-ma-yan-zheng-shi-jian/shi-yong-hardhat-kuang-jia-wan-cheng-juchain-shang-de-he-yue-yan-zheng-liu-cheng.md)
+
+***
+
+* [开发者常见问题解答（FAQ）](kai-fa-zhe-chang-jian-wen-ti-jie-da-faq.md)
 
 ## 社区与支持
 
