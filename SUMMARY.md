@@ -30,7 +30,6 @@
 * [Block Explorers](developer-guide/block-explorers.md)
 * [Oracles](developer-guide/oracles.md)
 * [JSON-RPC](developer-guide/json-rpc.md)
-* [Developer FAQ](developer-guide/developer-faq.md)
 * [Utility Contracts](developer-guide/utility-contracts.md)
 * [Tutorials and Examples: Building and Deploying a Simple dApp](developer-guide/tutorials-and-examples-building-and-deploying-a-simple-dapp.md)
 * [Tutorials and Examples: Building a Simple DeFi Lending dApp](developer-guide/tutorials-and-examples-building-a-simple-defi-lending-dapp.md)
@@ -38,6 +37,10 @@
 * [Contract Source Code Verification Guide](developer-guide/contract-source-code-verification-guide/README.md)
   * [Verifying Contract Source Code on JuScan Browser via GUI](developer-guide/contract-source-code-verification-guide/verifying-contract-source-code-on-juscan-browser-via-gui.md)
   * [Contract Verification on JuChain using the Hardhat framework](developer-guide/contract-source-code-verification-guide/contract-verification-on-juchain-using-the-hardhat-framework.md)
+
+***
+
+* [Developer FAQ](developer-faq.md)
 
 ## Community & Support
 

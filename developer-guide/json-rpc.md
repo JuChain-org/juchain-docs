@@ -85,7 +85,7 @@ JuChain is compatible with Ethereum JSON-RPC API. Common interfaces include `eth
 curl -X POST --data '{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":1}' https://rpc.juchain.org
 ```
 
-**查询账户余额：  Check account balance:**
+**Check account balance:**
 
 ```
 curl -X POST --data '{"jsonrpc":"2.0","method":"eth_getBalance","params":["0xYourAddress","latest"],"id":1}' https://rpc.juchain.org
