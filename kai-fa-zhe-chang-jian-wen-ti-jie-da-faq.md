@@ -41,7 +41,7 @@ module.exports = {
 
 ### 5. 合约部署时报 “insufficient funds” 怎么办？
 
-请确保你的钱包地址在 JuChain 测试网有足够的 JU 代币。可以通过 [测试网水龙头](../ecosystem/ce-shi-wang-shui-long-tou.md) 领取。
+请确保你的钱包地址在 JuChain 测试网有足够的 JU 代币。可以通过 [测试网水龙头](ecosystem/ce-shi-wang-shui-long-tou.md) 领取。
 
 ### 6. 如何在 Remix 上部署合约到 JuChain？
 
@@ -66,7 +66,6 @@ JuChain 兼容 EVM，推荐使用 Solidity 0.8.x 及以上版本。
 ### 10. 如何获取更多技术支持？
 
 * 访问 JuChain 社区与支持
-* 加入官方 Telegram、Discord 。
 
 
 

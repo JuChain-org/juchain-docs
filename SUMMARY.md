@@ -32,6 +32,7 @@
 * [快速开始](kai-fa-zhe-zhi-nan/kuai-su-kai-shi.md)
 * [入门指南](kai-fa-zhe-zhi-nan/ru-men-zhi-nan.md)
 * [钱包](kai-fa-zhe-zhi-nan/qian-bao.md)
+* [水龙头](kai-fa-zhe-zhi-nan/shui-long-tou.md)
 * [预言机](kai-fa-zhe-zhi-nan/yu-yan-ji.md)
 * [JSON-RPC](kai-fa-zhe-zhi-nan/json-rpc.md)
 * [合约](kai-fa-zhe-zhi-nan/he-yue.md)
