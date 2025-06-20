@@ -15,6 +15,3 @@ Access the Juchain mainnet block explorer here:
 Access the Juchain testnet block explorer here:
 
 * [Juchain Testnet Explorer](https://testnet.juscan.io/)
-
-[\
-](https://docs.bitlayer.org/docs/Build/DeveloperResources/Faucets)
