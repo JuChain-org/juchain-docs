@@ -12,13 +12,13 @@
 * [开始使用 JuChain](kai-shi-shi-yong-juchain.md)
 * [技术架构](ji-shu-jia-gou.md)
 
-## Ecosystem
+## 生态
 
-* [链上生态](ecosystem/lian-shang-sheng-tai.md)
-* [跨链桥](ecosystem/kua-lian-qiao.md)
-* [测试网水龙头](ecosystem/ce-shi-wang-shui-long-tou.md)
-* [去中心化交易所](ecosystem/qu-zhong-xin-hua-jiao-yi-suo.md)
-* [价格预言机](ecosystem/jia-ge-yu-yan-ji.md)
+* [链上生态](sheng-tai/lian-shang-sheng-tai.md)
+* [跨链桥](sheng-tai/kua-lian-qiao.md)
+* [测试网水龙头](sheng-tai/ce-shi-wang-shui-long-tou.md)
+* [去中心化交易所](sheng-tai/qu-zhong-xin-hua-jiao-yi-suo.md)
+* [价格预言机](sheng-tai/jia-ge-yu-yan-ji.md)
 
 ## 共识机制
 

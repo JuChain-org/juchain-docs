@@ -41,7 +41,7 @@ module.exports = {
 
 ### 5. 合约部署时报 “insufficient funds” 怎么办？
 
-请确保你的钱包地址在 JuChain 测试网有足够的 JU 代币。可以通过 [测试网水龙头](ecosystem/ce-shi-wang-shui-long-tou.md) 领取。
+请确保你的钱包地址在 JuChain 测试网有足够的 JU 代币。可以通过 [测试网水龙头](sheng-tai/ce-shi-wang-shui-long-tou.md) 领取。
 
 ### 6. 如何在 Remix 上部署合约到 JuChain？
 
