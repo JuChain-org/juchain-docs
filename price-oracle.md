@@ -1,3 +1,7 @@
+---
+hidden: true
+---
+
 # Price Oracle
 
 The JuChain Oracle service provides reliable on-chain price data for decentralized applications (dApps). The JU-USDT Price Oracle specifically delivers real-time pricing of the JU token relative to USDT, supporting DeFi applications, trading platforms, and other smart contracts requiring precise price data.
