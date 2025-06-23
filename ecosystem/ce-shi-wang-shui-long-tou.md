@@ -1,3 +1,7 @@
+---
+hidden: true
+---
+
 # 测试网水龙头
 
 ## JuChain 测试网水龙头
