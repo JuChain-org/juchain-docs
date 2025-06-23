@@ -46,3 +46,7 @@
 
 * [Community & Support](community-and-support/community-and-support.md)
 * [Brand Resources & Guidelines](community-and-support/brand-resources-and-guidelines.md)
+
+## Tokenomics
+
+* [Page 1](tokenomics/page-1.md)

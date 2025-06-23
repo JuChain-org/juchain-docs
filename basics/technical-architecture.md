@@ -1,16 +1,10 @@
 # Technical Architecture
 
-### Overview
-
-JuChain is a high-performance Layer 1 blockchain engineered to serve as an on-chain traffic hub and user growth engine. Its technical architecture is designed for rapid transaction confirmations, low costs, and high throughput while maintaining decentralization and security. Powered by the proprietary **JPoSA (JuChain Proof of Stake Authorization)** consensus mechanism and full compatibility with the Ethereum Virtual Machine (EVM), JuChain offers developers an efficient and familiar environment. This document outlines JuChain’s core technical architecture, including key components, consensus mechanisms, and network design.
-
-***
-
 ### Architecture Layers
 
 JuChain’s technical stack is organized into distinct layers, each handling specific functions:
 
-#### 1. Data Layer
+#### Data Layer
 
 * **Purpose**: Stores all blockchain data.
 * **Key Components**:
@@ -19,7 +13,7 @@ JuChain’s technical stack is organized into distinct layers, each handling spe
   * **Transaction Pool**: Buffers pending transactions for packaging.
 * **Features**: Enables fast queries and ensures data integrity.
 
-#### 2. Network Layer
+#### Network Layer
 
 * **Purpose**: Manages node communication and data syncing.
 * **Key Components**:
@@ -27,13 +21,13 @@ JuChain’s technical stack is organized into distinct layers, each handling spe
   * **Node Types**: Full nodes (complete data), light nodes (headers only), and validator nodes.
 * **Features**: Efficiently broadcasts transactions and blocks.
 
-#### 3. Consensus Layer
+#### Consensus Layer
 
 * **Purpose**: Maintains network state consistency.
 * **Core Mechanism**: JPoSA (detailed below).
 * **Features**: 1-second block time for swift confirmations.
 
-#### 4. Execution Layer
+#### Execution Layer
 
 * **Purpose**: Processes transactions and smart contracts.
 * **Key Components**:
@@ -41,7 +35,7 @@ JuChain’s technical stack is organized into distinct layers, each handling spe
   * **Gas Mechanism**: Ultra-low transaction fees.
 * **Features**: Compatible with Ethereum tools and contracts.
 
-#### 5. Application Layer
+#### Application Layer
 
 * **Purpose**: Provides developer interfaces.
 * **Key Components**:
