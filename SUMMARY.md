@@ -1,6 +1,7 @@
 # Table of contents
 
 * [什么是 JuChain？](README.md)
+* [设计理念](she-ji-li-nian.md)
 
 ## 基础信息
 
