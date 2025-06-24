@@ -9,9 +9,9 @@
 
 ***
 
-* [智能合约](zhi-neng-he-yue.md)
 * [开始使用 JuChain](kai-shi-shi-yong-juchain.md)
 * [技术架构](ji-shu-jia-gou.md)
+* [智能合约](zhi-neng-he-yue.md)
 
 ## 生态
 
