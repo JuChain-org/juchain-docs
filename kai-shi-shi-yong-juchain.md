@@ -1,6 +1,6 @@
 # 开始使用 JuChain
 
-### 在 MetaMask 钱包中使用 JuChain 测试网
+### 在 MetaMask 钱包中使用 JuChain 主网
 
 #### 步骤 1：安装 MetaMask 钱包
 
@@ -10,12 +10,12 @@
 4. 安装完成后，您将在浏览器右上角看到 MetaMask 狐狸图标
 5. 首次使用需要创建钱包 - 请安全保存您的助记词
 
-#### 步骤 2：添加 JuChain 测试网
+#### 步骤 2：添加 JuChain 主网
 
 1. 点击 MetaMask 左上角的网络选择下拉菜单
 2. 点击 "添加自定义网络"
 3. 填写以下网络信息并点击保存：
-   * 网络名称：JuChain Testnet
+   * 网络名称：JuChain Mainnet
    * RPC 地址：https://testnet-rpc.juchain.org
    * 链 ID：202599
    * 货币符号：JU
