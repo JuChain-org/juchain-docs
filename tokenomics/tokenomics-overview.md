@@ -1,6 +1,6 @@
-# 4. Tokenomics
+# Tokenomics Overview
 
-This section provides a comprehensive overview of JuChain's token economics, including distribution plan, emission schedule, and deflationary mechanisms.
+A comprehensive overview of JuChain's token economics, including distribution plan, emission schedule, and deflationary mechanisms.
 
 JuChain's tokenomics has been carefully designed to:
 
