@@ -2,6 +2,7 @@
 
 * [什么是 JuChain？](README.md)
 * [设计理念](she-ji-li-nian.md)
+* [未来愿景](wei-lai-yuan-jing.md)
 
 ## 基础信息
 
