@@ -6,13 +6,13 @@ This will walk you through the steps of setting up and configuring a MetaMask wa
 
 **NOTE:** It is recommended that you set this up through Chrome.
 
-#### Step 1 - Install MetaMask[​](https://docs.berachain.com/learn/connect-to-berachain#step-1-install-metamask) <a href="#step-1-install-metamask" id="step-1-install-metamask"></a>
+#### Step 1 - Install MetaMask​ <a href="#step-1-install-metamask" id="step-1-install-metamask"></a>
 
 Go to MetaMask's [website](https://metamask.io/) and click to download the browser extension for your browser of choice. Make sure the extension is being offered by `metamask.io`.
 
 ![Metamask Chrome Store](https://docs.berachain.com/assets/metamask-chrome-store.png)
 
-#### Step 2 - Create Your Wallet in MetaMask[​](https://docs.berachain.com/learn/connect-to-berachain#step-2-create-your-wallet-in-metamask) <a href="#step-2-create-your-wallet-in-metamask" id="step-2-create-your-wallet-in-metamask"></a>
+#### Step 2 - Create Your Wallet in MetaMask​ <a href="#step-2-create-your-wallet-in-metamask" id="step-2-create-your-wallet-in-metamask"></a>
 
 Once MetaMask finishes installing as a Chrome extension, the initial prompt will show up. Click the `Create a new wallet` button to start the process.
 
@@ -28,7 +28,6 @@ Next, follow the instructions to secure your wallet phrase. This step is very im
 
 🎉 Congratulations! You've set up your MetaMask wallet!
 
-\
 
 
 #### Step 3: Add JuChain Mainnet
@@ -69,7 +68,7 @@ After saving the network configuration, you should be connected to the Juchain M
 
 
 
-Common Issues
+#### Common Issues
 
 1. If network addition fails, check:
    * Network parameters are entered correctly
