@@ -31,28 +31,45 @@ Next, follow the instructions to secure your wallet phrase. This step is very im
 \
 
 
-#### Step 2: Add JuChain Mainnet
+#### Step 3: Add JuChain Mainnet
 
 1. Click the network selection dropdown menu in the top left of MetaMask
-2. Click "Add Custom Network"
-3. Fill in the following network information and click save:
-   * Network Name: JuChain Mainnet
-   * RPC URL: https://rpc.juchain.org
-   * Chain ID: 210000
-   * Currency Symbol: JU
-   * Block Explorer: [http://juscan.io](http://testnet.juscan.io)
-4. JuChain also provides an automatic network addition solution for MetaMask wallet - simply visit the JuChain testnet website testnet.juchain.org and click "Add Network" to complete the addition.
+2. Click "Add a Custom Network"
 
-#### Step 3: Get Test Tokens
 
-1. Visit the faucet website: http://faucet-testnet.juchain.org/
-2. Copy your MetaMask wallet address (0x...)\
 
-3. Paste your wallet address into the input box
-4. Click the "Get Test Tokens" button
-5. Wait a few seconds, and the test tokens will be automatically sent to your wallet
+<figure><img src=".gitbook/assets/截屏2025-06-24 下午2.24.48.png" alt=""><figcaption></figcaption></figure>
 
-#### Common Issues
+
+
+3.Fill in the following network information and click save:
+
+* Network Name: JuChain Mainnet
+* RPC URL
+
+<figure><img src=".gitbook/assets/截屏2025-06-24 下午2.27.01.png" alt=""><figcaption></figcaption></figure>
+
+* Chain ID: 210000
+* Currency Symbol: JU
+* Block Explorer: [http://juscan.io](http://testnet.juscan.io)
+
+<figure><img src=".gitbook/assets/截屏2025-06-24 下午2.28.25.png" alt=""><figcaption></figcaption></figure>
+
+* Confirm all message.
+
+<figure><img src=".gitbook/assets/截屏2025-06-24 下午2.29.36.png" alt=""><figcaption></figcaption></figure>
+
+4.Clink "Save".
+
+After saving the network configuration, you should be connected to the Juchain Mainnet!
+
+<figure><img src=".gitbook/assets/截屏2025-06-24 下午2.35.09.png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src=".gitbook/assets/截屏2025-06-24 下午2.36.15.png" alt=""><figcaption></figcaption></figure>
+
+
+
+Common Issues
 
 1. If network addition fails, check:
    * Network parameters are entered correctly
@@ -63,12 +80,10 @@ Next, follow the instructions to secure your wallet phrase. This step is very im
    * Each address has a daily claim limit
    * Try again later
 3. If balance is not visible:
-   * Ensure you've switched to JuChain Testnet network
+   * Ensure you've switched to JuChain Mainnet network
    * Click the refresh button in MetaMask
    * Check network connection
 
 #### Important Notes
 
-1. This is a test network, do not store large amounts of assets
-2. Test tokens are for testing purposes only and have no real value
-3. If you encounter issues, seek help through the community
+If you encounter issues, seek help through the community
