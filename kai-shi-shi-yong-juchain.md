@@ -2,7 +2,10 @@
 
 ### 在 MetaMask 钱包中使用 JuChain 主网
 
-\
+这将引导您完成使用 Juchain 设置和配置 MetaMask 钱包的步骤。\
+**注意**：建议您通过 Chrome 进行设置。\
+
+
 **步骤 1 - 安装 MetaMask**\
 前往 MetaMask 的[网站](https://metamask.io/)然后点击下载你所选浏览器的扩展程序。请确保该扩展程序是由 `metamask.io` 提供的。
 
