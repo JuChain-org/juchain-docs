@@ -2,30 +2,6 @@
 
 Beyond its role in securing the network, the JU token is designed as a multi-purpose asset that underpins every layer of the JuChain ecosystem.
 
-```mermaid
-mindmap
-  root((JU Token))
-    Gas Fees
-        Transactions
-        Contract Execution
-        Cross-shard Messages
-    Staking
-        Validator Self-stake
-        Delegator Participation
-    Governance
-        Proposals
-        Voting
-    Ecosystem
-        In-app Purchases
-        NFT Minting
-        Subscriptions
-    DeFi
-        Collateral
-        Liquidity Pools
-```
-
-_Figure: JU Token Utility Map - Illustrating the multi-purpose nature of the token_
-
 ## Core Utility Functions
 
 ### Gas Fees

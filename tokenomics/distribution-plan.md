@@ -2,14 +2,6 @@
 
 JuChain's token distribution is designed to balance immediate utility with long-term sustainability. The distribution plan reflects the project's commitment to building a robust and widely-used blockchain ecosystem.
 
-```mermaid
-pie title JU Token Distribution
-    "Node Mining" : 97
-    "Initial Exchange Offering" : 3
-```
-
-_Figure: Initial JU Token Allocation - Emphasizing community-driven distribution_
-
 ## High-Level Token Allocation
 
 The initial distribution of JU tokens is structured as follows:
