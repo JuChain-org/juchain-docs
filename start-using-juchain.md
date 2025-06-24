@@ -1,6 +1,6 @@
 # Start Using JuChain
 
-### How To Set Up A MetaMask Wallet With Juchain 🦊[​](https://docs.berachain.com/learn/connect-to-berachain#how-to-set-up-a-metamask-wallet-with-berachain-%F0%9F%A6%8A) <a href="#how-to-set-up-a-metamask-wallet-with-berachain" id="how-to-set-up-a-metamask-wallet-with-berachain"></a>
+### How To Set Up A MetaMask Wallet With Juchain 🦊​ <a href="#how-to-set-up-a-metamask-wallet-with-berachain" id="how-to-set-up-a-metamask-wallet-with-berachain"></a>
 
 This will walk you through the steps of setting up and configuring a MetaMask wallet with Juchain.
 
@@ -65,8 +65,6 @@ After saving the network configuration, you should be connected to the Juchain M
 <figure><img src=".gitbook/assets/截屏2025-06-24 下午2.35.09.png" alt=""><figcaption></figcaption></figure>
 
 <figure><img src=".gitbook/assets/截屏2025-06-24 下午2.36.15.png" alt=""><figcaption></figcaption></figure>
-
-
 
 #### Common Issues
 
