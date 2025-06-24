@@ -9,7 +9,7 @@
 | 名称     | 值                                                      |
 | ------ | ------------------------------------------------------ |
 | 网络名称   | JuChain Mainnet                                        |
-| 描述     | JuChain 公共主网                                           |
+| 描述     | JuChain 主网                                             |
 | RPC 端点 | <p>https://rpc.juchain.org<br>wss://ws.juchain.org</p> |
 | 链 ID   | 210000                                                 |
 | 货币符号   | JU                                                     |
