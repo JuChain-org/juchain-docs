@@ -21,6 +21,19 @@
 
 * [Price Oracle](price-oracle.md)
 
+## Tokenomics
+
+* [Tokenomics Overview](tokenomics/4.-tokenomics.md)
+* [Distribution Plan](tokenomics/distribution-plan.md)
+* [Distribution Breakdown](tokenomics/distribution-breakdown.md)
+* [Token Utility and Use Cases](tokenomics/token-utility-and-use-cases.md)
+* [Supply Dynamics and Vesting](tokenomics/4.4-supply-dynamics-and-vesting.md)
+* [Node Mining](tokenomics/4.5-node-mining.md)
+* [JuChain Foundation](tokenomics/4.6-juchain-foundation.md)
+* [JuChain Partner Nodes](tokenomics/4.7-juchain-partner-nodes.md)
+* [Node Computing Power and Income](tokenomics/4.8-node-computing-power-and-income.md)
+* [Deflation & Burning](tokenomics/4.9-deflation-and-burning.md)
+
 ## Developer Guide
 
 * [Quick Start](developer-guide/quick-start.md)
@@ -46,16 +59,3 @@
 
 * [Community & Support](community-and-support/community-and-support.md)
 * [Brand Resources & Guidelines](community-and-support/brand-resources-and-guidelines.md)
-
-## Tokenomics
-
-* [Tokenomics Overview](tokenomics/tokenomics-overview.md)
-* [Distribution Plan](tokenomics/distribution-plan.md)
-* [Distribution Breakdown](tokenomics/distribution-breakdown.md)
-* [Token Utility and Use Cases](tokenomics/token-utility-and-use-cases.md)
-* [Supply Dynamics and Vesting](tokenomics/supply-dynamics-and-vesting.md)
-* [Node Mining](tokenomics/node-mining.md)
-* [JuChain Foundation](tokenomics/juchain-foundation.md)
-* [JuChain Partner Nodes](tokenomics/juchain-partner-nodes.md)
-* [Node Computing Power and Income](tokenomics/node-computing-power-and-income.md)
-* [Deflation & Burning](tokenomics/deflation-and-burning.md)
