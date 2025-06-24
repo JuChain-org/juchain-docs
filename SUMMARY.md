@@ -2,6 +2,7 @@
 
 * [JuChain Documentation](README.md)
 * [What is JuChain?](what-is-juchain.md)
+* [Design Philosophy](design-philosophy.md)
 
 ## Basics
 
