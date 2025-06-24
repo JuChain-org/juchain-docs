@@ -34,7 +34,7 @@
 * [JuChain Foundation](tokenomics/4.6-juchain-foundation.md)
 * [JuChain Partner Nodes](tokenomics/4.7-juchain-partner-nodes.md)
 * [Node Computing Power and Income](tokenomics/4.8-node-computing-power-and-income.md)
-* [Deflation & Burning](tokenomics/4.9-deflation-and-burning.md)
+* [Deflation](tokenomics/deflation.md)
 
 ## Developer Guide
 
