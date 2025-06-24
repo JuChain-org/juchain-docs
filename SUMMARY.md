@@ -32,7 +32,7 @@
 * [JuChain基金会](dai-bi-jing-ji-xue/juchain-ji-jin-hui.md)
 * [JuChain合作伙伴节点](dai-bi-jing-ji-xue/juchain-he-zuo-huo-ban-jie-dian.md)
 * [节点计算能力与收入](dai-bi-jing-ji-xue/jie-dian-ji-suan-neng-li-yu-shou-ru.md)
-* [通缩与销毁](dai-bi-jing-ji-xue/tong-suo-yu-xiao-hui.md)
+* [通缩](dai-bi-jing-ji-xue/tong-suo.md)
 
 ## 共识机制
 
