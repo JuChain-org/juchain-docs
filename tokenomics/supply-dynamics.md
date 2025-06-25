@@ -1,4 +1,4 @@
-# Supply Dynamics and Vesting
+# Supply Dynamics
 
 To preserve long-term scarcity while supporting sustainable growth, JuChain employs a dual mechanism of controlled issuance and scheduled halvings.
 
@@ -38,13 +38,3 @@ This controlled emission schedule ensures that:
 3. Long-term supply is capped to preserve value
 4. Emission rate adjusts to network maturity
 
-
-
-## Liquidity Management
-
-20% of net IEO proceeds are reserved for:
-
-* Exchange-side liquidity
-* Automated market-making pools
-
-These provisions help stabilize early-stage price discovery and ensure healthy trading volumes from launch.
