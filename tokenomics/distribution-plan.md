@@ -18,7 +18,7 @@ This distribution structure emphasizes:
 3. **Earned Distribution**: Most tokens enter circulation through active participation in network security and operations, rather than through pre-sale allocations.
 4. **Long-Term Alignment**: The gradual release of tokens through computing power aligns token distribution with network growth and usage.
 
-## Strategic Rationale
+## Distribution Rules
 
 This distribution approach is strategically designed to:
 
