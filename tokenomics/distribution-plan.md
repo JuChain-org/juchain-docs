@@ -6,17 +6,17 @@ JuChain's token distribution is designed to balance immediate utility with long-
 
 The initial distribution of JU tokens is structured as follows:
 
-| Category                        | Allocation |
-| ------------------------------- | ---------- |
-| Node Mining                     | 97%        |
-| Initial Exchange Offering (IEO) | 3%         |
+| Category                    | Allocation |
+| --------------------------- | ---------- |
+| Computing power contributor | 97%        |
+| Initial Offering            | 3%         |
 
 This distribution structure emphasizes:
 
-1. **Community-Driven Growth**: The vast majority of tokens (97%) are allocated to node mining, ensuring wide distribution and community participation over time.
-2. **Minimal Pre-Sale**: Only a small portion (3%) is allocated to the Initial Exchange Offering, preventing concentration of ownership in early investors.
+1. **Community-Driven Growth**: The vast majority of tokens (97%) are allocated to Computing power contributor, ensuring wide distribution and community participation over time.
+2. **Minimal Pre-Sale**: Only a small portion (3%) is allocated to early investors.
 3. **Earned Distribution**: Most tokens enter circulation through active participation in network security and operations, rather than through pre-sale allocations.
-4. **Long-Term Alignment**: The gradual release of tokens through mining aligns token distribution with network growth and usage.
+4. **Long-Term Alignment**: The gradual release of tokens through computing power aligns token distribution with network growth and usage.
 
 ## Strategic Rationale
 
