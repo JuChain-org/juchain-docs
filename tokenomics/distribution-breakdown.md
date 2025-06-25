@@ -30,6 +30,6 @@ The allocation of daily emissions reflects JuChain's strategic priorities:
 
 ## Genesis Supply
 
-* **Total Genesis Supply**: 210 million JU (100%)
-* **Immediate Circulation**: 3% (6.3 million) via the IEO
-* **Gradual Release**: The remaining 97% released over time through mining and ecosystem programs
+* **Total Genesis Supply**: 210,000,000 JU (100%)
+* **Immediate Circulation**: 3% (6,300,000 JU) via the IO
+* **Gradual Release**: The remaining 97% released over time through Coputering and ecosystem programs
