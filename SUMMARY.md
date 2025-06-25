@@ -27,7 +27,7 @@
 * [代币分配计划](dai-bi-jing-ji-xue/dai-bi-fen-pei-ji-hua.md)
 * [代币分配明细](dai-bi-jing-ji-xue/dai-bi-fen-pei-ming-xi.md)
 * [代币效用与用例](dai-bi-jing-ji-xue/dai-bi-xiao-yong-yu-yong-li.md)
-* [供应动态与归属期](dai-bi-jing-ji-xue/gong-ying-dong-tai-yu-gui-shu-qi.md)
+* [供应动态](dai-bi-jing-ji-xue/gong-ying-dong-tai.md)
 * [算力产出](dai-bi-jing-ji-xue/suan-li-chan-chu.md)
 * [JuChain基金会](dai-bi-jing-ji-xue/juchain-ji-jin-hui.md)
 * [JuChain合伙人节点](dai-bi-jing-ji-xue/juchain-he-huo-ren-jie-dian.md)
