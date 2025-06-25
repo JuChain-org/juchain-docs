@@ -1,3 +1,7 @@
+---
+hidden: true
+---
+
 # Deflation
 
 JuChain implements several deflationary mechanisms to ensure long-term token value preservation and balance the continuous token emission.
