@@ -2,6 +2,17 @@
 
 ### 在 MetaMask 钱包中使用 JuChain 主网
 
+1. 点击 MetaMask 左上角的网络选择下拉菜单
+2. 点击 "添加自定义网络"
+3. 填写以下网络信息并点击保存：
+   * 网络名称：JuChain Mainnet
+   * RPC 地址：https://rpc.juchain.org
+   * 链 ID：210000
+   * 货币符号：JU
+   * 区块浏览器：[http://juscan.io](http://testnet.juscan.io)
+
+
+
 这将引导您完成使用 Juchain 设置和配置 MetaMask 钱包的步骤。\
 **注意**：建议您通过 Chrome 进行设置。\
 
