@@ -139,19 +139,14 @@ JuChain’s design optimizes these key metrics:
 *   **Example** (Query block height):
 
     ```bash
-    curl -X POST -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":1}' https://testnet-rpc.juchain.org
-    ```
-*   **Response**:
-
-    ```json
-    {"jsonrpc":"2.0","id":1,"result":"0x1a2b3c"}
+    curl -X POST -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":1}' Response:https://rpc.juchain.org {"jsonrpc":"2.0","id":1,"result":"0x1a2b3c"}
     ```
 
 #### 2. Network Config
 
 * **Testnet**:
-  * RPC: `https://testnet-rpc.juchain.org`
-  * Chain ID: 202599
+  * RPC: [`https://rpc.juchain.org`](https://rpc.juchain.org)
+  * Chain ID: 210000
   * Currency: JU
 * **Gas Settings**:
   * Minimum Gas Price: 1 gwei
@@ -160,7 +155,7 @@ JuChain’s design optimizes these key metrics:
 #### 3. Tool Support
 
 * **Frameworks**: Truffle, Hardhat
-* **Block Explorer**: `https://testnet.juscan.io`
+* **Block Explorer**: `https://juscan.io`
 
 ***
 
