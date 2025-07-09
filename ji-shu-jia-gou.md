@@ -135,12 +135,14 @@ JuChain 的设计优化了以下性能指标：
 
 #### 1. RPC 接口
 
-* **端点**：`https://testnet-rpc.juchain.org`
-*   **示例**（查询区块高度）：
+* **端点**：`https://rpc.juchain.org`
+* **示例**（查询区块高度）：
 
-    ```bash
-    curl -X POST -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":1}' https://testnet-rpc.juchain.org
-    ```
+```bash
+curl -X POST -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":1}' https://rpc.juchain.org
+```
+
+* **id: 1 并不是链 ID（chainId），而是 JSON-RPC 协议中的请求编号，用于客户端识别请求与响应是否对应。**
 *   **响应**：
 
     ```json
@@ -149,9 +151,9 @@ JuChain 的设计优化了以下性能指标：
 
 #### 2. 网络配置
 
-* **测试网**：
-  * RPC：`https://testnet-rpc.juchain.org`
-  * 链 ID：202599
+* **主网**：
+  * RPC：`https://rpc.juchain.org`
+  * 链 ID：210000
   * 货币符号：JU
 * **Gas 参数**：
   * 最低 Gas 价格：1 gwei。
@@ -160,7 +162,7 @@ JuChain 的设计优化了以下性能指标：
 #### 3. 工具支持
 
 * **开发框架**：Truffle、Hardhat。
-* **区块浏览器**：`https://explorer-testnet.juchain.org`。
+* **区块浏览器**：[`https://juscan.io`](https://juscan.io)
 
 ***
 
@@ -181,4 +183,3 @@ JuChain 在出块速度和成本上具有明显优势。
 
 JuChain 的技术架构通过 JPoSA 共识、EVM 兼容性和高效网络设计，提供了一个快速、低成本的区块链平台。其 1 秒出块时间和高吞吐量使其特别适合流量密集型和实时性要求高的 dApp。开发者可利用本文档中的信息，快速集成 JuChain 并构建应用。
 
-####
