@@ -5,7 +5,7 @@ This document introduces the common problems and operation methods of JuChain no
 
 ***
 
-#### &#x20;<a href="#jie-dian-da-jian" id="jie-dian-da-jian"></a>
+### Quick Start <a href="#jie-dian-da-jian" id="jie-dian-da-jian"></a>
 
 **1. Supported operating systems**
 
@@ -70,7 +70,7 @@ curl -X POST --data '{"jsonrpc":"2.0","method":"eth_syncing","params":[],"id":1}
 
 ***
 
-#### &#x20;JSON-RPC API calls <a href="#jsonrpc-api-diao-yong" id="jsonrpc-api-diao-yong"></a>
+### JSON-RPC API calls <a href="#jsonrpc-api-diao-yong" id="jsonrpc-api-diao-yong"></a>
 
 **1. Supported APIs**
 
@@ -129,6 +129,26 @@ provider.on("block", (blockNumber) => {
 * **Return 403/401** : Please check whether the RPC node is open to the public or whether there are any access restrictions.
 * **Timeout/No response** : Check the network connection or whether the node has completed synchronization.
 * **Data format error** : Please ensure that the request body is in the standard JSON-RPC format.
+
+### API Request Limits Update (2025.07.25)
+
+#### 1. Request Rate Limit
+
+**Interface Restriction:**\
+A rate limit has been applied to the `eth_getLogs` and `eth_getFilterLogs` interfaces. Each interface can be called up to **500 times within a 10-second window**.\
+Once the threshold is exceeded, further requests will be denied to maintain system stability.
+
+#### 2. Block Range Limit
+
+**Interface Restriction:**\
+To improve query efficiency and reduce data load, a **block range limit** has been introduced for the `eth_getLogs` and `eth_getFilterLogs` interfaces.\
+Users must ensure the block range specified in the query does not exceed the configured maximum. Queries exceeding the limit will be rejected.
+
+#### 3. Removal of `debug_` Methods
+
+**Interface Restriction:**\
+All methods under the `debug_` namespace are no longer supported and have been completely removed.\
+Examples include: `debug_traceTransaction`, `debug_traceBlock`, and other debug-related methods.
 
 ***
 
