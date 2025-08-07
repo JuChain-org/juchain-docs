@@ -70,4 +70,7 @@
 ***
 
 * [品牌资源与规范](pin-pai-zi-yuan-yu-gui-fan.md)
-* [同步节点搭建](tong-bu-jie-dian-da-jian.md)
+
+## 节点
+
+* [同步节点搭建](jie-dian/tong-bu-jie-dian-da-jian.md)
