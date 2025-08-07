@@ -61,6 +61,6 @@
 * [Conclusion](community-and-support/conclusion.md)
 * [Brand Resources & Guidelines](community-and-support/brand-resources-and-guidelines.md)
 
-***
+## Node
 
-* [Node Service Synchronization](node-service-synchronization.md)
+* [Node Service Synchronization](node/node-service-synchronization.md)
