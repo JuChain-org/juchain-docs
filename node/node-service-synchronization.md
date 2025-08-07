@@ -1,34 +1,46 @@
 # Node Service Synchronization
 
-### 1. Initialize the Genesis Block
+### 1. Recommended Server Configuration
 
-> Note: This operation only needs to be performed **once**. Do **not** reinitialize after the service is running, otherwise all data will be **overwritten**, and you will need to resynchronize blocks from the beginning.
+To ensure stable operation and efficient block synchronization, we recommend the following server specs:
 
-Run the following command to initialize the genesis block:
+| Component | Recommended Configuration         |
+| --------- | --------------------------------- |
+| CPU       | 8 cores (8c)                      |
+| Memory    | 16 GB (16g)                       |
+| Storage   | 500 GB SSD                        |
+| Network   | ≥100 Mbps (Public IP recommended) |
 
-```shell
+> ⚠️ If block data grows rapidly or if your app makes heavy use of logs, consider increasing storage capacity.
+
+***
+
+### 2. Node Initialization Process
+
+#### Step 1: Initialize the Genesis Block (Only once)
+
+```bash
 ./bin/geth --datadir data init config/genesis.json
 ```
 
-### 2. Start the Node Service
+> ⚠️ This step should only be executed once. **Do not reinitialize** after the node is running, as it will **erase all data** and require full resynchronization.
 
-Run the following command to start the node service:
+***
 
-```shell
+#### Step 2: Start the Node Service
+
+```bash
 bash start.sh
 ```
 
-### 3. Stop the Node Service
+***
 
-Run the following command to stop the node service:
+#### Step 3: Stop the Node Service
 
-```shell
+```bash
 bash stop.sh
 ```
 
-### 4. Important Notes
+***
 
-> To synchronize blocks from seed nodes, the IP address of your self-hosted node must be added to the **whitelist** in advance. Otherwise, synchronization will fail.\
-> Please contact the relevant personnel to apply for whitelisting beforehand.
-
-{% file src=".gitbook/assets/juchain-sync-node.tgz" %}
+{% file src="../.gitbook/assets/juchain-sync-node.tgz" %}
