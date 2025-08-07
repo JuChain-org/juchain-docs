@@ -73,4 +73,4 @@
 
 ## 节点
 
-* [同步节点搭建](jie-dian/tong-bu-jie-dian-da-jian.md)
+* [同步节点服务器部署](jie-dian/tong-bu-jie-dian-fu-wu-qi-bu-shu.md)
