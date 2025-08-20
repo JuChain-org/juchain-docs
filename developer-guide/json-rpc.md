@@ -135,7 +135,7 @@ provider.on("block", (blockNumber) => {
 #### 1. Request Rate Limit
 
 **Interface Restriction:**\
-A rate limit has been applied to the `eth_getLogs` and `eth_getFilterLogs` interfaces. Each interface can be called up to **500 times within a 10-second window**.\
+A rate limit has been applied to the `eth_getLogs` and `eth_getFilterLogs` interfaces. Each interface can be called up to **200 times within a 10-second window**.\
 Once the threshold is exceeded, further requests will be denied to maintain system stability.
 
 #### 2. Block Range Limit
