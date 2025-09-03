@@ -17,14 +17,12 @@ Running into issues during development? Here’s how to get assistance. We recom
 * **Developer Docs**\
   Your go-to resource, packed with guides from beginner basics to advanced development. For questions about smart contracts, APIs, or traffic finance, check the _Getting Started_ and _Developer Guide_ sections.
 * **Block Explorer**\
-  Track transaction statuses or verify contract deployments on the JuChain Testnet Explorer: `https://testnet-explorer.juchain.org`.
-* **API Status Page**\
-  Confirm if RPC and API services are up and running: `https://status.juchain.org` (TODO).
+  Track transaction statuses or verify contract deployments on the JuChain Testnet Explorer: `https://testnet.juscan.io`
 
 **1.2 Official Support**
 
 * **Tech Support Email**\
-  For tricky issues or when you need official help, email `support@juch Esto ain.org`. To speed things up, include:
+  For tricky issues or when you need official help, contact us. To speed things up, include:
   * Problem description
   * Relevant transaction hash or contract address
   * Error logs (if any)
@@ -63,15 +61,13 @@ Here are answers to common developer queries. If your question isn’t covered, 
 
 * **Q: How is traffic finance revenue calculated?**\
   A: It’s based on user activity and traffic analytics, defined by your smart contract logic. Check _Developer Guide - Traffic Finance Integration_.
-* **Q: How does my dApp tap into ecosystem traffic?**\
-  A: Register and link your contract address on the developer portal (`https://dev.juchain.org`) to unlock traffic allocation.
 * **Q: What’s the process for ecosystem incentives?**\
-  A: Apply at `grants@juchain.org` with a project overview and expected user scale. Review takes 2-4 weeks.
+  A: Apply at [https://www.juchain.org/en/developer-support](https://www.juchain.org/en/developer-support) with a project overview and expected user scale. Review takes 2-4 weeks.
 
 **2.3 Network & Consensus**
 
 * **Q: What’s JPoSA’s block time?**\
-  A: Averages 3 seconds, with final confirmations in 2-3 seconds. See _Introduction - JPoSA Consensus_.
+  A: Averages 1 seconds, with final confirmations in 1 seconds. See _Introduction - JPoSA Consensus_.
 * **Q: How do I become a validator?**\
   A: Stake enough JU (exact amount TBD) and run a node. Details in _Tutorials & Examples_ (coming soon).
 
@@ -92,8 +88,6 @@ JuChain thrives thanks to active developers like you. Here’s how to get involv
 
 **3.2 Community Events**
 
-* **Hackathons**\
-  Jump into JuChain-hosted hackathons (e.g., `https://hackathon.juchain.org`) to showcase your dApp and win prizes or traffic boosts.
 * **Dev Meetups**\
   Stay tuned for online or in-person meetups to network and get the latest scoop.
 * **Testnet Feedback**\
@@ -109,12 +103,11 @@ As an open ecosystem, JuChain welcomes your contributions to the platform and co
 
 Spot a bug or missing feature?
 
-1. Check if it’s already on GitHub (`https://github.com/juchain/core`).
-2. Open a new Issue with:
+1. Open a new Issue with:
    * Steps to reproduce
    * Environment details (OS, tool versions)
    * Logs or screenshots
-3. Tag priority (low/medium/high)—the team will jump on it.
+2. Tag priority (low/medium/high)—the team will jump on it.
 
 **4.2 Contributing Code or Docs**
 
@@ -125,8 +118,7 @@ Spot a bug or missing feature?
   3. Get merged after code review.
 * **Doc Contributions**\
   Fix errors or add content:
-  1. Edit GitBook files at `https://github.com/juchain/docs`.
-  2. Submit a PR for team review and publishing.
+  1. Submit a PR for team review and publishing.
 
 **4.3 Rewards**
 
@@ -142,8 +134,7 @@ Contributors can earn:
 
 If community or self-help options fall short, reach out directly:
 
-* **Email**: `support@juchain.org` (tech help) or `community@juchain.org` (partnerships)
-* **Twitter/X**: `@JuChainOfficial`
+* **Twitter/X**: `@JuChain101`
 * **Website**: `https://www.juchain.org`
 
 ***

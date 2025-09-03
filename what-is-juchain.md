@@ -77,7 +77,7 @@ JuChain’s architecture gives it a serious edge—here’s why it’s a develop
 #### Performance Highlights
 
 * **Block Time**: 1 second
-* **Confirmation**: 2-3 seconds
+* **Confirmation**: 1 seconds
 * **Fault Tolerance**: Survives up to 7 validator failures (1/3 of the network)
 * **Throughput**: Thousands of TPS
 
