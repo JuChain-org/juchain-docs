@@ -14,7 +14,7 @@
 
 <figure><img src=".gitbook/assets/JuChain Logo - Logomark_white.svg" alt=""><figcaption></figcaption></figure>
 
-<div><figure><img src=".gitbook/assets/JuChain Logo - V_white.svg" alt=""><figcaption></figcaption></figure> <figure><img src=".gitbook/assets/JuChain Logo - H_white.svg" alt=""><figcaption></figcaption></figure></div>
+<div><figure><img src=".gitbook/assets/JuChain Logo - H_white.svg" alt=""><figcaption></figcaption></figure> <figure><img src=".gitbook/assets/JuChain Logo - V_white.svg" alt=""><figcaption></figcaption></figure></div>
 
 
 
