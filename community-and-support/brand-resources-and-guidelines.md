@@ -4,17 +4,19 @@
 
 ## Brand Logo
 
+#### Light Mode
 
+<figure><img src="../.gitbook/assets/JuChain Logo - Logomark.svg" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../.gitbook/assets/JuChain Logo - H.svg" alt="" width="250"><figcaption></figcaption></figure>
-
-
-
-<figure><img src="../.gitbook/assets/JuChain Logo - V.svg" alt="" width="125"><figcaption></figcaption></figure>
+<div><figure><img src="../.gitbook/assets/JuChain Logo - H.svg" alt=""><figcaption></figcaption></figure> <figure><img src="../.gitbook/assets/JuChain Logo - V.svg" alt=""><figcaption></figcaption></figure></div>
 
 
 
-<figure><img src="../.gitbook/assets/JuChain Logo - Logomark.png" alt="" width="128"><figcaption></figcaption></figure>
+#### Dark Mode
+
+<figure><img src="../.gitbook/assets/JuChain Logo - Logomark_white.svg" alt=""><figcaption></figcaption></figure>
+
+<div><figure><img src="../.gitbook/assets/JuChain Logo - H_white.svg" alt=""><figcaption></figcaption></figure> <figure><img src="../.gitbook/assets/JuChain Logo - V_white.svg" alt=""><figcaption></figcaption></figure></div>
 
 ***
 
