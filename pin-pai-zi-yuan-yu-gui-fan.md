@@ -2,7 +2,7 @@
 
 ## 品牌 Logo
 
-b
+#### 浅色模式
 
 <figure><img src=".gitbook/assets/JuChain Logo - Logomark (1).svg" alt=""><figcaption></figcaption></figure>
 
