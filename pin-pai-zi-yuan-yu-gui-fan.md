@@ -2,21 +2,19 @@
 
 ## 品牌 Logo
 
-#### 浅色模式
+<figure><img src=".gitbook/assets/JuChain Logo - Logomark.svg" alt="" width="64"><figcaption></figcaption></figure>
 
-<figure><img src=".gitbook/assets/Icon Logo-black.svg" alt=""><figcaption><p>徽标</p></figcaption></figure>
 
-<div><figure><img src=".gitbook/assets/Logomark Colored Version-cross-black.svg" alt=""><figcaption><p>水平锁定图标</p></figcaption></figure> <figure><img src=".gitbook/assets/Logomark Colored Version-vertical-black.svg" alt=""><figcaption><p>垂直锁定图标</p></figcaption></figure></div>
 
-#### 深色模式
+<figure><img src=".gitbook/assets/JuChain Logo - H.svg" alt="" width="250"><figcaption></figcaption></figure>
 
-<figure><img src=".gitbook/assets/Icon Logo.svg" alt=""><figcaption><p>深色模式-徽标</p></figcaption></figure>
 
-<div><figure><img src=".gitbook/assets/Logomark Colored Version-cross.svg" alt=""><figcaption><p>深色模式-水平锁定图标</p></figcaption></figure> <figure><img src=".gitbook/assets/Logomark Colored Version-vertical.svg" alt=""><figcaption><p>深色模式-垂直锁定图标</p></figcaption></figure></div>
 
-{% file src=".gitbook/assets/JuChain Brand Resource (1).zip" %}
-品牌资源包
-{% endfile %}
+<figure><img src=".gitbook/assets/JuChain Logo - V.svg" alt="" width="125"><figcaption></figcaption></figure>
+
+
+
+{% file src=".gitbook/assets/JuChain Brand Resource.zip" %}
 
 ***
 
@@ -28,8 +26,7 @@
 4. 徽标仅应在以下情况下使用：\
    a. 按钮\
    b. 个人资料图片\
-   c. JU 代币的表达\
-   d. 作为图标
+   c. 作为图标
 
 ## Logo 尺寸
 
@@ -43,7 +40,9 @@
 
 主色：
 
-<div align="center"><figure><img src=".gitbook/assets/Frame 1410104223.svg" alt=""><figcaption><p>C:67 M:0 Y:24 K:0<br>R:35 G:202 B:215<br>Hex: #23CAD7</p></figcaption></figure></div>
+<figure><img src=".gitbook/assets/Frame 1410104223 1.svg" alt=""><figcaption><p>C:83 M:75 Y:0 K:35<br>R:20 G:59 B:255<br>HEX #143BFF<br></p></figcaption></figure>
+
+
 
 白色：
 
