@@ -2,15 +2,19 @@
 
 ## 品牌 Logo
 
-<figure><img src=".gitbook/assets/JuChain Logo - Logomark.svg" alt="" width="64"><figcaption></figcaption></figure>
+b
+
+<figure><img src=".gitbook/assets/JuChain Logo - Logomark (1).svg" alt=""><figcaption></figcaption></figure>
 
 
 
-<figure><img src=".gitbook/assets/JuChain Logo - H.svg" alt="" width="250"><figcaption></figcaption></figure>
+<div><figure><img src=".gitbook/assets/JuChain Logo - H (1).svg" alt=""><figcaption></figcaption></figure> <figure><img src=".gitbook/assets/JuChain Logo - V (1).svg" alt=""><figcaption></figcaption></figure></div>
 
+#### 深色模式
 
+<figure><img src=".gitbook/assets/JuChain Logo - Logomark_white.svg" alt=""><figcaption></figcaption></figure>
 
-<figure><img src=".gitbook/assets/JuChain Logo - V.svg" alt="" width="125"><figcaption></figcaption></figure>
+<div><figure><img src=".gitbook/assets/JuChain Logo - V_white.svg" alt=""><figcaption></figcaption></figure> <figure><img src=".gitbook/assets/JuChain Logo - H_white.svg" alt=""><figcaption></figcaption></figure></div>
 
 
 
