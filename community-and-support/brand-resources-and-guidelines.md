@@ -4,51 +4,23 @@
 
 ## Brand Logo
 
-### Light Mode
 
-<figure><img src="../.gitbook/assets/Icon Logo-black.svg" alt=""><figcaption><p>Icon Logo (black)</p></figcaption></figure>
 
-<div><figure><img src="../.gitbook/assets/Logomark Colored Version-cross-black.svg" alt=""><figcaption><p>Horizontal Lockup (black)</p></figcaption></figure> <figure><img src="../.gitbook/assets/Logomark Colored Version-vertical-black.svg" alt=""><figcaption><p>Vertical Lockup (black)</p></figcaption></figure></div>
-
-### Dark Mode
-
-<figure><img src="../.gitbook/assets/Icon Logo.svg" alt=""><figcaption><p>Icon Logo (white)</p></figcaption></figure>
-
-<div><figure><img src="../.gitbook/assets/Logomark Colored Version-cross.svg" alt=""><figcaption><p>Horizontal Lockup (white)</p></figcaption></figure> <figure><img src="../.gitbook/assets/Logomark Colored Version-vertical.svg" alt=""><figcaption><p>Vertical Lockup (white)</p></figcaption></figure></div>
-
-{% file src="../.gitbook/assets/JuChain Brand Resource.zip" %}
-Download the Brand Resource Pack
-{% endfile %}
-
-***
-
-## Logo Guidelines
-
-1. **Primary logo** should be used wherever possible together with the wordmark.
-2. **Horizontal lockup** must always be left-aligned; never right-align.
-3. **Vertical lockup** must always be center-aligned; never left- or right-align.
-4.  Use the logo only for:
-
-    * Buttons
-    * Profile pictures
-    * Denoting JU tokens
-    * As an icon
+<figure><img src="../.gitbook/assets/JuChain Logo - H.svg" alt="" width="250"><figcaption></figcaption></figure>
 
 
 
-***
+<figure><img src="../.gitbook/assets/JuChain Logo - V.svg" alt="" width="125"><figcaption></figcaption></figure>
 
-## Logo Dimensions
 
-1. **Vertical lockup** (logo with wordmark) must be at least **99 px wide**. Applies to both full-color and monochrome versions.
-2. **Horizontal lockup** (logo with wordmark) must be at least **65 px wide**. Applies to both full-color and monochrome versions.
-3. **Icon logo** must be at least **24 px wide**. Applies to both full-color and monochrome versions.
+
+<figure><img src="../.gitbook/assets/JuChain Logo - Logomark.png" alt="" width="128"><figcaption></figcaption></figure>
 
 ***
 
 ## Brand Colors
 
-<figure><img src="../.gitbook/assets/Frame 1410104223.svg" alt=""><figcaption><p>C:67 M:0 Y:24 K:0<br>R:35 G:202 B:215<br>Hex: #23CAD7</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/Frame 1410104223 1.svg" alt=""><figcaption><p>C:83 M:75 Y:0 K:35<br>R:20 G:59 B:255<br>HEX #143BFF</p></figcaption></figure>
 
 <figure><img src="../.gitbook/assets/Frame 1410104225.svg" alt=""><figcaption><p>C:0 M:0 Y:0 K:0<br>R:255 G:255 B:255<br>Hex: #FFFFFF</p></figcaption></figure>
 
