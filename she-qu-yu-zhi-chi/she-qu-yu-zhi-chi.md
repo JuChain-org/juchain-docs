@@ -121,7 +121,7 @@ JuChain 的成功离不开开发者的积极参与。以下是您可以融入社
 
 如果社区和自助资源无法解决问题，请直接联系 JuChain 团队：
 
-* **Twitter/X**：`@JuChainOfficial`
+* **Twitter/X**：`@Juchain_zh`
 * **官网**：`https://www.juchain.org`
 
 ### 下一步
