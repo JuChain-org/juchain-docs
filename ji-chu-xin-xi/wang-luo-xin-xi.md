@@ -22,7 +22,7 @@
 | 网络名称   | JuChain Testnet                 |
 | 描述     | JuChain 公共测试网                   |
 | RPC 端点 | https://testnet-rpc.juchain.org |
-|        | ws://testnet-ws.juchain.org     |
+|        | wss://testnet-ws.juchain.org    |
 | 链 ID   | 202599                          |
 | 货币符号   | JU                              |
 | 区块浏览器  | https://testnet.juscan.io       |
