@@ -24,7 +24,7 @@
 | Network Name    | JuChain Testnet                 |
 | Description     | JuChain Public Testnet          |
 | RPC Endpoint    | https://testnet-rpc.juchain.org |
-|                 | ws://testnet-ws.juchain.org     |
+|                 | wss://testnet-ws.juchain.org    |
 | Chain ID        | 202599                          |
 | Currency Symbol | JU                              |
 | Block Explorer  | https://testnet.juscan.io       |
