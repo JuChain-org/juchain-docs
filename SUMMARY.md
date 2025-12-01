@@ -64,4 +64,4 @@
 ## Node
 
 * [Node Service Synchronization](node/node-service-synchronization.md)
-* [Node Upgrade \[25.12\]](node/node-upgrade-25.12.md)
+* [Node Upgrade \[2025.12\]](node/node-upgrade-2025.12.md)
