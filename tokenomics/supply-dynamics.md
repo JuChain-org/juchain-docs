@@ -29,8 +29,7 @@ Under the halving model, circulating supply is expected to follow this trajector
 * **Year 4:** 36,000 JU Daily
 * **Year 8:** 18,000 JU Daily
 * **Year 12:** 9,000 JU Daily
-* **By analogy, Daily supply is halved every 4 year**\
-
+* **By analogy, Daily supply is halved every 4 year**<br>
 
 ## Strategic Importance
 
