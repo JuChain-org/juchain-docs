@@ -74,3 +74,4 @@
 ## 节点
 
 * [同步节点服务器部署](jie-dian/tong-bu-jie-dian-fu-wu-qi-bu-shu.md)
+* [节点升级 【2025.12】](jie-dian/jie-dian-sheng-ji-2025.12.md)
